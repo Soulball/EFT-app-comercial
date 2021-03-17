@@ -1,5 +1,5 @@
+import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'Pages/home.dart';
 
 //Inicio de la aplicacion
@@ -9,7 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: whiteDark(),
+      ),
       home: Home(),
+      debugShowCheckedModeBanner: false
     );
   }
 }
