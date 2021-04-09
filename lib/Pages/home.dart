@@ -1,4 +1,7 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Pages/commissions.dart';
+import 'package:eft_app_comercial/Pages/requests.dart';
+import 'package:eft_app_comercial/Pages/tutorials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'marketing.dart';
@@ -16,18 +19,18 @@ class _HomeState extends State<Home> {
   final List<Widget> _pagesList = [
     News(),
     Marketing(),
-    Marketing(),
-    Marketing(),
-    Marketing(),
+    Tutorials(),
+    Requests(),
+    Commissions(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
-            backgroundColor: blueDark(),
-            activeColor: blueLight(),
-            inactiveColor: grayLight(),
+            backgroundColor: blueDark,
+            activeColor: blueLight,
+            inactiveColor: grayLight,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                   icon: Icon(Icons.home_outlined),

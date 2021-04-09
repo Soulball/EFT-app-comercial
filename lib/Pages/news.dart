@@ -16,12 +16,13 @@ class _NewsState extends State<News> {
   List<New> newsList = [
     New(
         name: "Sanitización a clientes sin costo",
-        text: "",
+        text:
+            "Planning to visit Las Vegas or any other vacational resort where casinos are a major portion of their business? I have just the thing for you. Here, I will show you how to pass off as a High Roller & collect many complimentary items and gifts.",
         image: "http://picsum.photos/id/0/400/300",
         category: "Marketing"),
     New(
         name: "Noticia 2",
-        text: "",
+        text: "Texto 2",
         image: "http://picsum.photos/id/1/400/300",
         category: "Otros productos"),
     New(
@@ -47,7 +48,7 @@ class _NewsState extends State<News> {
                           onTap: () {
                             final route = MaterialPageRoute(
                                 builder: (BuildContext context) {
-                              return NewDetails();
+                              return NewDetails(newId: newsList[index]);
                             });
                             Navigator.of(context).push(route);
                           },
@@ -71,7 +72,7 @@ class _NewsState extends State<News> {
                                         child: Container(
                                             height: 26,
                                             decoration: BoxDecoration(
-                                                color: red(),
+                                                color: red,
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             child: Padding(
@@ -81,7 +82,7 @@ class _NewsState extends State<News> {
                                                   data:
                                                       newsList[index].category,
                                                   size: 14,
-                                                  color: whiteLight()),
+                                                  color: whiteLight),
                                             ))),
                                     Container(
                                         width: double.infinity,
@@ -90,7 +91,7 @@ class _NewsState extends State<News> {
                                           borderRadius: BorderRadius.only(
                                               bottomLeft: Radius.circular(15),
                                               bottomRight: Radius.circular(15)),
-                                          color: grayDark().withOpacity(0.65),
+                                          color: grayDark.withOpacity(0.65),
                                         ),
                                         child: Padding(
                                             padding: const EdgeInsets.only(
@@ -101,7 +102,7 @@ class _NewsState extends State<News> {
                                             child: CustomText(
                                                 data: newsList[index].name,
                                                 size: 24,
-                                                color: whiteLight(),
+                                                color: whiteLight,
                                                 weight: FontWeight.bold)))
                                   ]))));
                 })));

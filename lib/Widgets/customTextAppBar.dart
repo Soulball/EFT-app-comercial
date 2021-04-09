@@ -15,6 +15,6 @@ class CustomTextAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomText(
-        data: data, size: 34, color: grayDark(), weight: FontWeight.bold);
+        data: data, size: 34, color: grayDark, weight: FontWeight.bold);
   }
 }

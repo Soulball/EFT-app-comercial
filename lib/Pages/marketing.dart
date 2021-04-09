@@ -9,27 +9,10 @@ class Marketing extends StatefulWidget {
 }
 
 class _MarketingState extends State<Marketing> {
-  Color color = Colors.white;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: CustomTextAppBar(data: 'Marketing')),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: color,
-        child: FlatButton(
-            onPressed: () {
-              setState(() {
-                if (color == Colors.white)
-                  color = Colors.blue;
-                else
-                  color = Colors.white;
-              });
-            },
-            child: Text('Cambiar')),
-      ),
-    );
+        appBar: AppBar(title: CustomTextAppBar(data: 'Marketing')),
+        body: Container(height: double.infinity, width: double.infinity));
   }
 }
