@@ -1,11 +1,12 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Pages/commissions.dart';
 import 'package:eft_app_comercial/Pages/requests.dart';
-import 'package:eft_app_comercial/Pages/tutorials.dart';
+import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'Tutorials/infos.dart';
 import 'marketing.dart';
-import 'news.dart';
+import 'News/news.dart';
 
 //Menu principal con Navigation Bar
 class Home extends StatefulWidget {

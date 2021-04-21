@@ -1,6 +1,6 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Classes/new.dart';
-import 'package:eft_app_comercial/Pages/newDetails.dart';
+import 'package:eft_app_comercial/Pages/News/newDetails.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
 import 'package:flutter/material.dart';
@@ -18,17 +18,20 @@ class _NewsState extends State<News> {
         name: "Sanitización a clientes sin costo",
         text:
             "Planning to visit Las Vegas or any other vacational resort where casinos are a major portion of their business? I have just the thing for you. Here, I will show you how to pass off as a High Roller & collect many complimentary items and gifts.",
-        image: "http://picsum.photos/id/0/400/300",
+        image:
+            "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
         category: "Marketing"),
     New(
         name: "Noticia 2",
         text: "Texto 2",
-        image: "http://picsum.photos/id/1/400/300",
+        image:
+            "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
         category: "Otros productos"),
     New(
         name: "Noticia 3",
         text: "",
-        image: "http://picsum.photos/id/2/400/300",
+        image:
+            "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
         category: "Tutoriales")
   ];
 
