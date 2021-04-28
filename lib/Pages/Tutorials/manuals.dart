@@ -31,7 +31,7 @@ class _ManualsState extends State<Manuals> {
                       margin: EdgeInsets.all(marginV),
                       child: ListTile(
                         leading: Icon(Icons.event,
-                            color: blueDark,
+                            color: blueNeutral,
                             size: getVerticalPercent(context, 10)),
                         title: Text(manualList[index].name),
                         subtitle: CustomText(data: 'Descripcion del manual'),

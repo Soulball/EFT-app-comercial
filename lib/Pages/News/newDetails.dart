@@ -35,10 +35,10 @@ class NewDetails extends StatelessWidget {
                     weight: FontWeight.bold),
               ),
               Padding(
-                  padding: const EdgeInsets.only(
-                      left: 15, right: 15, bottom: 15),
-                  child: CustomText(
-                      data: newId.text, size: 14, color: grayDark))
+                  padding:
+                      const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+                  child:
+                      CustomText(data: newId.text, size: 14, color: grayDark))
             ])));
   }
 }

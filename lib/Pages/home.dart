@@ -4,8 +4,7 @@ import 'package:eft_app_comercial/Pages/requests.dart';
 import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Tutorials/infos.dart';
-import 'marketing.dart';
+import 'Marketing/marketing.dart';
 import 'News/news.dart';
 
 //Menu principal con Navigation Bar
@@ -29,7 +28,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
-            backgroundColor: blueDark,
+            backgroundColor: blueNeutral,
             activeColor: blueLight,
             inactiveColor: grayLight,
             items: const <BottomNavigationBarItem>[

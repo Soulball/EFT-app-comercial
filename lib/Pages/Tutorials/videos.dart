@@ -18,7 +18,6 @@ class _VideosState extends State<Videos>
     with AutomaticKeepAliveClientMixin<Videos> {
   @override
   Widget build(BuildContext context) {
-    //Guardar el estado de la pagina
     super.build(context);
 
     //Obtener margen vertical desde libreria
@@ -79,5 +78,6 @@ class _VideosState extends State<Videos>
         ]));
   }
 
+  //Guardar el estado de la pagina
   bool get wantKeepAlive => true;
 }

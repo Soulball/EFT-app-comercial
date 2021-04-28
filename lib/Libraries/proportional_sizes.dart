@@ -8,7 +8,7 @@ double getVerticalMargin(BuildContext context) {
 }
 
 //Obtener porcentaje vertical
-double getVerticalPercent(BuildContext context, int percent) {
+double getVerticalPercent(BuildContext context, double percent) {
   return MediaQuery.of(context).size.height * (percent / 100);
 }
 
@@ -18,6 +18,6 @@ double getHorizontalMargin(BuildContext context) {
 }
 
 //Obtener porcentaje vertical
-double getHorizontalPercent(BuildContext context, int percent) {
+double getHorizontalPercent(BuildContext context, double percent) {
   return MediaQuery.of(context).size.width * (percent / 100);
 }
