@@ -21,7 +21,7 @@ class _NewsState extends State<News> {
             width: double.infinity,
             height: double.infinity,
             child: ListView.builder(
-                itemCount: newsList.length,
+                itemCount: announcementList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -29,7 +29,7 @@ class _NewsState extends State<News> {
                           onTap: () {
                             final route = MaterialPageRoute(
                                 builder: (BuildContext context) {
-                              return NewDetails(newId: newsList[index]);
+                              return NewDetails(newId: announcementList[index]);
                             });
                             Navigator.of(context).push(route);
                           },
@@ -39,7 +39,7 @@ class _NewsState extends State<News> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15)),
                                 image: DecorationImage(
-                                    image: NetworkImage(newsList[index].image),
+                                    image: NetworkImage(announcementList[index].image),
                                     fit: BoxFit.cover),
                               ),
                               alignment: Alignment.bottomLeft,
@@ -61,7 +61,7 @@ class _NewsState extends State<News> {
                                                   const EdgeInsets.all(5.0),
                                               child: CustomText(
                                                   data:
-                                                      newsList[index].category,
+                                                      announcementList[index].categoryName,
                                                   size: 14,
                                                   color: whiteLight),
                                             ))),
@@ -81,7 +81,7 @@ class _NewsState extends State<News> {
                                                 right: 5.0,
                                                 bottom: 5.0),
                                             child: CustomText(
-                                                data: newsList[index].name,
+                                                data: announcementList[index].name,
                                                 size: 24,
                                                 color: whiteLight,
                                                 weight: FontWeight.bold)))

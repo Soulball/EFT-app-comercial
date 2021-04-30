@@ -1,4 +1,4 @@
-import 'package:eft_app_comercial/Classes/new.dart';
+import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 //Pagina principal de la seccion de marketing
 class NewDetails extends StatelessWidget {
   NewDetails({Key key, this.newId}) : super(key: key);
-  final New newId;
+  final Announcement newId;
 
   @override
   Widget build(BuildContext context) {

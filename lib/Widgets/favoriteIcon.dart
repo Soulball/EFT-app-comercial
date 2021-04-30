@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class FavoriteIcon extends StatefulWidget {
   //Variables
-  String id;
+  int announcementId;
   Color containerColor;
 
-  FavoriteIcon({this.id, this.containerColor});
+  FavoriteIcon({this.announcementId, this.containerColor});
 
   @override
   _FavoriteIconState createState() => _FavoriteIconState();
@@ -33,16 +33,16 @@ class _FavoriteIconState extends State<FavoriteIcon> {
             onPressed: () {
               setState(() {
                 if (favorite)
-                  favoriteList.remove(widget.id);
+                  favoriteList.remove(widget.announcementId);
                 else
-                  favoriteList.add(widget.id);
+                  favoriteList.add(widget.announcementId);
                 favorite = !favorite;
               });
             }));
   }
 
   bool isFavorite() {
-    if (favoriteList.contains(widget.id)) return true;
+    if (favoriteList.contains(widget.announcementId)) return true;
     return false;
   }
 }

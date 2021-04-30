@@ -24,7 +24,7 @@ class _MarketingState extends State<Marketing> {
             height: double.infinity,
             color: grayNeutral,
             child: ListView.builder(
-                itemCount: newsList.length,
+                itemCount: announcementList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: <Widget>[
@@ -32,7 +32,8 @@ class _MarketingState extends State<Marketing> {
                         onTap: () {
                           final route = MaterialPageRoute(
                               builder: (BuildContext context) {
-                            return PromotionDetails(newId: newsList[index]);
+                            return PromotionDetails(
+                                announcement: announcementList[index]);
                           });
                           Navigator.of(context).push(route);
                         },
@@ -42,16 +43,19 @@ class _MarketingState extends State<Marketing> {
                                 top: getVerticalPercent(context, 3)),
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                  image: NetworkImage(newsList[index].image),
+                                  image: NetworkImage(
+                                      announcementList[index].image),
                                   fit: BoxFit.fill),
                             )),
                       ),
                       Row(children: <Widget>[
                         FavoriteIcon(
-                            id: newsList[index].name,
+                            announcementId:
+                                announcementList[index].id,
                             containerColor: grayIconLigth),
                         LikeIcon(
-                            id: newsList[index].name,
+                            announcementId:
+                                announcementList[index].id,
                             containerColor: grayIconDark),
                         Container(
                             height: getHorizontalPercent(context, 15),
@@ -63,7 +67,7 @@ class _MarketingState extends State<Marketing> {
                             color: blueDark,
                             alignment: Alignment.center,
                             child: CustomText(
-                                data: newsList[index].category,
+                                data: announcementList[index].categoryName,
                                 size: 14,
                                 color: whiteLight))
                       ])

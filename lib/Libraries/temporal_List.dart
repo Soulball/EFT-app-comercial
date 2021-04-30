@@ -1,56 +1,47 @@
 library temporal_list;
 
 import 'package:eft_app_comercial/Classes/detail.dart';
-import 'package:eft_app_comercial/Classes/new.dart';
+import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/tutorial.dart';
 
 //Lista de favoritos
-List<String> favoriteList = ["Sanitización a clientes sin costo"];
+List<int> favoriteList = [1];
 
 //Lista de me gusta
-List<String> likeList = ["Noticia 2"];
+List<int> likeList = [1, 3];
 
 //Lista de noticias
-List<New> newsList = [
-  New(
+List<Announcement> announcementList = [
+  Announcement(
+      id: 1,
       name: "Sanitización a clientes sin costo",
       text:
           "Planning to visit Las Vegas or any other vacational resort where casinos are a major portion of their business? I have just the thing for you. Here, I will show you how to pass off as a High Roller & collect many complimentary items and gifts.",
       image:
           "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
-      category: "Marketing"),
-  New(
+      categoryName: "Marketing"),
+  Announcement(
+      id: 2,
       name: "Noticia 2",
       text: "Texto 2",
       image:
           "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
-      category: "Otros productos"),
-  New(
+      categoryName: "Otros productos"),
+  Announcement(
+      id: 3,
       name: "Noticia 3",
       text: "",
       image:
           "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
-      category: "Tutoriales")
+      categoryName: "Tutoriales")
 ];
 
 //Lista de datos
 List<Detail> detailsList = [
-  Detail(
-      newId: "Sanitización a clientes sin costo",
-      title: "VIGENCIA",
-      subtitle: "Martes 3 a Jueves 21"),
-  Detail(
-      newId: "Sanitización a clientes sin costo",
-      title: "Dinámica",
-      subtitle: "Martes 3 a Jueves 21"),
-  Detail(
-      newId: "Sanitización a clientes sin costo",
-      title: "Nota 1",
-      subtitle: "Datos"),
-  Detail(
-      newId: "Sanitización a clientes sin costo",
-      title: "Nota 2",
-      subtitle: "Datos")
+  Detail(title: "VIGENCIA", subtitle: "Martes 3 a Jueves 21"),
+  Detail(title: "Dinámica", subtitle: "Martes 3 a Jueves 21"),
+  Detail(title: "Nota 1", subtitle: "Datos"),
+  Detail(title: "Nota 2", subtitle: "Datos")
 ];
 
 //Lista de infografías

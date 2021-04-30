@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class LikeIcon extends StatefulWidget {
   //Variables
-  String id;
+  int announcementId;
   Color containerColor;
 
-  LikeIcon({this.id, this.containerColor});
+  LikeIcon({this.announcementId, this.containerColor});
 
   @override
   _LikeIconState createState() => _LikeIconState();
@@ -32,16 +32,16 @@ class _LikeIconState extends State<LikeIcon> {
             onPressed: () {
               setState(() {
                 if (like)
-                  likeList.remove(widget.id);
+                  likeList.remove(widget.announcementId);
                 else
-                  likeList.add(widget.id);
+                  likeList.add(widget.announcementId);
                 like = !like;
               });
             }));
   }
 
   bool isLike() {
-    if (likeList.contains(widget.id)) return true;
+    if (likeList.contains(widget.announcementId)) return true;
     return false;
   }
 }
