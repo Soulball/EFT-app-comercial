@@ -21,7 +21,7 @@ class _InfosState extends State<Infos> {
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-          SubSectionTitle(data: 'Infografías', context: context),
+          SubSectionTitle(data: 'Infografías'),
           Expanded(
               flex: 10,
               child: ListView.builder(

@@ -9,6 +9,7 @@ class LikeIcon extends StatefulWidget {
   int announcementId;
   Color containerColor;
 
+  //Constructor
   LikeIcon({this.announcementId, this.containerColor});
 
   @override
@@ -29,15 +30,18 @@ class _LikeIconState extends State<LikeIcon> {
             icon: Icon(like ? Icons.thumb_up : Icons.thumb_up_alt_outlined,
                 color: like ? Colors.blue : Colors.black,
                 size: getHorizontalPercent(context, 10)),
-            onPressed: () {
-              setState(() {
-                if (like)
-                  likeList.remove(widget.announcementId);
-                else
-                  likeList.add(widget.announcementId);
-                like = !like;
-              });
-            }));
+            onPressed: onClick));
+  }
+
+//Metodos
+  void onClick() {
+    setState(() {
+      if (like)
+        likeList.remove(widget.announcementId);
+      else
+        likeList.add(widget.announcementId);
+      like = !like;
+    });
   }
 
   bool isLike() {

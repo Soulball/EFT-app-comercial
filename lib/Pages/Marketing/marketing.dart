@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 //Pagina principal de la seccion de marketing
 class Marketing extends StatefulWidget {
   Marketing({Key key}) : super(key: key);
+  static List list;
   @override
   _MarketingState createState() => _MarketingState();
 }
@@ -50,12 +51,10 @@ class _MarketingState extends State<Marketing> {
                       ),
                       Row(children: <Widget>[
                         FavoriteIcon(
-                            announcementId:
-                                announcementList[index].id,
+                            announcementId: announcementList[index].id,
                             containerColor: grayIconLigth),
                         LikeIcon(
-                            announcementId:
-                                announcementList[index].id,
+                            announcementId: announcementList[index].id,
                             containerColor: grayIconDark),
                         Container(
                             height: getHorizontalPercent(context, 15),

@@ -26,7 +26,7 @@ class _VideosState extends State<Videos>
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-          SubSectionTitle(data: 'Videos', context: context),
+          SubSectionTitle(data: 'Videos'),
           Expanded(
               flex: 10,
               child: ListView.builder(

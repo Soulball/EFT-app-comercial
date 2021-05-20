@@ -21,7 +21,7 @@ class _ManualsState extends State<Manuals> {
         body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-          SubSectionTitle(data: 'Manuales', context: context),
+          SubSectionTitle(data: 'Manuales'),
           Expanded(
               flex: 10,
               child: ListView.builder(

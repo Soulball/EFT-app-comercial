@@ -8,27 +8,26 @@ import 'customText.dart';
 class SubSectionTitle extends StatelessWidget {
   //Variables
   String data;
-  BuildContext context;
 
   //Constructor
-  SubSectionTitle({this.data, this.context});
+  SubSectionTitle({this.data});
 
   //Widget
   @override
   Widget build(BuildContext context) {
     double marginV = getVerticalMargin(context);
     return Card(
-      margin: EdgeInsets.all(marginV),
-      color: red,
-      child: Container(
-        alignment: Alignment.center,
-        width: getHorizontalPercent(context, 33),
-        child: Padding(
-          padding: const EdgeInsets.all(4),
-          child: CustomText(
-              data: data, size: 18, color: whiteDark, weight: FontWeight.bold),
-        ),
-      ),
-    );
+        margin: EdgeInsets.all(marginV),
+        color: red,
+        child: Container(
+            alignment: Alignment.center,
+            width: getHorizontalPercent(context, 33),
+            child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: CustomText(
+                    data: data,
+                    size: 18,
+                    color: whiteDark,
+                    weight: FontWeight.bold))));
   }
 }

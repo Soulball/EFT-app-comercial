@@ -9,6 +9,7 @@ class FavoriteIcon extends StatefulWidget {
   int announcementId;
   Color containerColor;
 
+  //Constructor
   FavoriteIcon({this.announcementId, this.containerColor});
 
   @override
@@ -17,7 +18,6 @@ class FavoriteIcon extends StatefulWidget {
 
 class _FavoriteIconState extends State<FavoriteIcon> {
   bool favorite;
-
   Widget build(BuildContext context) {
     favorite = isFavorite();
     return Container(
@@ -30,15 +30,18 @@ class _FavoriteIconState extends State<FavoriteIcon> {
                 favorite ? Icons.favorite : Icons.favorite_border_outlined,
                 color: favorite ? Colors.red : Colors.black,
                 size: getHorizontalPercent(context, 10)),
-            onPressed: () {
-              setState(() {
-                if (favorite)
-                  favoriteList.remove(widget.announcementId);
-                else
-                  favoriteList.add(widget.announcementId);
-                favorite = !favorite;
-              });
-            }));
+            onPressed: onClick));
+  }
+
+  //Metodos
+  void onClick() {
+    setState(() {
+      if (favorite)
+        favoriteList.remove(widget.announcementId);
+      else
+        favoriteList.add(widget.announcementId);
+      favorite = !favorite;
+    });
   }
 
   bool isFavorite() {
