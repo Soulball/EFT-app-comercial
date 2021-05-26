@@ -2,7 +2,6 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
-
 import 'customText.dart';
 
 // ignore: must_be_immutable

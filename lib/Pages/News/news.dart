@@ -1,4 +1,5 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Libraries/temporal_List.dart';
 import 'package:eft_app_comercial/Pages/News/newDetails.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
@@ -36,12 +37,12 @@ class _NewsState extends State<News> {
                           child: Container(
                               height: 220,
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                                image: DecorationImage(
-                                    image: NetworkImage(announcementList[index].image),
-                                    fit: BoxFit.cover),
-                              ),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15)),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                          announcementList[index].image),
+                                      fit: BoxFit.cover)),
                               alignment: Alignment.bottomLeft,
                               child: Column(
                                   mainAxisAlignment:
@@ -57,23 +58,23 @@ class _NewsState extends State<News> {
                                                 borderRadius:
                                                     BorderRadius.circular(10)),
                                             child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(5.0),
-                                              child: CustomText(
-                                                  data:
-                                                      announcementList[index].categoryName,
-                                                  size: 14,
-                                                  color: whiteLight),
-                                            ))),
+                                                padding:
+                                                    const EdgeInsets.all(5.0),
+                                                child: CustomText(
+                                                    data:
+                                                        announcementList[index]
+                                                            .categoryName,
+                                                    size: 14,
+                                                    color: whiteLight)))),
                                     Container(
                                         width: double.infinity,
                                         height: 65,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                              bottomLeft: Radius.circular(15),
-                                              bottomRight: Radius.circular(15)),
-                                          color: grayDark.withOpacity(0.65),
-                                        ),
+                                            borderRadius: BorderRadius.only(
+                                                bottomLeft: Radius.circular(15),
+                                                bottomRight:
+                                                    Radius.circular(15)),
+                                            color: grayDark.withOpacity(0.65)),
                                         child: Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 10.0,
@@ -81,7 +82,8 @@ class _NewsState extends State<News> {
                                                 right: 5.0,
                                                 bottom: 5.0),
                                             child: CustomText(
-                                                data: announcementList[index].name,
+                                                data: announcementList[index]
+                                                    .name,
                                                 size: 24,
                                                 color: whiteLight,
                                                 weight: FontWeight.bold)))
