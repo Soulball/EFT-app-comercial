@@ -1,3 +1,5 @@
+import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/Login/header.dart';
 import 'package:eft_app_comercial/Widgets/Login/loginform.dart';
 import 'package:eft_app_comercial/Widgets/Login/logo.dart';
@@ -7,9 +9,8 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: whiteLight,
       body: Container(
-        color: Colors.transparent,
         height: double.infinity,
         width: double.infinity,
         child: ListView(
@@ -28,7 +29,7 @@ class Login extends StatelessWidget {
               // ignore: deprecated_member_use
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.15,
+              height: getVerticalPercent(context, 15),
             ),
             LoginForm(),
           ],
