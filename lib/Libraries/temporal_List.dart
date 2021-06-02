@@ -1,6 +1,5 @@
 library temporal_list;
 
-import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/tutorial.dart';
 
@@ -34,14 +33,6 @@ List<Announcement> announcementList = [
       image:
           "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
       categoryName: "Tutoriales")
-];
-
-//Lista de datos
-List<Detail> detailsList = [
-  Detail(title: "VIGENCIA", subtitle: "Martes 3 a Jueves 21"),
-  Detail(title: "Dinámica", subtitle: "Martes 3 a Jueves 21"),
-  Detail(title: "Nota 1", subtitle: "Datos"),
-  Detail(title: "Nota 2", subtitle: "Datos")
 ];
 
 //Lista de infografías
