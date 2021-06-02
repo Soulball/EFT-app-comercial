@@ -7,11 +7,11 @@ import 'dart:convert';
 
 final _keyvalidate = GlobalKey<FormState>();
 
-class Passmail extends StatefulWidget {
-  _Passmail createState() => _Passmail();
+class LoginForm extends StatefulWidget {
+  _LoginForm createState() => _LoginForm();
 }
 
-class _Passmail extends State<Passmail> {
+class _LoginForm extends State<LoginForm> {
   final user = TextEditingController();
   final password = TextEditingController();
 
