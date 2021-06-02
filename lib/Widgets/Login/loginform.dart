@@ -1,4 +1,6 @@
 import 'package:eft_app_comercial/Classes/user.dart';
+import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -44,9 +46,8 @@ class _LoginForm extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      color: Colors.transparent,
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.43,
+      width: getHorizontalPercent(context, 1),
+      height: getVerticalPercent(context, 43),
       child: Form(
         key: _keyvalidate,
         child: Column(
@@ -54,11 +55,10 @@ class _LoginForm extends State<LoginForm> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width / 1.2,
-              height: MediaQuery.of(context).size.height * 0.1,
+              width: getHorizontalPercent(context, 0.012),
+              height: getVerticalPercent(context, 10),
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
-                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: Colors.grey[200], width: 2),
               ),
@@ -79,18 +79,16 @@ class _LoginForm extends State<LoginForm> {
                   hintText: "Usuario",
                   prefixIcon: Icon(
                     Icons.email,
-                    color: Color.fromRGBO(49, 190, 232, 1),
+                    color: blueLight, //#31BEE8
                   ),
                 ),
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .028,
-            ),
+            SizedBox(height: getVerticalPercent(context, 2.8)),
             Container(
               alignment: Alignment.topCenter,
-              width: MediaQuery.of(context).size.width / 1.2,
-              height: MediaQuery.of(context).size.height * 0.1,
+              width: getHorizontalPercent(context, 0.012),
+              height: getVerticalPercent(context, 10),
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(5),
@@ -117,25 +115,26 @@ class _LoginForm extends State<LoginForm> {
                   hintText: "Contraseña",
                   prefixIcon: Icon(
                     Icons.vpn_key,
-                    color: Color(0xFF31BEE8),
+                    color: blueLight,
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
+              height: getVerticalPercent(context, 10),
             ),
             MaterialButton(
               autofocus: true,
-              color: Color(0xFF31BEE8),
-              height: MediaQuery.of(context).size.height * 0.09,
-              minWidth: MediaQuery.of(context).size.width / 1.2,
+              color: blueLight,
+              height: getVerticalPercent(context, 9),
+              minWidth: getHorizontalPercent(context, 0.012),
               shape: StadiumBorder(),
               child: Text(
                 'Entrar',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: MediaQuery.of(context).size.height * .03),
+                  color: Colors.white,
+                  fontSize: getVerticalPercent(context, 3.0),
+                ),
               ),
               onPressed: loginMethod,
             ),

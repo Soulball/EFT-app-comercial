@@ -1,12 +1,12 @@
+import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
 
 class HeaderLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.transparent,
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.235,
+      height: getVerticalPercent(context, 23.5),
       child: ClipPath(
         clipper: Myclipper(),
         child: Image.asset("assets/imagen3.jpg", fit: BoxFit.fill),

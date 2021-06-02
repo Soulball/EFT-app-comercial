@@ -1,3 +1,4 @@
+import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:flutter/material.dart';
 
 class IconContainer extends StatelessWidget {
@@ -13,7 +14,7 @@ class IconContainer extends StatelessWidget {
       width: this.size,
       height: this.size,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: whiteLight,
         borderRadius: BorderRadius.circular(this.size * 0.32),
         border: Border.all(
           color: Colors.white10,
@@ -29,11 +30,11 @@ class IconContainer extends StatelessWidget {
       child: Center(
         child: CircleAvatar(
           radius: size * 0.5,
-          backgroundColor: Colors.white,
+          backgroundColor: whiteLight,
           child: Icon(
             Icons.account_circle_outlined,
             size: size * 0.65,
-            color: Color.fromRGBO(49, 190, 232, 1),
+            color: blueLight, //#31BEE8
           ),
         ),
       ),
