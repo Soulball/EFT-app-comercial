@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
@@ -45,24 +46,21 @@ Future getApi(int station, int user) async {
 Future insertReactions(
     int user, int announcement, bool favorite, bool like) async {
   //Peticion
-  // ignore: unused_local_variable
-  Response response = await get(Uri.encodeFull(
+  await get(Uri.encodeFull(
       "http://192.168.209.136:50000/reaction?user=$user&announcement=$announcement&favorite=$favorite&like=$like"));
 }
 
 //Actualizar favorito
 Future updateFavorite(int user, int announcement, bool favorite) async {
   //Peticion
-  // ignore: unused_local_variable
-  Response response = await get(Uri.encodeFull(
+  await get(Uri.encodeFull(
       "http://192.168.209.136:50000/reaction?user=$user&announcement=$announcement&favorite=$favorite"));
 }
 
 //Actualizar favorito
 Future updateLike(int user, int announcement, bool like) async {
   //Peticion
-  // ignore: unused_local_variable
-  Response response = await get(Uri.encodeFull(
+  await get(Uri.encodeFull(
       "http://192.168.209.136:50000/reaction?user=$user&announcement=$announcement&favorite=$like"));
 }
 
@@ -79,6 +77,23 @@ Future getDetails(int announcement) async {
     for (int c = 0; c < data.length; c++) {
       PromotionDetails.detailList.add(
           new Detail(title: data[c]["title"], subtitle: data[c]["subtitle"]));
+    }
+  }
+}
+
+//Tutoriales
+Future getTutorials(int station, String type) async {
+  //Peticion
+  Response response = await get(Uri.encodeFull(
+      "http://192.168.209.136:50000/tutorial?station=$station&type=$type"));
+  //PromotionDetails.detailList.clear();
+
+  //Comprobar si es nulo
+  if (json.decode(response.body)["tutorials"] != null) {
+    List data = json.decode(response.body)["tutorials"];
+    for (int c = 0; c < data.length; c++) {
+      //PromotionDetails.detailList.add(
+      //new Detail(title: data[c]["title"], subtitle: data[c]["subtitle"]));
     }
   }
 }
