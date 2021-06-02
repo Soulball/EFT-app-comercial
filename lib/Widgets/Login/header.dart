@@ -23,7 +23,7 @@ class Myclipper extends CustomClipper<Path> {
     var p = Path();
 
     p.lineTo(0.0, h - h * 0.27);
-    setPath(w * 0.5, h * 1.31, w, h * 0.71, p);
+    setPath(w * 0.5, h * 1.2649, w, h * 0.73, p);
     p.lineTo(w, 0.0);
     p.close();
     return p;

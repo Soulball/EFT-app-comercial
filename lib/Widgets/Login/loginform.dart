@@ -46,7 +46,7 @@ class _LoginForm extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width: getHorizontalPercent(context, 1),
+      width: getHorizontalPercent(context, 100),
       height: getVerticalPercent(context, 43),
       child: Form(
         key: _keyvalidate,
@@ -55,12 +55,12 @@ class _LoginForm extends State<LoginForm> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: getHorizontalPercent(context, 0.012),
+              width: getHorizontalPercent(context, 80),
               height: getVerticalPercent(context, 10),
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.grey[200], width: 2),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.grey[200], width: 4),
               ),
               child: TextFormField(
                 controller: user,
@@ -71,30 +71,35 @@ class _LoginForm extends State<LoginForm> {
                 autofocus: true,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  fontSize: getVerticalPercent(context, 3.0),
                   color: Colors.blue,
                 ),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(top: 14.0),
                   hintText: "Usuario",
-                  prefixIcon: Icon(
-                    Icons.email,
-                    color: blueLight, //#31BEE8
+                  prefixIcon: SizedBox(
+                    width: getHorizontalPercent(context, 7),
+                    height: getVerticalPercent(context, 7),
+                    child: Icon(
+                      Icons.email,
+                      size: getHorizontalPercent(context, 7),
+                      color: blueLight, //#31BEE8
+                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: getVerticalPercent(context, 2.8)),
+            SizedBox(height: getVerticalPercent(context, 3.5)),
             Container(
               alignment: Alignment.topCenter,
-              width: getHorizontalPercent(context, 0.012),
+              width: getHorizontalPercent(context, 80),
               height: getVerticalPercent(context, 10),
               decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: Colors.grey[200],
-                  width: 2,
+                  width: 4,
                 ),
               ),
               child: TextFormField(
@@ -107,27 +112,33 @@ class _LoginForm extends State<LoginForm> {
                 textAlign: TextAlign.center,
                 obscureText: true,
                 style: TextStyle(
+                  fontSize: getVerticalPercent(context, 3.0),
                   color: Colors.blue,
                 ),
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(top: 14.0),
                   hintText: "Contraseña",
-                  prefixIcon: Icon(
-                    Icons.vpn_key,
-                    color: blueLight,
+                  prefixIcon: SizedBox(
+                    width: getHorizontalPercent(context, 7),
+                    height: getVerticalPercent(context, 7),
+                    child: Icon(
+                      Icons.vpn_key,
+                      size: getHorizontalPercent(context, 6),
+                      color: blueLight,
+                    ),
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: getVerticalPercent(context, 10),
+              height: getVerticalPercent(context, 8),
             ),
             MaterialButton(
               autofocus: true,
               color: blueLight,
               height: getVerticalPercent(context, 9),
-              minWidth: getHorizontalPercent(context, 0.012),
+              minWidth: getHorizontalPercent(context, 70),
               shape: StadiumBorder(),
               child: Text(
                 'Entrar',
