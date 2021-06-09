@@ -1,3 +1,4 @@
+import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
 import 'package:eft_app_comercial/Widgets/linesGraph.dart';
 import 'package:eft_app_comercial/Widgets/progressBar.dart';
@@ -31,7 +32,7 @@ class _CommissionsState extends State<Commissions> {
               ProgressBar(actualAmount: 5, maxAmount: 8),
               ProgressBar(actualAmount: 48, maxAmount: 50),
               LinesGraph(values: [5, 10, 15, 50, 30, 45], maxValue: 50),
-              PieChart(dataMap: dataMap)
+              InkWell(child: PieChart(dataMap: dataMap), onTap: deleteUser)
             ])));
   }
 }

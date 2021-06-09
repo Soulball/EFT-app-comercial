@@ -7,16 +7,22 @@ import 'package:flutter/material.dart';
 
 //Menu principal con Navigation Bar
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  Home({Key key, this.user, this.station, this.name}) : super(key: key);
+  //Variables
+  final user;
+  final station;
+  final name;
+
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  //Variables
-  HomeBloc homeBloc = new HomeBloc(user: "123456789", station: 9999);
   @override
   Widget build(BuildContext context) {
+    //Homeblock
+    HomeBloc homeBloc = new HomeBloc(
+        user: widget.user, station: widget.station, name: widget.name);
     return HomeBlocInheritedWidget(
         homebloc: homeBloc,
         child: CupertinoTabScaffold(

@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class HomeBloc extends ChangeNotifier {
-  String user;
+  int user;
   int station;
+  String name;
 
-  HomeBloc({this.user, this.station});
+  HomeBloc({this.user, this.station, this.name});
 }

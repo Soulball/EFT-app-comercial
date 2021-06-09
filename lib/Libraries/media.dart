@@ -1,5 +1,6 @@
 library media;
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
@@ -48,30 +49,31 @@ void showDialogText(BuildContext context, String title, String text) {
 }
 
 //Cargar usuario
-void setLogedUser(String user, int station) async {
+void setLogedUser(String user, int station, String name) async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('user', user);
-  await prefs.setInt('station', station);
+  prefs.setString('user', user);
+  prefs.setInt('station', station);
+  prefs.setString('name', name);
+  print('insertados');
 }
 
-//Cargar usuario
-Future<String> getLogedUser() async {
+//Revisar usuario
+Future<void> getLogedUser() async {
   final prefs = await SharedPreferences.getInstance();
-  final user = prefs.getString('user');
-  if (user == null) return "";
-  return user;
-}
-
-//Cargar estacion
-Future<String> getStation() async {
-  final prefs = await SharedPreferences.getInstance();
-  final station = prefs.getString('station');
-  return station;
+  int user = prefs.getInt('user');
+  Login.user = user;
+  final prefs2 = await SharedPreferences.getInstance();
+  int station = prefs2.getInt('station');
+  Login.station = station;
+  final prefs3 = await SharedPreferences.getInstance();
+  String name = prefs3.getString('name');
+  Login.name = name;
 }
 
 //Borrar usuario y estacion
-Future<void> deleteUser() async {
+void deleteUser() async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('user', null);
   await prefs.setString('station', null);
+  await prefs.setString('name', null);
 }

@@ -1,3 +1,4 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
@@ -31,7 +32,7 @@ class _MarketingState extends State<Marketing> {
             color: grayNeutral,
             child: FutureBuilder(
                 future: 
-                  getApi(9999, 123456789),
+                  getApi(HomeBlocInheritedWidget.of(context).homebloc.station, HomeBlocInheritedWidget.of(context).homebloc.user),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting)
                     return Center(child: CircularProgressIndicator());

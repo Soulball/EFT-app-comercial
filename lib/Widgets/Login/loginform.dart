@@ -1,10 +1,11 @@
-import 'package:eft_app_comercial/Classes/user.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
+import 'package:eft_app_comercial/Pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
 import 'dart:convert';
 
 final _keyvalidate = GlobalKey<FormState>();
@@ -24,14 +25,22 @@ class _LoginForm extends State<LoginForm> {
     super.dispose();
   }
 
-  Future<User> fetchPost({String user, String password}) async {
-    var response = await http.get(Uri.parse(
-        "http://192.168.209.119:60000/client?username=$user&password=$password"));
+  void fetchPost({String user, String password}) async {
+    var response = await http.get(
+        Uri.parse("http://$ip:50000/client?username=$user&password=$password"));
     if (response.statusCode == 200) {
-      return User.fromJson(json.decode(response.body));
-    } else {
+      // ignore: await_only_futures
+      await setLogedUser(user, json.decode(response.body)["station"],
+          json.decode(response.body)["name"]);
+      final route = MaterialPageRoute(builder: (BuildContext context) {
+        return Home(
+            user: int.parse(user),
+            station: json.decode(response.body)["station"],
+            name: json.decode(response.body)["name"]);
+      });
+      Navigator.of(context).push(route);
+    } else
       print('invalido');
-    }
   }
 
   void loginMethod() async {
