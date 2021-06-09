@@ -7,11 +7,13 @@ import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:http/http.dart';
 
+String ip = "192.168.209.117";
+
 //Promociones
 Future getApi(int station, int user) async {
   //Peticion
   Response response = await get(
-      Uri.encodeFull("http://192.168.209.136:50000/promo?station=$station"));
+      Uri.encodeFull("http://$ip:50000/promo?station=$station"));
 
   //Comprobar si es nulo
   if (json.decode(response.body)["promos"] != null) {
@@ -27,7 +29,7 @@ Future getApi(int station, int user) async {
     }
     //Favoritos y gustados por el usuario
     response = await get(
-        Uri.encodeFull("http://192.168.209.136:50000/reaction?user=$user"));
+        Uri.encodeFull("http://$ip:50000/reaction?user=$user"));
 
     //Cromprobar si es nulo
     if (json.decode(response.body)["reactions"] != null) {
@@ -47,28 +49,28 @@ Future insertReactions(
     int user, int announcement, bool favorite, bool like) async {
   //Peticion
   await get(Uri.encodeFull(
-      "http://192.168.209.136:50000/reaction?user=$user&announcement=$announcement&favorite=$favorite&like=$like"));
+      "http://$ip:50000/insert?user=$user&announcement=$announcement&favorite=$favorite&like=$like"));
 }
 
 //Actualizar favorito
 Future updateFavorite(int user, int announcement, bool favorite) async {
   //Peticion
   await get(Uri.encodeFull(
-      "http://192.168.209.136:50000/reaction?user=$user&announcement=$announcement&favorite=$favorite"));
+      "http://$ip:50000/updatefavorite?user=$user&announcement=$announcement&favorite=$favorite"));
 }
 
 //Actualizar favorito
 Future updateLike(int user, int announcement, bool like) async {
   //Peticion
   await get(Uri.encodeFull(
-      "http://192.168.209.136:50000/reaction?user=$user&announcement=$announcement&favorite=$like"));
+      "http://$ip:50000/updatelike?user=$user&announcement=$announcement&favorite=$like"));
 }
 
 //Detalles
 Future getDetails(int announcement) async {
   //Peticion
   Response response = await get(Uri.encodeFull(
-      "http://192.168.209.136:50000/detail?announcement=$announcement"));
+      "http://$ip:50000/detail?announcement=$announcement"));
   PromotionDetails.detailList.clear();
 
   //Comprobar si es nulo
@@ -85,7 +87,7 @@ Future getDetails(int announcement) async {
 Future getTutorials(int station, String type) async {
   //Peticion
   Response response = await get(Uri.encodeFull(
-      "http://192.168.209.136:50000/tutorial?station=$station&type=$type"));
+      "http://$ip:50000/tutorial?station=$station&type=$type"));
   //PromotionDetails.detailList.clear();
 
   //Comprobar si es nulo
