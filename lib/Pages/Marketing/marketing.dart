@@ -30,7 +30,8 @@ class _MarketingState extends State<Marketing> {
             width: double.infinity,
             color: grayNeutral,
             child: FutureBuilder(
-                future: getApi("9999", "123456789"),
+                future: 
+                  getApi(9999, 123456789),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting)
                     return Center(child: CircularProgressIndicator());

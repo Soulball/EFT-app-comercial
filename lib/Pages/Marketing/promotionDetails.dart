@@ -1,8 +1,9 @@
 import 'package:eft_app_comercial/Classes/announcement.dart';
+import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Libraries/temporal_List.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,8 @@ import 'package:flutter/material.dart';
 class PromotionDetails extends StatelessWidget {
   PromotionDetails({Key key, this.announcement}) : super(key: key);
   final Announcement announcement;
+  //Listas
+  static List<Detail> detailList = <Detail>[];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,8 @@ class PromotionDetails extends StatelessWidget {
                           top: tripleMargin, bottom: tripleMargin),
                       child: InkWell(
                           onTap: () {
-                            showDialogText(context, "Descripción", announcement.text);
+                            showDialogText(
+                                context, "Descripción", announcement.text);
                           },
                           child: Container(
                               height: getVerticalPercent(context, 56),
@@ -61,56 +65,76 @@ class PromotionDetails extends StatelessWidget {
                         padding: EdgeInsets.only(top: tripleMargin),
                         child: Container(
                             height: getVerticalPercent(context, 15),
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: detailsList.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Padding(
-                                      padding: EdgeInsets.only(left: margin),
-                                      child: Container(
-                                          width:
-                                              getHorizontalPercent(context, 45),
-                                          padding: EdgeInsets.all(margin),
-                                          decoration: BoxDecoration(
-                                              color: purpleLigth,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(15))),
-                                          child: Column(children: <Widget>[
-                                            CustomText(
-                                                data: detailsList[index].title,
-                                                size: 14,
-                                                color: whiteLight,
-                                                weight: FontWeight.bold),
-                                            Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: <Widget>[
-                                                  Container(
-                                                      height:
-                                                          getVerticalPercent(
-                                                              context, 7.5),
-                                                      width: getVerticalPercent(
-                                                          context, 7.5),
-                                                      decoration: BoxDecoration(
-                                                          color: purpleDark,
-                                                          shape:
-                                                              BoxShape.circle)),
-                                                  Container(
-                                                      width:
-                                                          getHorizontalPercent(
-                                                              context, 25),
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: CustomText(
-                                                          data:
-                                                              detailsList[index]
+                            child: FutureBuilder(
+                              future: getDetails(announcement.id),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<dynamic> snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting)
+                                  return Center(
+                                      child: CircularProgressIndicator());
+                                return ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: detailList.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Padding(
+                                          padding:
+                                              EdgeInsets.only(left: margin),
+                                          child: Container(
+                                              width: getHorizontalPercent(
+                                                  context, 45),
+                                              padding: EdgeInsets.all(margin),
+                                              decoration: BoxDecoration(
+                                                  color: purpleLigth,
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(15))),
+                                              child: Column(children: <Widget>[
+                                                CustomText(
+                                                    data:
+                                                        detailList[index].title,
+                                                    size: 14,
+                                                    color: whiteLight,
+                                                    weight: FontWeight.bold),
+                                                Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      Container(
+                                                          height:
+                                                              getVerticalPercent(
+                                                                  context,
+                                                                  7.5),
+                                                          width:
+                                                              getVerticalPercent(
+                                                                  context,
+                                                                  7.5),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                                  color:
+                                                                      purpleDark,
+                                                                  shape: BoxShape
+                                                                      .circle)),
+                                                      Container(
+                                                          width:
+                                                              getHorizontalPercent(
+                                                                  context, 25),
+                                                          alignment: Alignment
+                                                              .centerLeft,
+                                                          child: CustomText(
+                                                              data: detailList[
+                                                                      index]
                                                                   .subtitle,
-                                                          size: 14,
-                                                          color: whiteLight))
-                                                ])
-                                          ])));
-                                })))
+                                                              size: 14,
+                                                              color:
+                                                                  whiteLight))
+                                                    ])
+                                              ])));
+                                    });
+                              },
+                            )))
                   ])),
               Container(
                   height: getVerticalPercent(context, 8.5),
@@ -121,7 +145,9 @@ class PromotionDetails extends StatelessWidget {
                       color: blueDark,
                       alignment: Alignment.center,
                       child: CustomText(
-                          data: announcement.categoryName, size: 14, color: whiteLight)))
+                          data: announcement.categoryName,
+                          size: 14,
+                          color: whiteLight)))
             ])));
   }
 }
