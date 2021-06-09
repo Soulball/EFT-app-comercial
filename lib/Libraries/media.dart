@@ -49,9 +49,9 @@ void showDialogText(BuildContext context, String title, String text) {
 }
 
 //Cargar usuario
-void setLogedUser(String user, int station, String name) async {
+void setLogedUser(int user, int station, String name) async {
   final prefs = await SharedPreferences.getInstance();
-  prefs.setString('user', user);
+  prefs.setInt('user', user);
   prefs.setInt('station', station);
   prefs.setString('name', name);
   print('insertados');

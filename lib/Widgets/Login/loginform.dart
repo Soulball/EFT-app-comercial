@@ -30,7 +30,7 @@ class _LoginForm extends State<LoginForm> {
         Uri.parse("http://$ip:50000/client?username=$user&password=$password"));
     if (response.statusCode == 200) {
       // ignore: await_only_futures
-      await setLogedUser(user, json.decode(response.body)["station"],
+      await setLogedUser(int.parse(user), json.decode(response.body)["station"],
           json.decode(response.body)["name"]);
       final route = MaterialPageRoute(builder: (BuildContext context) {
         return Home(
