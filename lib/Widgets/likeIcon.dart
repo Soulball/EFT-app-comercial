@@ -2,7 +2,7 @@
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
-import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
+import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -44,7 +44,7 @@ class _LikeIconState extends State<LikeIcon> {
       widget.like = !widget.like;
       if (!insertInList(widget.announcementId)) {
         //Solicitud para insertar nuevo
-        Marketing.favAndLikeList.add(new Reactions(
+        Promotion.favAndLikeList.add(new Reactions(
             id: widget.announcementId, favorite: true, like: false));
         print("se insertó");
         return;
@@ -60,9 +60,9 @@ class _LikeIconState extends State<LikeIcon> {
 
   void isLike() {
     widget.noRepeat = false;
-    for (int c = 0; c < Marketing.favAndLikeList.length; c++) {
-      if (Marketing.favAndLikeList[c].id == widget.announcementId) {
-        widget.like = Marketing.favAndLikeList[c].like;
+    for (int c = 0; c < Promotion.favAndLikeList.length; c++) {
+      if (Promotion.favAndLikeList[c].id == widget.announcementId) {
+        widget.like = Promotion.favAndLikeList[c].like;
         widget.isNull = false;
         break;
       }

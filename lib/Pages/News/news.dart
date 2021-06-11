@@ -1,5 +1,4 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
-import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Libraries/temporal_List.dart';
 import 'package:eft_app_comercial/Pages/News/newDetails.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';

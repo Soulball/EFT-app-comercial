@@ -3,6 +3,7 @@ library media;
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
+import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:eft_app_comercial/Pages/commissions.dart';
@@ -20,6 +21,10 @@ final List<Widget> pagesList = [
   Tutorials(),
   Requests(),
   Commissions()
+];
+
+final List<Widget> marketingList = [
+  Promotion()
 ];
 
 //Abrir URL con la aplicacion
