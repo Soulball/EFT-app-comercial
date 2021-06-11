@@ -27,23 +27,19 @@ class Marketing extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               CustomButton(
-                  text: "Solicitud de Materiales",
+                  text: "Ranking", page: Promotion(), pageContext: context),
+              CustomButton(
+                  text: "Comisiones", page: Promotion(), pageContext: context),
+              CustomButton(
+                  text: "Ajuste de Inventario",
                   page: Promotion(),
                   pageContext: context),
               CustomButton(
-                  text: "Plan de Lealtad",
+                  text: "Pro Servicios",
                   page: Promotion(),
                   pageContext: context),
               CustomButton(
-                  text: "Promociones", page: Promotion(), pageContext: context),
-              CustomButton(
-                  text: "Activacion de Tarjetas",
-                  page: Promotion(),
-                  pageContext: context),
-              CustomButton(
-                  text: "Cancelación de Tarjetas",
-                  page: Promotion(),
-                  pageContext: context)
+                  text: "Reportar", page: Promotion(), pageContext: context)
             ])));
   }
 }
