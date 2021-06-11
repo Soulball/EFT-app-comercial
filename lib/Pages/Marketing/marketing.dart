@@ -6,6 +6,8 @@ import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
+import 'cardRequest.dart';
+
 class Marketing extends StatelessWidget {
   Marketing({Key key}) : super(key: key);
 
@@ -31,17 +33,17 @@ class Marketing extends StatelessWidget {
                   page: Promotion(),
                   pageContext: context),
               CustomButton(
-                  text: "Plan de Lealtad",
-                  page: Promotion(),
-                  pageContext: context),
-              CustomButton(
                   text: "Promociones", page: Promotion(), pageContext: context),
               CustomButton(
-                  text: "Activacion de Tarjetas",
+                  text: "Activacion de Tarjeta",
+                  page: CardRequest(),
+                  pageContext: context),
+              CustomButton(
+                  text: "Bloque de Tarjeta",
                   page: Promotion(),
                   pageContext: context),
               CustomButton(
-                  text: "Cancelación de Tarjetas",
+                  text: "Activaciones",
                   page: Promotion(),
                   pageContext: context)
             ])));
