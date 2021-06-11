@@ -7,13 +7,17 @@ import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:http/http.dart';
 
+<<<<<<< HEAD
 String ip = "192.168.209.133";
+=======
+String ip = "172.24.128.1";
+>>>>>>> 33b7d004b315216d878e472bd8d1f872f965e651
 
 //Promociones
 Future getApi(int station, int user) async {
   //Peticion
-  Response response = await get(
-      Uri.encodeFull("http://$ip:50000/promo?station=$station"));
+  Response response =
+      await get(Uri.encodeFull("http://$ip:50000/promo?station=$station"));
 
   //Comprobar si es nulo
   if (json.decode(response.body)["promos"] != null) {
@@ -28,8 +32,8 @@ Future getApi(int station, int user) async {
           text: data[c]["text"]));
     }
     //Favoritos y gustados por el usuario
-    response = await get(
-        Uri.encodeFull("http://$ip:50000/reaction?user=$user"));
+    response =
+        await get(Uri.encodeFull("http://$ip:50000/reaction?user=$user"));
 
     //Cromprobar si es nulo
     if (json.decode(response.body)["reactions"] != null) {
@@ -69,8 +73,8 @@ Future updateLike(int user, int announcement, bool like) async {
 //Detalles
 Future getDetails(int announcement) async {
   //Peticion
-  Response response = await get(Uri.encodeFull(
-      "http://$ip:50000/detail?announcement=$announcement"));
+  Response response = await get(
+      Uri.encodeFull("http://$ip:50000/detail?announcement=$announcement"));
   PromotionDetails.detailList.clear();
 
   //Comprobar si es nulo
@@ -86,8 +90,8 @@ Future getDetails(int announcement) async {
 //Tutoriales
 Future getTutorials(int station, String type) async {
   //Peticion
-  Response response = await get(Uri.encodeFull(
-      "http://$ip:50000/tutorial?station=$station&type=$type"));
+  Response response = await get(
+      Uri.encodeFull("http://$ip:50000/tutorial?station=$station&type=$type"));
   //PromotionDetails.detailList.clear();
 
   //Comprobar si es nulo
