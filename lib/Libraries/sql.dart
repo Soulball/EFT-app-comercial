@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
-import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
+import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:http/http.dart';
 
-String ip = "192.168.209.117";
+String ip = "192.168.209.133";
 
 //Promociones
 Future getApi(int station, int user) async {
@@ -19,7 +19,7 @@ Future getApi(int station, int user) async {
   if (json.decode(response.body)["promos"] != null) {
     List data = json.decode(response.body)["promos"];
     for (int c = 0; c < data.length; c++) {
-      Marketing.promoList.add(new Announcement(
+      Promotion.promoList.add(new Announcement(
           id: data[c]["announcement_id"],
           name: data[c]["a_name"],
           categoryName: data[c]["c_name"],
@@ -35,7 +35,7 @@ Future getApi(int station, int user) async {
     if (json.decode(response.body)["reactions"] != null) {
       data = json.decode(response.body)["reactions"];
       for (int c = 0; c < data.length; c++) {
-        Marketing.favAndLikeList.add(new Reactions(
+        Promotion.favAndLikeList.add(new Reactions(
             id: data[c]["announcement_id"],
             favorite: data[c]["favorite"],
             like: data[c]["liked"]));
@@ -102,8 +102,8 @@ Future getTutorials(int station, String type) async {
 
 //Buscar en la lista
 bool insertInList(int announcementId) {
-  for (int c = 0; c < Marketing.favAndLikeList.length; c++) {
-    if (Marketing.favAndLikeList[c].id == announcementId) {
+  for (int c = 0; c < Promotion.favAndLikeList.length; c++) {
+    if (Promotion.favAndLikeList[c].id == announcementId) {
       return true;
     }
   }
