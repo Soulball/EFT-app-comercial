@@ -33,7 +33,6 @@ class Marketing extends StatelessWidget {
               CustomButton(
                   text: "Comisiones", page: Promotion(), pageContext: context),
               CustomButton(
-<<<<<<< HEAD
                   text: "Promociones", page: Promotion(), pageContext: context),
               CustomButton(
                   text: "Activacion de Tarjeta",
@@ -42,22 +41,7 @@ class Marketing extends StatelessWidget {
               CustomButton(
                   text: "Bloque de Tarjeta",
                   page: Promotion(),
-                  pageContext: context),
-              CustomButton(
-                  text: "Activaciones",
-                  page: Promotion(),
                   pageContext: context)
-=======
-                  text: "Ajuste de Inventario",
-                  page: Promotion(),
-                  pageContext: context),
-              CustomButton(
-                  text: "Pro Servicios",
-                  page: Promotion(),
-                  pageContext: context),
-              CustomButton(
-                  text: "Reportar", page: Promotion(), pageContext: context)
->>>>>>> d4aba36dd5adecc1ec23ebd7ca10c9e585f0287b
             ])));
   }
 }
