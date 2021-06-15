@@ -4,6 +4,7 @@ import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
+import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -44,19 +45,14 @@ class _CardRequestState extends State<CardRequest> {
                   title: "Seleccione la estación",
                   initialValue: " Estación",
                   list: stationList),
-              SizedBox(height: getVerticalPercent(context, 5)),
+              SizedBox(height: getVerticalPercent(context, 4)),
               CustomDropButton(
                   title: "Tipo de activación",
                   initialValue: " Tipo de activación",
                   list: activationType),
-              SizedBox(height: getVerticalPercent(context, 5)),
-              Container(
-                  padding: EdgeInsets.all(getHorizontalMargin(context)),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: TextField(maxLines: 10,textAlign: TextAlign.justify)),
-              SizedBox(height: getVerticalPercent(context, 5)),
+              SizedBox(height: getVerticalPercent(context, 4)),
+              CustomTextField(title: "Describe el proposito de la activación", lines: 10),
+              SizedBox(height: getVerticalPercent(context, 4)),
               CustomButton(text: "Confirmar")
             ])));
   }

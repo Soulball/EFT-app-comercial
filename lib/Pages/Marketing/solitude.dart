@@ -1,10 +1,10 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/Marketing/solicitude2.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
-import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:flutter/material.dart';
 
 class Solitude extends StatelessWidget {
@@ -37,7 +37,7 @@ class Solitude extends StatelessWidget {
                       list: stationList,
                       initialValue: " Estación"),
                   Container(
-                    height: getVerticalPercent(context, 52),
+                    height: getVerticalPercent(context, 53),
                     width: getHorizontalPercent(context, 80),
                     child: ListView.builder(
                         physics: BouncingScrollPhysics(),
@@ -46,7 +46,10 @@ class Solitude extends StatelessWidget {
                           return materialList[index];
                         }),
                   ),
-                  CustomButton(text: "Continuar")
+                  CustomButton(
+                      text: "Continuar",
+                      page: Solitude2(),
+                      pageContext: context)
                 ])));
   }
 }
