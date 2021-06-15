@@ -2,6 +2,7 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
+import 'package:eft_app_comercial/Pages/Marketing/solitude.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class Marketing extends StatelessWidget {
               CustomButton(
                   text: "Ranking", page: Promotion(), pageContext: context),
               CustomButton(
-                  text: "Comisiones", page: Promotion(), pageContext: context),
+                  text: "Comisiones", page: Solitude(), pageContext: context),
               CustomButton(
                   text: "Promociones", page: Promotion(), pageContext: context),
               CustomButton(

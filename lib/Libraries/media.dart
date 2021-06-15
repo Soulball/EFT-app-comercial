@@ -9,6 +9,7 @@ import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:eft_app_comercial/Pages/commissions.dart';
 import 'package:eft_app_comercial/Pages/requests.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
+import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -23,8 +24,30 @@ final List<Widget> pagesList = [
   Commissions()
 ];
 
-final List<Widget> marketingList = [
-  Promotion()
+final List<Widget> marketingList = [Promotion()];
+
+final List stationList = [
+  " 1221 - Hipódromo",
+  " 1221 - Washmobile",
+  " 1221 - Rio",
+  " 1221 - Clínica 27",
+  " 1221 - La mesa"
+];
+
+final List activationType = [
+  " Estrategia de Precio",
+  " Otros productos",
+  " Generación de tráfico"
+];
+
+List<ItemCounter> materialList = [
+  ItemCounter(item: "Lona"),
+  ItemCounter(item: "Bandera"),
+  ItemCounter(item: "Bandera de mano"),
+  ItemCounter(item: "Promocionales"),
+  ItemCounter(item: "Activaciones"),
+  ItemCounter(item: "Coroplast"),
+  ItemCounter(item: "Otro")
 ];
 
 //Abrir URL con la aplicacion
