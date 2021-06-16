@@ -3,7 +3,6 @@ import 'package:eft_app_comercial/Pages/OtherProducts/avanceventas.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/otherproduct.dart';
 import 'package:flutter/material.dart';
 import 'Pages/Login/login.dart';
-import 'Pages/home.dart';
 
 //Inicio de la aplicacion
 void main() => runApp(MyApp());
