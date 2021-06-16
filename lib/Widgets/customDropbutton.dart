@@ -28,16 +28,16 @@ class _CustomDropButtonState extends State<CustomDropButton> {
       children: <Widget>[
         CustomText(
             data: widget.title,
-            size: 18,
-            color: grayNeutral,
+            size: 14,
+            color: grayText,
             weight: FontWeight.bold),
-        SizedBox(height: getVerticalMargin(context)),
         FractionallySizedBox(
           widthFactor: 1,
           child: Container(
+            height: 36,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
-                borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(8)),
             child: DropdownButton(
                 iconSize: 0,
                 hint: Text(widget.initialValue),

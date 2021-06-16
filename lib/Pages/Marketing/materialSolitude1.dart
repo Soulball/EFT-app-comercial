@@ -1,14 +1,14 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Pages/Marketing/solicitude2.dart';
+import 'package:eft_app_comercial/Pages/Marketing/materialSolitude2.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
-class Solitude extends StatelessWidget {
-  Solitude({Key key}) : super(key: key);
+class MaterialSolitude1 extends StatelessWidget {
+  MaterialSolitude1({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class Solitude extends StatelessWidget {
                   ),
                   CustomButton(
                       text: "Continuar",
-                      page: Solitude2(),
+                      page: MaterialSolitude2(),
                       pageContext: context)
                 ])));
   }

@@ -2,16 +2,15 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
-import 'package:eft_app_comercial/Pages/Marketing/solitude.dart';
+import 'package:eft_app_comercial/Pages/Marketing/materialSolitude1.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
-
-import 'cardRequest.dart';
+import 'CardSolitude.dart';
+import 'activations.dart';
 
 class Marketing extends StatelessWidget {
   Marketing({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,18 +29,22 @@ class Marketing extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               CustomButton(
-                  text: "Ranking", page: Promotion(), pageContext: context),
+                  text: "Solicitud de Materiales",
+                  page: MaterialSolitude1(),
+                  pageContext: context),
               CustomButton(
-                  text: "Comisiones", page: Solitude(), pageContext: context),
+                  text: "Solicitud de Tarjeta",
+                  page: CardSolitude(),
+                  pageContext: context),
+              CustomButton(
+                  text: "Bloque de Tarjetas",
+                  page: Promotion(),
+                  pageContext: context),
               CustomButton(
                   text: "Promociones", page: Promotion(), pageContext: context),
               CustomButton(
-                  text: "Activacion de Tarjeta",
-                  page: CardRequest(),
-                  pageContext: context),
-              CustomButton(
-                  text: "Bloque de Tarjeta",
-                  page: Promotion(),
+                  text: "Activaciones",
+                  page: Activations(),
                   pageContext: context)
             ])));
   }

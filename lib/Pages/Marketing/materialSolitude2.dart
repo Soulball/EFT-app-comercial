@@ -7,14 +7,13 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
-class Solitude2 extends StatelessWidget {
-  Solitude2({Key key}) : super(key: key);
-
+class MaterialSolitude2 extends StatelessWidget {
+  MaterialSolitude2({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     DateTime dateTime = DateTime.now();
     String turn = "1";
-    if (dateTime.hour < 12) turn = "2";
+    if (dateTime.hour > 12) turn = "2";
     return Scaffold(
         appBar: AppBar(
             title: CustomText(

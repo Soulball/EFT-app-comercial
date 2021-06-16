@@ -8,17 +8,13 @@ import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CardRequest extends StatefulWidget {
-  CardRequest({Key key}) : super(key: key);
-
+class CardSolitude extends StatefulWidget {
+  CardSolitude({Key key}) : super(key: key);
   @override
-  _CardRequestState createState() => _CardRequestState();
+  _CardSolitudeState createState() => _CardSolitudeState();
 }
 
-class _CardRequestState extends State<CardRequest> {
-  String valueChoose;
-  List list = ["A", "B", "C", "D"];
-
+class _CardSolitudeState extends State<CardSolitude> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,22 +34,27 @@ class _CardRequestState extends State<CardRequest> {
                 right: getHorizontalPercent(context, 10),
                 bottom: getVerticalMargin(context),
                 top: getVerticalMargin(context)),
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
+            child:
+                ListView(physics: BouncingScrollPhysics(), children: <Widget>[
               CustomDropButton(
                   title: "Seleccione la estación",
                   initialValue: " Estación",
                   list: stationList),
-              SizedBox(height: getVerticalPercent(context, 4)),
+              SizedBox(height: getVerticalPercent(context, 2)),
               CustomDropButton(
-                  title: "Tipo de activación",
-                  initialValue: " Tipo de activación",
-                  list: activationType),
-              SizedBox(height: getVerticalPercent(context, 4)),
-              CustomTextField(title: "Describe el proposito de la activación", lines: 10),
-              SizedBox(height: getVerticalPercent(context, 4)),
-              CustomButton(text: "Confirmar")
+                  title: "Tipo de alta",
+                  initialValue: " Alta",
+                  list: [" Registrar cliente", " Reposición"]),
+              SizedBox(height: getVerticalPercent(context, 2)),
+              CustomTextField(title: "Nombre del Cliente", lines: 1),
+              SizedBox(height: getVerticalPercent(context, 2)),
+              CustomTextField(title: "Teléfono del Cliente", lines: 1),
+              SizedBox(height: getVerticalPercent(context, 2)),
+              CustomTextField(title: "Correo Electrónico", lines: 1),
+              SizedBox(height: getVerticalPercent(context, 2)),
+              CustomTextField(title: "Nota / Comentario", lines: 4),
+              SizedBox(height: getVerticalPercent(context, 2)),
+              CustomButton(text: "Enviar")
             ])));
   }
 }
