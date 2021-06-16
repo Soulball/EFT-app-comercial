@@ -1,8 +1,7 @@
-import 'dart:html';
-
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/avanceventas.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,7 @@ class Ranking extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CustomButton(
               text: "Avance de Ventas",
-              page: Promotion(),
+              page: AvanceVentas(),
               pageContext: context),
           CustomButton(
               text: "Ranking Generales x Zona",

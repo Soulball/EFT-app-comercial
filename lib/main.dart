@@ -1,4 +1,6 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/avanceventas.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/otherproduct.dart';
 import 'package:flutter/material.dart';
 import 'Pages/Login/login.dart';
 import 'Pages/home.dart';
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(primaryColor: whiteDark),
-        home: Login(),
+        home: OtherProduct(),
         debugShowCheckedModeBanner: false);
   }
 }
