@@ -8,6 +8,8 @@ import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'marketing.dart';
+
 class CardSolitude extends StatefulWidget {
   CardSolitude({Key key}) : super(key: key);
   @override
@@ -54,7 +56,11 @@ class _CardSolitudeState extends State<CardSolitude> {
               SizedBox(height: getVerticalPercent(context, 2)),
               CustomTextField(title: "Nota / Comentario", lines: 4),
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomButton(text: "Enviar")
+              CustomButton(
+                  text: "Enviar",
+                  noPop: false,
+                  page: Marketing(),
+                  pageContext: context)
             ])));
   }
 }

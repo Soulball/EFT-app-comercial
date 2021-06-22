@@ -1,6 +1,7 @@
 //Pagina principal de la seccion de marketing
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/Marketing/cardBlock1.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/materialSolitude1.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
@@ -38,7 +39,7 @@ class Marketing extends StatelessWidget {
                   pageContext: context),
               CustomButton(
                   text: "Bloque de Tarjetas",
-                  page: Promotion(),
+                  page: CardBlock1(),
                   pageContext: context),
               CustomButton(
                   text: "Promociones", page: Promotion(), pageContext: context),
