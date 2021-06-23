@@ -1,7 +1,8 @@
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
+import '../../Libraries/proportional_sizes.dart';
 
-class HeaderLogin extends StatelessWidget {
+class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

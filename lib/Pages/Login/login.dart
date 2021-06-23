@@ -1,11 +1,11 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/home.dart';
 import 'package:eft_app_comercial/Widgets/Login/header.dart';
 import 'package:eft_app_comercial/Widgets/Login/loginform.dart';
 import 'package:eft_app_comercial/Widgets/Login/logo.dart';
 import 'package:flutter/material.dart';
-import '../home.dart';
 
 class Login extends StatelessWidget {
   static int user;
@@ -34,7 +34,7 @@ class Login extends StatelessWidget {
                       overflow: Overflow.visible,
                       alignment: Alignment.bottomCenter,
                       children: [
-                        HeaderLogin(),
+                        Header(),
                         Logo(),
                       ],
                       // ignore: deprecated_member_use
@@ -45,8 +45,7 @@ class Login extends StatelessWidget {
                     LoginForm(),
                   ],
                 );
-              return Home(
-                  user: user, station: station, name: name);
+              return Home(user: user, station: station, name: name);
             }),
       ),
     );
