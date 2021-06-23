@@ -21,8 +21,7 @@ class _ShowUsersState extends State<ShowUsers> {
       width: getHorizontalPercent(context, 90),
       alignment: Alignment.centerLeft,
       child: CustomText(
-        data: 'Colaborador | ' +
-            HomeBlocInheritedWidget.of(context).homebloc.name,
+        data: 'Colaborador | ',
         color: grayDark,
         size: getVerticalPercent(context, 4),
         weight: FontWeight.normal,
