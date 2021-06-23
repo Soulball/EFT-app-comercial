@@ -1,6 +1,7 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/commission.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/ranking.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
@@ -26,7 +27,7 @@ class OtherProduct extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CustomButton(text: "Ranking", page: Ranking(), pageContext: context),
           CustomButton(
-              text: "Comisiones", page: Promotion(), pageContext: context),
+              text: "Comisiones", page: Commission(), pageContext: context),
           CustomButton(
               text: "Ajuste de Inventario",
               page: Promotion(),

@@ -1,8 +1,6 @@
-import 'package:eft_app_comercial/Bloc/Home/home_bloc.dart';
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Pages/home.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +21,7 @@ class _ShowUsersState extends State<ShowUsers> {
       width: getHorizontalPercent(context, 90),
       alignment: Alignment.centerLeft,
       child: CustomText(
-        data: 'Colaborador | ' +
-            HomeBlocInheritedWidget.of(context).homebloc.name,
+        data: 'Colaborador | ',
         color: grayDark,
         size: getVerticalPercent(context, 4),
         weight: FontWeight.normal,
