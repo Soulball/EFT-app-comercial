@@ -1,20 +1,24 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/materialSolitude2.dart';
-import 'package:eft_app_comercial/Widgets/customBottonSolitude.dart';
+import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
+import 'package:eft_app_comercial/Widgets/itemCounter.dart';
+import 'package:eft_app_comercial/Widgets/userInfo.dart';
 import 'package:flutter/material.dart';
 
-class MaterialSolitude1 extends StatefulWidget {
-  MaterialSolitude1({Key key}) : super(key: key);
+class CardBlock1 extends StatefulWidget {
+  CardBlock1({Key key}) : super(key: key);
 
   @override
-  _MaterialSolitude1State createState() => _MaterialSolitude1State();
+  _CardBlock1State createState() => _CardBlock1State();
 }
 
-class _MaterialSolitude1State extends State<MaterialSolitude1> {
+class _CardBlock1State extends State<CardBlock1> {
+  ItemCounter itemCounter = ItemCounter(item: "Bloque de tarjetas");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,24 +40,27 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
                 top: getVerticalMargin(context)),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  UserInfo(
+                      user: (HomeBlocInheritedWidget.of(context)
+                                  .homebloc
+                                  .name !=
+                              null)
+                          ? HomeBlocInheritedWidget.of(context).homebloc.name
+                          : "Anonimo",
+                      station: "1221 - Hipodromo"),
                   CustomDropButton(
                       title: "Seleccione la estación",
                       list: stationList,
                       initialValue: "Estación"),
                   Container(
-                    height: getVerticalPercent(context, 53),
                     width: getHorizontalPercent(context, 80),
-                    child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: materialList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return materialList[index];
-                        }),
+                    child: ItemCounter(item: "Bloque de tarjetas"),
                   ),
-                  CustomButtonSolitude(
-                      text: "Continuar",
-                      station: "",
+                  CustomButton(
+                      text: "Confirmar",
+                      noPop: false,
                       page: MaterialSolitude2(),
                       pageContext: context)
                 ])));

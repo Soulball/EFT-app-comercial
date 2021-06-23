@@ -1,5 +1,4 @@
 library media;
-
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
@@ -23,8 +22,6 @@ final List<Widget> pagesList = [
   Requests(),
   Commissions()
 ];
-
-final List<Widget> marketingList = [Promotion()];
 
 final List stationList = [
   " 1221 - Hipódromo",
@@ -50,6 +47,10 @@ List<ItemCounter> materialList = [
   ItemCounter(item: "Otro")
 ];
 
+List<ItemCounter> cardBlockItemCounter = [
+  ItemCounter(item: "Bloque de tarjetas")
+];
+
 //Abrir URL con la aplicacion
 Future<void> openURL(String url) async {
   if (await canLaunch(url)) {
@@ -57,6 +58,29 @@ Future<void> openURL(String url) async {
   } else {
     throw 'No se ha podido cargar el enlace.';
   }
+}
+
+//Mover a otro modulo
+void changePage(Widget page, BuildContext pageContext) {
+  final route = MaterialPageRoute(builder: (BuildContext context) {
+    return page;
+  });
+  Navigator.of(pageContext).push(route);
+}
+
+//Regresar al modulo principal
+void backToOrigin(BuildContext pageContext) {
+  if (Navigator.of(pageContext).canPop()) {
+    Navigator.pop(pageContext);
+    backToOrigin(pageContext);
+  }
+}
+
+String getTurn() {
+  DateTime dateTime = DateTime.now();
+  String turn = "1";
+  if (dateTime.hour > 13) turn = "2";
+  return turn;
 }
 
 //Mostrar un dialog Text

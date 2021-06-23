@@ -8,6 +8,8 @@ import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'marketing.dart';
+
 class Activations extends StatefulWidget {
   Activations({Key key}) : super(key: key);
 
@@ -23,7 +25,7 @@ class _ActivationsState extends State<Activations> {
             title: CustomText(
                 data: 'Solicitud de Tarjeta',
                 size: 30,
-                color: grayText,
+                color: whiteNeutral,
                 weight: FontWeight.bold),
             backgroundColor: grayNeutral),
         body: Container(
@@ -50,7 +52,11 @@ class _ActivationsState extends State<Activations> {
               SizedBox(height: getVerticalPercent(context, 4)),
               CustomTextField(title: "Describe el proposito de la activación", lines: 10),
               SizedBox(height: getVerticalPercent(context, 4)),
-              CustomButton(text: "Confirmar")
+              CustomButton(
+                  text: "Confirmar",
+                  noPop: false,
+                  page: Marketing(),
+                  pageContext: context)
             ])));
   }
 }
