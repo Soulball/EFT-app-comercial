@@ -31,8 +31,9 @@ class _PromotionState extends State<Promotion> {
             width: double.infinity,
             color: grayNeutral,
             child: FutureBuilder(
-                future: 
-                  getApi(HomeBlocInheritedWidget.of(context).homebloc.station, HomeBlocInheritedWidget.of(context).homebloc.user),
+                future: getApi(
+                    HomeBlocInheritedWidget.of(context).homebloc.station,
+                    HomeBlocInheritedWidget.of(context).homebloc.user),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting)
                     return Center(child: CircularProgressIndicator());
@@ -75,11 +76,7 @@ class _PromotionState extends State<Promotion> {
                             ),
                             Container(
                                 height: getHorizontalPercent(context, 15),
-                                width: getHorizontalPercent(context, 40),
-                                color: whiteNeutral),
-                            Container(
-                                height: getHorizontalPercent(context, 15),
-                                width: getHorizontalPercent(context, 30),
+                                width: getHorizontalPercent(context, 70),
                                 color: blueDark,
                                 alignment: Alignment.center,
                                 child: CustomText(

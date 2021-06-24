@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     //Homeblock
     HomeBloc homeBloc = new HomeBloc(
-        user: widget.user, station: widget.station, name: widget.name);
+        user: widget.user, station: widget.station, name: widget.name, context: context);
     return HomeBlocInheritedWidget(
         homebloc: homeBloc,
         child: CupertinoTabScaffold(
@@ -38,7 +38,7 @@ class _HomeState extends State<Home> {
                   BottomNavigationBarItem(
                       icon: Icon(Icons.monetization_on_outlined),
                       // ignore: deprecated_member_use
-                      title: Text('Marketing')),
+                      title: Text('Marcadotecnia')),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.library_books_outlined),
                       // ignore: deprecated_member_use
@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
                   BottomNavigationBarItem(
                       icon: Icon(Icons.message_outlined),
                       // ignore: deprecated_member_use
-                      title: Text('Solicitudes')),
+                      title: Text('Otros ingresos')),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.payment_outlined),
                       // ignore: deprecated_member_use
