@@ -1,4 +1,5 @@
 library media;
+
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
@@ -37,6 +38,13 @@ final List activationType = [
   " Generación de tráfico"
 ];
 
+final List exhibidores = [
+  "Exhibidor Aceites",
+  "Ciel",
+  "Toros",
+  "Gas",
+  "Aromas/Wipers",
+];
 List<ItemCounter> materialList = [
   ItemCounter(item: "Lona"),
   ItemCounter(item: "Bandera"),

@@ -1,4 +1,5 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:flutter/material.dart';
 import 'Pages/Login/login.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(primaryColor: whiteDark),
-        home: Login(),
+        home: Report(),
         debugShowCheckedModeBanner: false);
   }
 }
