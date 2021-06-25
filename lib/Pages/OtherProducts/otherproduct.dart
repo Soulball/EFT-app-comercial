@@ -1,6 +1,7 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/commission.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/ranking.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
@@ -34,8 +35,7 @@ class OtherProduct extends StatelessWidget {
               pageContext: context),
           CustomButton(
               text: "Pro Service", page: Promotion(), pageContext: context),
-          CustomButton(
-              text: "Reportar", page: Promotion(), pageContext: context)
+          CustomButton(text: "Reportar", page: Report(), pageContext: context)
         ]),
       ),
     );

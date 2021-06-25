@@ -38,7 +38,7 @@ final List activationType = [
 ];
 
 final List exhibidores = [
-  "Exhibidor Aceites",
+  "Aceites",
   "Ciel",
   "Toros",
   "Gas",

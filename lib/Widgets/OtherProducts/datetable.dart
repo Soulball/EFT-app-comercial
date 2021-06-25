@@ -1,4 +1,3 @@
-import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
