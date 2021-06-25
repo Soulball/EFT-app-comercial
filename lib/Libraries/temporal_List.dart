@@ -65,7 +65,7 @@ List<Announcement> promotionList = [
       categoryName: "Otros Productos")
 ];
 
-List<Detail> detailList = [
+List<Detail> detail2List = [
   Detail(title: "Vigencia", subtitle: "30 de Junio"),
   Detail(title: "Horario", subtitle: "12:00 pm - 4:00 pm"),
   Detail(title: "Restriccion", subtitle: "Aceites de la misma marca")

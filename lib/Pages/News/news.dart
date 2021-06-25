@@ -100,8 +100,11 @@ class _NewsState extends State<News> {
       DrawerHeader(
           decoration: BoxDecoration(color: grayDark),
           child: UserAccountsDrawerHeader(
-              accountEmail: Text("usermail@gmail.com"),
-              accountName: Text("Fabiana Paola"),
+              accountEmail: Text(
+                  HomeBlocInheritedWidget.of(context).homebloc.name +
+                      "@gmail.com"),
+              accountName:
+                  Text(HomeBlocInheritedWidget.of(context).homebloc.name),
               currentAccountPicture:
                   Icon(Icons.supervised_user_circle_rounded, size: 50))),
       ListTile(
@@ -110,7 +113,7 @@ class _NewsState extends State<News> {
           onTap: () {}),
       ListTile(
         title: Text("Cerrar sesión"),
-        leading: Icon(Icons.ev_station_outlined),
+        leading: Icon(Icons.exit_to_app_rounded),
         onTap: () => changePage(
             Login(), HomeBlocInheritedWidget.of(context).homebloc.context),
       ),

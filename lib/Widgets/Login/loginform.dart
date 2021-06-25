@@ -34,19 +34,24 @@ class _LoginForm extends State<LoginForm> {
           json.decode(response.body)["name"]);
       final route = MaterialPageRoute(builder: (BuildContext context) {
         return Home(
-            user: int.parse(user),
-            station: json.decode(response.body)["station"],
-            name: json.decode(response.body)["name"]);
+            user: /*int.parse(user)*/ 5555,
+            station: /*json.decode(response.body)["station"]*/ 1221,
+            name: /*json.decode(response.body)["name"]*/ "Fabiana Flores");
       });
       Navigator.of(context).push(route);
-    } else
-      print('invalido');
+    }
   }
 
-  void loginMethod() async {
+  void loginMethod() {
     if (user.text.length > 0) {
       if (password.text.length > 0) {
-        fetchPost(user: user.text, password: password.text);
+        final route = MaterialPageRoute(builder: (BuildContext context) {
+          return Home(
+              user: /*int.parse(user)*/ 5555,
+              station: /*json.decode(response.body)["station"]*/ 1221,
+              name: /*json.decode(response.body)["name"]*/ "Fabiana Flores");
+        });
+        Navigator.of(context).push(route);
       }
     }
   }
