@@ -1,26 +1,11 @@
+import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
-/*void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}*/
-
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MyHomePage({
+    Key key,
+  }) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -36,25 +21,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    user.initData(100);
+    user.initData(50);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _getBodyWidget(),
-    );
-  }
-
-  Widget _getBodyWidget() {
     return Container(
+      height: getVerticalPercent(context, 50),
+      width: getHorizontalPercent(context, 20),
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 100,
-        rightHandSideColumnWidth: 500,
+        rightHandSideColumnWidth: 600,
         isFixedHeader: true,
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
@@ -87,7 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         htdRefreshController: _hdtRefreshController,
       ),
-      height: MediaQuery.of(context).size.height,
     );
   }
 
@@ -197,11 +174,11 @@ class _MyHomePageState extends State<MyHomePage> {
 User user = User();
 
 class User {
-  List<UserInfo> userInfo = [];
+  List<InfoUser> userInfo = [];
 
   void initData(int size) {
     for (int i = 0; i < size; i++) {
-      userInfo.add(UserInfo(
+      userInfo.add(InfoUser(
           "User_$i", i % 3 == 0, '+001 9999 9999', '2019-01-01', 'N/A'));
     }
   }
@@ -233,14 +210,14 @@ class User {
   }
 }
 
-/*class UserInfo {
+class InfoUser {
   String name;
   bool status;
   String phone;
   String registerDate;
   String terminationDate;
 
-  UserInfo(this.name, this.status, this.phone, this.registerDate,
+  InfoUser(this.name, this.status, this.phone, this.registerDate,
       this.terminationDate,
       {String station, String user});
-}*/
+}

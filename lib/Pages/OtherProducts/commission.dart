@@ -1,7 +1,7 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Widgets/OtherProducts/datetable.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/date.dart';
+import 'package:eft_app_comercial/Widgets/OtherProducts/prueba.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/showusers.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -31,13 +31,16 @@ class _CommissionState extends State<Commission> {
           height: double.infinity,
           width: double.infinity,
           child: ListView(
+            scrollDirection: Axis.vertical,
+            padding: EdgeInsets.only(top: 0),
+            physics: BouncingScrollPhysics(),
             children: [
               ShowUsers(),
               SizedBox(
                 height: getHorizontalPercent(context, 2),
               ),
               Date(),
-              DateT(),
+              MyHomePage(),
             ],
           ),
         ),

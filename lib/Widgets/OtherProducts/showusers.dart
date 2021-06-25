@@ -1,4 +1,3 @@
-import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
@@ -21,7 +20,7 @@ class _ShowUsersState extends State<ShowUsers> {
       width: getHorizontalPercent(context, 90),
       alignment: Alignment.centerLeft,
       child: CustomText(
-        data: 'Colaborador | ',
+        data: 'Colaborador | Fanny Paola',
         color: grayDark,
         size: getVerticalPercent(context, 4),
         weight: FontWeight.normal,

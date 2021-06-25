@@ -2,6 +2,7 @@ import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/requestreport.dart';
+import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -59,20 +60,10 @@ class _ReportState extends State<Report> {
               SizedBox(
                 height: getHorizontalPercent(context, 50),
               ),
-              Container(
-                padding: EdgeInsets.all(getHorizontalMargin(context)),
-                height: getVerticalPercent(context, 10),
-                width: getHorizontalPercent(context, 10),
-                // ignore: de
-                // precated_member_use
-                child: MaterialButton(
-                    color: blueLight,
-                    padding: EdgeInsets.all(getVerticalMargin(context)),
-                    child: Text('Siguiente'),
-                    onPressed: () {
-                      changePage(RequestReport(), context);
-                    }),
-              ),
+              CustomButton(
+                  text: "Siguiente",
+                  page: RequestReport(),
+                  pageContext: context),
             ],
           ),
         ),

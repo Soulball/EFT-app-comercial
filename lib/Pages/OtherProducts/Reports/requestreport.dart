@@ -2,6 +2,7 @@ import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/sendreport.dart';
+import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
@@ -16,14 +17,6 @@ class RequestReport extends StatefulWidget {
 }
 
 class _RequestReportState extends State<RequestReport> {
-  var checkboxtile = false;
-
-  void checkBox1(bool val) {
-    setState(() {
-      checkboxtile = val;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,18 +65,8 @@ class _RequestReportState extends State<RequestReport> {
               SizedBox(
                 height: getHorizontalPercent(context, 5),
               ),
-              Container(
-                padding: EdgeInsets.all(getHorizontalMargin(context)),
-                height: getVerticalPercent(context, 8),
-                width: getHorizontalPercent(context, 50),
-                child: MaterialButton(
-                    color: blueLight,
-                    padding: EdgeInsets.all(getVerticalMargin(context)),
-                    child: Text('Siguiente'),
-                    onPressed: () {
-                      changePage(SendReport(), context);
-                    }),
-              ),
+              CustomButton(
+                  text: "Siguiente", page: SendReport(), pageContext: context),
             ],
           ),
         ),

@@ -75,7 +75,7 @@ class SendReport extends StatelessWidget {
                     top: getVerticalPercent(context, 2.5),
                     bottom: getVerticalPercent(context, 2.5)),
                 child: CustomTextField(
-                    lines: 5, title: "Descripción de materiales y medidas")),
+                    lines: 10, title: "Descripción de materiales y medidas")),
             CustomButton(
                 text: "Enviar",
                 noPop: false,
