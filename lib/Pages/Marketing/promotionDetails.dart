@@ -66,75 +66,47 @@ class PromotionDetails extends StatelessWidget {
                         child: Container(
                             height: getVerticalPercent(context, 15),
                             child: FutureBuilder(
-                              future: getDetails(announcement.id),
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<dynamic> snapshot) {
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting)
-                                  return Center(
-                                      child: CircularProgressIndicator());
-                                return ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: detailList.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Padding(
-                                          padding:
-                                              EdgeInsets.only(left: margin),
-                                          child: Container(
-                                              width: getHorizontalPercent(
-                                                  context, 45),
-                                              padding: EdgeInsets.all(margin),
-                                              decoration: BoxDecoration(
-                                                  color: purpleLigth,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(15))),
-                                              child: Column(children: <Widget>[
-                                                CustomText(
-                                                    data:
-                                                        detailList[index].title,
-                                                    size: 14,
-                                                    color: whiteLight,
-                                                    weight: FontWeight.bold),
-                                                Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: <Widget>[
-                                                      Container(
-                                                          height:
-                                                              getVerticalPercent(
-                                                                  context,
-                                                                  7.5),
-                                                          width:
-                                                              getVerticalPercent(
-                                                                  context,
-                                                                  7.5),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                                  color:
-                                                                      purpleDark,
-                                                                  shape: BoxShape
-                                                                      .circle)),
-                                                      Container(
-                                                          width:
-                                                              getHorizontalPercent(
-                                                                  context, 25),
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: CustomText(
-                                                              data: detailList[
-                                                                      index]
-                                                                  .subtitle,
-                                                              size: 14,
-                                                              color:
-                                                                  whiteLight))
-                                                    ])
-                                              ])));
-                                    });
-                              },
-                            )))
+                                future: getDetails(announcement.id),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<dynamic> snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting)
+                                    return Center(
+                                        child: CircularProgressIndicator());
+                                  return ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: detailList.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Padding(
+                                            padding:
+                                                EdgeInsets.only(left: margin),
+                                            child: Container(
+                                                width: getHorizontalPercent(
+                                                    context, 45),
+                                                padding: EdgeInsets.all(margin),
+                                                decoration: BoxDecoration(
+                                                    color: purpleLigth,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                15))),
+                                                child:
+                                                    Column(children: <Widget>[
+                                                  CustomText(
+                                                      data: detailList[index]
+                                                          .title,
+                                                      size: 14,
+                                                      color: whiteLight,
+                                                      weight: FontWeight.bold),
+                                                  CustomText(
+                                                      data: detailList[index]
+                                                          .subtitle,
+                                                      size: 14,
+                                                      color: whiteLight)
+                                                ])));
+                                      });
+                                })))
                   ])),
               Container(
                   height: getVerticalPercent(context, 8.5),
