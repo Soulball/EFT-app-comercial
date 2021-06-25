@@ -57,7 +57,7 @@ class _ReportState extends State<Report> {
                 list: exhibidores,
               ),
               SizedBox(
-                height: getHorizontalPercent(context, 70),
+                height: getHorizontalPercent(context, 50),
               ),
               Container(
                 padding: EdgeInsets.all(getHorizontalMargin(context)),

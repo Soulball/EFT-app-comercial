@@ -45,6 +45,12 @@ final List exhibidores = [
   "Gas",
   "Aromas/Wipers",
 ];
+
+List<ItemCounter> productAceite = [
+  ItemCounter(item: 'Acrilico'),
+  ItemCounter(item: 'Remplazo'),
+];
+
 List<ItemCounter> materialList = [
   ItemCounter(item: "Lona"),
   ItemCounter(item: "Bandera"),

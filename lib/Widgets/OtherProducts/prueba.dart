@@ -233,7 +233,7 @@ class User {
   }
 }
 
-class UserInfo {
+/*class UserInfo {
   String name;
   bool status;
   String phone;
@@ -241,5 +241,6 @@ class UserInfo {
   String terminationDate;
 
   UserInfo(this.name, this.status, this.phone, this.registerDate,
-      this.terminationDate);
-}
+      this.terminationDate,
+      {String station, String user});
+}*/

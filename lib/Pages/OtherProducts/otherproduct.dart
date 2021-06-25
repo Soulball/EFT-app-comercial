@@ -26,15 +26,16 @@ class OtherProduct extends StatelessWidget {
         alignment: Alignment.center,
         padding: EdgeInsets.all(getVerticalMargin(context)),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          CustomButton(text: "Ranking", page: Ranking(), pageContext: context),
+          //CustomButton(text: "Ranking", page: Ranking(), pageContext: context),
+          CustomButton(
+              text: "Promociones", page: Promotion(), pageContext: context),
           CustomButton(
               text: "Comisiones", page: Commission(), pageContext: context),
           CustomButton(
               text: "Ajuste de Inventario",
               page: Promotion(),
               pageContext: context),
-          CustomButton(
-              text: "Pro Service", page: Promotion(), pageContext: context),
+          //CustomButton(text: "Pro Service", page: Promotion(), pageContext: context),
           CustomButton(text: "Reportar", page: Report(), pageContext: context)
         ]),
       ),
