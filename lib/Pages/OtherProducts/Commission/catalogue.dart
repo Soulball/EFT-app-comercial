@@ -1,19 +1,13 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/date.dart';
-import 'package:eft_app_comercial/Widgets/OtherProducts/prueba.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/showusers.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
-class Commission extends StatefulWidget {
-  Commission({Key key}) : super(key: key);
+class Catalogue extends StatelessWidget {
+  const Catalogue({Key key}) : super(key: key);
 
-  @override
-  _CommissionState createState() => _CommissionState();
-}
-
-class _CommissionState extends State<Commission> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,17 +24,16 @@ class _CommissionState extends State<Commission> {
         child: Container(
           height: double.infinity,
           width: double.infinity,
+          padding: EdgeInsets.only(
+              left: getHorizontalPercent(context, 5),
+              right: getHorizontalPercent(context, 5)),
           child: ListView(
             scrollDirection: Axis.vertical,
-            padding: EdgeInsets.only(top: 0),
+            padding: EdgeInsets.all(getVerticalMargin(context)),
             physics: BouncingScrollPhysics(),
             children: [
               ShowUsers(),
-              SizedBox(
-                height: getHorizontalPercent(context, 2),
-              ),
               Date(),
-              MyHomePage(),
             ],
           ),
         ),

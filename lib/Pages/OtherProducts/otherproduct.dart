@@ -2,7 +2,7 @@ import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
-import 'package:eft_app_comercial/Pages/OtherProducts/commission.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Commission/commission.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
