@@ -81,6 +81,13 @@ void changePage(Widget page, BuildContext pageContext) {
   Navigator.of(pageContext).push(route);
 }
 
+//Mover a otro modulo y borrar historial
+void changePageDrop(Widget page, BuildContext pageContext) {
+  Navigator.of(pageContext).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => page),
+      (Route<dynamic> route) => false);
+}
+
 //Regresar al modulo principal
 void backToOrigin(BuildContext pageContext) {
   if (Navigator.of(pageContext).canPop()) {

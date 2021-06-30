@@ -111,8 +111,11 @@ class _NewsState extends State<News> {
       ListTile(
         title: Text("Cerrar sesión"),
         leading: Icon(Icons.ev_station_outlined),
-        onTap: () => changePage(
-            Login(), HomeBlocInheritedWidget.of(context).homebloc.context),
+        onTap: () {
+          deleteUser();
+          changePageDrop(
+              Login(), HomeBlocInheritedWidget.of(context).homebloc.context);
+        },
       ),
     ]));
   }
