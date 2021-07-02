@@ -1,4 +1,5 @@
 //Boton que permite cambiar la pantalla
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
@@ -24,7 +25,12 @@ class CustomButtonSolitude extends StatelessWidget {
       child: InkWell(
         onTap: () {
           print(station);
-          if (isNotEmpty() && station != null) changePage(page, pageContext);
+          if (isNotEmpty() && station != null) {
+            HomeBlocInheritedWidget.of(pageContext).homebloc.nameStation =
+                station;
+            changePage(page, pageContext);
+          }
+          ;
         },
         child: Container(
             height: getVerticalPercent(context, 6),

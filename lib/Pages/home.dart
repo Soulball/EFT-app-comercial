@@ -27,41 +27,40 @@ class _HomeState extends State<Home> {
         name: widget.name,
         context: context);
     return WillPopScope(
-      onWillPop: () async => false,
-      child: HomeBlocInheritedWidget(
-          homebloc: homeBloc,
-          child: CupertinoTabScaffold(
-              tabBar: CupertinoTabBar(
-                  backgroundColor: blueNeutral,
-                  activeColor: blueLight,
-                  inactiveColor: grayLight,
-                  items: const <BottomNavigationBarItem>[
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.home_outlined),
-                        // ignore: deprecated_member_use
-                        title: Text('Noticias')),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.monetization_on_outlined),
-                        // ignore: deprecated_member_use
-                        title: Text('Marcadotecnia')),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.library_books_outlined),
-                        // ignore: deprecated_member_use
-                        title: Text('Tutotiales')),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.message_outlined),
-                        // ignore: deprecated_member_use
-                        title: Text('Otros ingresos')),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.payment_outlined),
-                        // ignore: deprecated_member_use
-                        title: Text('Comisiones'))
-                  ]),
-              tabBuilder: (context, index) {
-                return CupertinoTabView(builder: (context) {
-                  return CupertinoPageScaffold(child: pagesList[index]);
-                });
-              })),
-    );
+        onWillPop: () async => false,
+        child: HomeBlocInheritedWidget(
+            homebloc: homeBloc,
+            child: CupertinoTabScaffold(
+                tabBar: CupertinoTabBar(
+                    backgroundColor: blueNeutral,
+                    activeColor: blueLight,
+                    inactiveColor: grayLight,
+                    items: const <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.home_outlined),
+                          // ignore: deprecated_member_use
+                          title: Text('Noticias')),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.monetization_on_outlined),
+                          // ignore: deprecated_member_use
+                          title: Text('Marcadotecnia')),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.library_books_outlined),
+                          // ignore: deprecated_member_use
+                          title: Text('Tutotiales')),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.message_outlined),
+                          // ignore: deprecated_member_use
+                          title: Text('Otros ingresos')),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.payment_outlined),
+                          // ignore: deprecated_member_use
+                          title: Text('Comisiones'))
+                    ]),
+                tabBuilder: (context, index) {
+                  return CupertinoTabView(builder: (context) {
+                    return CupertinoPageScaffold(child: pagesList[index]);
+                  });
+                })));
   }
 }
