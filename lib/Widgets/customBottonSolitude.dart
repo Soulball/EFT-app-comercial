@@ -30,7 +30,6 @@ class CustomButtonSolitude extends StatelessWidget {
                 station;
             changePage(page, pageContext);
           }
-          ;
         },
         child: Container(
             height: getVerticalPercent(context, 6),

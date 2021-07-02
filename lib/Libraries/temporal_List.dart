@@ -18,7 +18,7 @@ List<Announcement> announcementList = [
       text:
           "Se tiene previsto un aumento de el precio de gasolina para inicios del proximo mes.",
       image:
-          "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
+          /*"https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg"*/ "",
       categoryName: "Marketing"),
   Announcement(
       id: 2,
@@ -26,7 +26,7 @@ List<Announcement> announcementList = [
       text:
           "Los clientes de todas las estaciones deben de recibir los protoculos basicos de sanidad ante la contingencia sanitaria por COVID-19 sin ningun tipo de costo o cargo.",
       image:
-          "https://buentaller.com/wp-content/uploads/gasolinera-chevron-encuentra-una-cerca-de-ti.jpg",
+          /*"https://buentaller.com/wp-content/uploads/gasolinera-chevron-encuentra-una-cerca-de-ti.jpg"*/ "",
       categoryName: "Marketing"),
   Announcement(
       id: 3,
@@ -34,7 +34,7 @@ List<Announcement> announcementList = [
       text:
           "Se tiene prevista la inauguracion de una nueva estación en la zona.",
       image:
-          "https://www.tendencias.mx/wp-content/uploads/2018/10/GASOLINERA-6.jpg",
+          /*"https://www.tendencias.mx/wp-content/uploads/2018/10/GASOLINERA-6.jpg"*/ "",
       categoryName: "Otros Productos"),
   Announcement(
       id: 4,
@@ -42,7 +42,7 @@ List<Announcement> announcementList = [
       text:
           "La contingencia por COVID-19 continua hasta que las autoridades sanitarias dicten lo contrario, se deben seguir realizando todas las medidas sanitarias recomendadas.",
       image:
-          "https://www.prisa.com/uploads/2020/05/resized/850_850banner-comite-emergencia-covid19-prisa.JPG",
+          /*"https://www.prisa.com/uploads/2020/05/resized/850_850banner-comite-emergencia-covid19-prisa.JPG"*/ "",
       categoryName: "Otros Productos")
 ];
 

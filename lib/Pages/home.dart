@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
         user: widget.user,
         station: widget.station,
         name: widget.name,
+        nameStation: "",
         context: context);
     return WillPopScope(
         onWillPop: () async => false,

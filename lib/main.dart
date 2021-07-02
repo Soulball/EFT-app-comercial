@@ -2,6 +2,7 @@ import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:flutter/material.dart';
 import 'Libraries/decoration_colors.dart';
 import 'Pages/Login/login.dart';
+import 'Pages/home.dart';
 
 //Inicio de la aplicacion
 void main() => runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(primaryColor: whiteDark),
-        home: Login(),
+        home: Home(),
         debugShowCheckedModeBanner: false);
   }
 }
