@@ -7,7 +7,6 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
 import 'marketing.dart';
 
 class Activations extends StatefulWidget {
@@ -20,6 +19,10 @@ class Activations extends StatefulWidget {
 class _ActivationsState extends State<Activations> {
   CustomTextField customTextField = CustomTextField(
       title: "Describe el proposito de la activación", lines: 10);
+  CustomDropButton customDropButton = CustomDropButton(
+      title: "Seleccione la estación",
+      initialValue: " Estación",
+      list: stationList);
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +45,7 @@ class _ActivationsState extends State<Activations> {
                 top: getVerticalMargin(context)),
             child:
                 ListView(physics: BouncingScrollPhysics(), children: <Widget>[
-              CustomDropButton(
-                  title: "Seleccione la estación",
-                  initialValue: " Estación",
-                  list: stationList),
+              customDropButton,
               SizedBox(height: getVerticalPercent(context, 4)),
               CustomDropButton(
                   title: "Tipo de activación",
@@ -63,6 +63,7 @@ class _ActivationsState extends State<Activations> {
                   icon: Icon(Icons.sanitizer),
                   onPressed: () {
                     print(customTextField.controller.text);
+                    print(customDropButton.value);
                   })
             ])));
   }

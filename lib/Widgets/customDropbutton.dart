@@ -9,7 +9,7 @@ class CustomDropButton extends StatefulWidget {
   List list;
   String initialValue;
   String title;
-  String valueChoose;
+  String value;
 
   //Constructor
   CustomDropButton({this.list, this.initialValue, this.title});
@@ -19,6 +19,8 @@ class CustomDropButton extends StatefulWidget {
 }
 
 class _CustomDropButtonState extends State<CustomDropButton> {
+  String valueChoose;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,10 +41,11 @@ class _CustomDropButtonState extends State<CustomDropButton> {
                   child: DropdownButton<String>(
                       iconSize: 0,
                       hint: Text(widget.initialValue),
-                      value: widget.valueChoose,
+                      value: valueChoose,
                       onChanged: (String newValue) {
                         setState(() {
-                          widget.valueChoose = newValue;
+                          valueChoose = newValue;
+                          widget.value = valueChoose;
                         });
                       },
                       items: widget.list.map((valueItem) {
