@@ -32,13 +32,12 @@ class _LoginForm extends State<LoginForm> {
       // ignore: await_only_futures
       await setLogedUser(int.parse(user), json.decode(response.body)["station"],
           json.decode(response.body)["name"]);
-      final route = MaterialPageRoute(builder: (BuildContext context) {
-        return Home(
-            user: int.parse(user),
-            station: json.decode(response.body)["station"],
-            name: json.decode(response.body)["name"]);
-      });
-      Navigator.of(context).push(route);
+      changePageDrop(
+          Home(
+              user: int.parse(user),
+              station: json.decode(response.body)["station"],
+              name: json.decode(response.body)["name"]),
+          context);
     } else
       print('invalido');
   }

@@ -1,5 +1,6 @@
 library media;
 
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
@@ -7,6 +8,7 @@ import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/otherproduct.dart';
 import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:eft_app_comercial/Pages/commissions.dart';
+import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:flutter/material.dart';
@@ -81,6 +83,13 @@ void changePage(Widget page, BuildContext pageContext) {
   Navigator.of(pageContext).push(route);
 }
 
+//Mover a otro modulo y borrar historial
+void changePageDrop(Widget page, BuildContext pageContext) {
+  Navigator.of(pageContext).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => page),
+      (Route<dynamic> route) => false);
+}
+
 //Regresar al modulo principal
 void backToOrigin(BuildContext pageContext) {
   if (Navigator.of(pageContext).canPop()) {
@@ -94,6 +103,36 @@ String getTurn() {
   String turn = "1";
   if (dateTime.hour > 13) turn = "2";
   return turn;
+}
+
+Widget getDrawer(BuildContext context) {
+  return Drawer(
+      child: ListView(children: <Widget>[
+    DrawerHeader(
+        decoration: BoxDecoration(color: grayDark),
+        child: UserAccountsDrawerHeader(
+            accountEmail: Text(
+                HomeBlocInheritedWidget.of(context).homebloc.name +
+                    "@gmail.com"),
+            accountName:
+                Text(HomeBlocInheritedWidget.of(context).homebloc.name),
+            currentAccountPicture:
+                Icon(Icons.supervised_user_circle_rounded, size: 50))),
+    ListTile(
+        title: Text("Estaciones"),
+        leading: Icon(Icons.ev_station_outlined),
+        onTap: () {
+          changePage(StationSearcher(), context);
+        }),
+    ListTile(
+        title: Text("Cerrar sesión"),
+        leading: Icon(Icons.exit_to_app_rounded),
+        onTap: () {
+          deleteUser();
+          changePageDrop(
+              Login(), HomeBlocInheritedWidget.of(context).homebloc.context);
+        })
+  ]));
 }
 
 //Mostrar un dialog Text

@@ -18,6 +18,9 @@ class Activations extends StatefulWidget {
 }
 
 class _ActivationsState extends State<Activations> {
+  CustomTextField customTextField = CustomTextField(
+      title: "Describe el proposito de la activación", lines: 10);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,9 +40,8 @@ class _ActivationsState extends State<Activations> {
                 right: getHorizontalPercent(context, 10),
                 bottom: getVerticalMargin(context),
                 top: getVerticalMargin(context)),
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
+            child:
+                ListView(physics: BouncingScrollPhysics(), children: <Widget>[
               CustomDropButton(
                   title: "Seleccione la estación",
                   initialValue: " Estación",
@@ -50,13 +52,18 @@ class _ActivationsState extends State<Activations> {
                   initialValue: " Tipo de activación",
                   list: activationType),
               SizedBox(height: getVerticalPercent(context, 4)),
-              CustomTextField(title: "Describe el proposito de la activación", lines: 10),
+              customTextField,
               SizedBox(height: getVerticalPercent(context, 4)),
               CustomButton(
                   text: "Confirmar",
                   noPop: false,
                   page: Marketing(),
-                  pageContext: context)
+                  pageContext: context),
+              IconButton(
+                  icon: Icon(Icons.sanitizer),
+                  onPressed: () {
+                    print(customTextField.controller.text);
+                  })
             ])));
   }
 }

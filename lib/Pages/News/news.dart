@@ -1,8 +1,6 @@
-import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/temporal_List.dart';
-import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/News/newDetails.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
@@ -92,28 +90,5 @@ class _NewsState extends State<News> {
                                                 weight: FontWeight.bold)))
                                   ]))));
                 })));
-  }
-
-  Widget getDrawer(BuildContext context) {
-    return Drawer(
-        child: ListView(children: <Widget>[
-      DrawerHeader(
-          decoration: BoxDecoration(color: grayDark),
-          child: UserAccountsDrawerHeader(
-              accountEmail: Text("usermail@gmail.com"),
-              accountName: Text("Fabiana Paola"),
-              currentAccountPicture:
-                  Icon(Icons.supervised_user_circle_rounded, size: 50))),
-      ListTile(
-          title: Text("Estaciones"),
-          leading: Icon(Icons.ev_station_outlined),
-          onTap: () {}),
-      ListTile(
-        title: Text("Cerrar sesión"),
-        leading: Icon(Icons.ev_station_outlined),
-        onTap: () => changePage(
-            Login(), HomeBlocInheritedWidget.of(context).homebloc.context),
-      ),
-    ]));
   }
 }

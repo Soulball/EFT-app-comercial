@@ -3,7 +3,6 @@ import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/materialSolitude2.dart';
 import 'package:eft_app_comercial/Widgets/customBottonSolitude.dart';
-import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +14,8 @@ class MaterialSolitude1 extends StatefulWidget {
 }
 
 class _MaterialSolitude1State extends State<MaterialSolitude1> {
+  String valueChoose;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +38,36 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomDropButton(
-                      title: "Seleccione la estación",
-                      list: stationList,
-                      initialValue: "Estación"),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        CustomText(
+                            data: "Estación",
+                            size: 14,
+                            color: grayText,
+                            weight: FontWeight.bold),
+                        FractionallySizedBox(
+                            widthFactor: 1,
+                            child: Container(
+                                height: 36,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.black),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: DropdownButton<String>(
+                                    iconSize: 0,
+                                    hint: Text(""),
+                                    value: valueChoose,
+                                    onChanged: (String newValue) {
+                                      setState(() {
+                                        valueChoose = newValue;
+                                      });
+                                    },
+                                    items: stationList.map((valueItem) {
+                                      return DropdownMenuItem<String>(
+                                          value: valueItem,
+                                          child: Text(valueItem));
+                                    }).toList())))
+                      ]),
                   Container(
                     height: getVerticalPercent(context, 53),
                     width: getHorizontalPercent(context, 80),
@@ -53,7 +80,7 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
                   ),
                   CustomButtonSolitude(
                       text: "Continuar",
-                      station: "",
+                      station: valueChoose,
                       page: MaterialSolitude2(),
                       pageContext: context)
                 ])));
