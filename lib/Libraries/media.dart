@@ -106,32 +106,34 @@ String getTurn() {
 }
 
 Widget getDrawer(BuildContext context) {
-    return Drawer(
-        child: ListView(children: <Widget>[
-      DrawerHeader(
-          decoration: BoxDecoration(color: grayDark),
-          child: UserAccountsDrawerHeader(
-              accountEmail: Text("usermail@gmail.com"),
-              accountName: Text("Fabiana Paola"),
-              currentAccountPicture:
-                  Icon(Icons.supervised_user_circle_rounded, size: 50))),
-      ListTile(
-          title: Text("Estaciones"),
-          leading: Icon(Icons.ev_station_outlined),
-          onTap: () {
-            changePage(StationSearcher(),
-                HomeBlocInheritedWidget.of(context).homebloc.context);
-          }),
-      ListTile(
-          title: Text("Cerrar sesión"),
-          leading: Icon(Icons.exit_to_app_rounded),
-          onTap: () {
-            deleteUser();
-            changePageDrop(
-                Login(), HomeBlocInheritedWidget.of(context).homebloc.context);
-          })
-    ]));
-  }
+  return Drawer(
+      child: ListView(children: <Widget>[
+    DrawerHeader(
+        decoration: BoxDecoration(color: grayDark),
+        child: UserAccountsDrawerHeader(
+            accountEmail: Text(
+                HomeBlocInheritedWidget.of(context).homebloc.name +
+                    "@gmail.com"),
+            accountName:
+                Text(HomeBlocInheritedWidget.of(context).homebloc.name),
+            currentAccountPicture:
+                Icon(Icons.supervised_user_circle_rounded, size: 50))),
+    ListTile(
+        title: Text("Estaciones"),
+        leading: Icon(Icons.ev_station_outlined),
+        onTap: () {
+          changePage(StationSearcher(), context);
+        }),
+    ListTile(
+        title: Text("Cerrar sesión"),
+        leading: Icon(Icons.exit_to_app_rounded),
+        onTap: () {
+          deleteUser();
+          changePageDrop(
+              Login(), HomeBlocInheritedWidget.of(context).homebloc.context);
+        })
+  ]));
+}
 
 //Mostrar un dialog Text
 void showDialogText(BuildContext context, String title, String text) {

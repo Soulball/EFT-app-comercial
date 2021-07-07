@@ -17,12 +17,10 @@ class _StationSearcherState extends State<StationSearcher> {
   //Variables
   int zone = 0;
   List<String> stationZonelist = [];
-  String selectedStation =
-      /*HomeBlocInheritedWidget.of(context).homebloc.nameStation*/ "";
+  String selectedStation = "";
 
   @override
   Widget build(BuildContext context) {
-    //selectedStation = HomeBlocInheritedWidget.of(context).homebloc.nameStation;
     return Scaffold(
         appBar: AppBar(title: CustomTextAppBar(data: 'Estaciones')),
         body: Container(
@@ -105,7 +103,9 @@ class _StationSearcherState extends State<StationSearcher> {
             icon: Icon(Icons.subdirectory_arrow_left_rounded),
             backgroundColor: blueNeutral,
             onPressed: () {
-              print(selectedStation);
+              HomeBlocInheritedWidget.of(context).homebloc.nameStation =
+                  selectedStation;
+              print(HomeBlocInheritedWidget.of(context).homebloc.nameStation);
             }));
   }
 }
