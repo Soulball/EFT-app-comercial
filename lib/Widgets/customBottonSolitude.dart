@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class CustomButtonSolitude extends StatelessWidget {
   //Variables
   String text;
-  String station;
+  String station = "";
   Widget page;
   BuildContext pageContext;
 

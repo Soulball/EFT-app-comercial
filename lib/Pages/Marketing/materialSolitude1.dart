@@ -1,8 +1,9 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/materialSolitude2.dart';
-import 'package:eft_app_comercial/Widgets/customBottonSolitude.dart';
+import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,10 @@ class MaterialSolitude1 extends StatefulWidget {
 }
 
 class _MaterialSolitude1State extends State<MaterialSolitude1> {
-  String valueChoose;
+  CustomDropButton customDropButton = CustomDropButton(
+      title: "Seleccione la estación",
+      initialValue: "Estación",
+      list: stationList);
 
   @override
   Widget build(BuildContext context) {
@@ -38,51 +42,44 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        CustomText(
-                            data: "Estación",
-                            size: 14,
-                            color: grayText,
-                            weight: FontWeight.bold),
-                        FractionallySizedBox(
-                            widthFactor: 1,
-                            child: Container(
-                                height: 36,
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.black),
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: DropdownButton<String>(
-                                    iconSize: 0,
-                                    hint: Text(""),
-                                    value: valueChoose,
-                                    onChanged: (String newValue) {
-                                      setState(() {
-                                        valueChoose = newValue;
-                                      });
-                                    },
-                                    items: stationList.map((valueItem) {
-                                      return DropdownMenuItem<String>(
-                                          value: valueItem,
-                                          child: Text(valueItem));
-                                    }).toList())))
-                      ]),
+                  customDropButton,
                   Container(
-                    height: getVerticalPercent(context, 53),
-                    width: getHorizontalPercent(context, 80),
-                    child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: materialList.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return materialList[index];
-                        }),
-                  ),
-                  CustomButtonSolitude(
-                      text: "Continuar",
-                      station: valueChoose,
-                      page: MaterialSolitude2(),
-                      pageContext: context)
+                      height: getVerticalPercent(context, 53),
+                      width: getHorizontalPercent(context, 80),
+                      child: ListView.builder(
+                          physics: BouncingScrollPhysics(),
+                          itemCount: materialList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return materialList[index];
+                          })),
+                  Padding(
+                      padding: EdgeInsets.all(getVerticalMargin(context)),
+                      child: ElevatedButton(
+                          onPressed: () {
+                            if (!isNotEmpty()) {
+                              showDialogText(context, "No hay materiales",
+                                  "Debe haber un minimo de un material con un valor mayor a 0 para realizar una solicitud.");
+                              return;
+                            }
+                            if (customDropButton.value == null) {
+                              showDialogText(context, "Campo no valido",
+                                  "Seleccione una estación.");
+                              return;
+                            }
+                            HomeBlocInheritedWidget.of(context)
+                                .homebloc
+                                .nameStation = customDropButton.value;
+                            changePage(MaterialSolitude2(), context);
+                          },
+                          child: CustomText(data: "Continuar", size: 18)))
                 ])));
+  }
+
+  //Verificar que existan materiales
+  bool isNotEmpty() {
+    for (int c = 0; c < materialList.length; c++) {
+      if (materialList[c].counter > 0) return true;
+    }
+    return false;
   }
 }

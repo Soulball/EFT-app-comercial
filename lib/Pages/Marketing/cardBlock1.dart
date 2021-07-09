@@ -18,7 +18,12 @@ class CardBlock1 extends StatefulWidget {
 }
 
 class _CardBlock1State extends State<CardBlock1> {
-  ItemCounter itemCounter = ItemCounter(item: "Bloque de tarjetas");
+  //Variables
+  var customDropButton = CustomDropButton(
+      title: "Seleccione la estación",
+      list: stationList,
+      initialValue: "Estación");
+  var itemCounter = ItemCounter(item: "Bloque de tarjetas");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +45,7 @@ class _CardBlock1State extends State<CardBlock1> {
                 top: getVerticalMargin(context)),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   UserInfo(
                       user: (HomeBlocInheritedWidget.of(context)
@@ -50,19 +55,28 @@ class _CardBlock1State extends State<CardBlock1> {
                           ? HomeBlocInheritedWidget.of(context).homebloc.name
                           : "Anonimo",
                       station: "1221 - Hipodromo"),
-                  CustomDropButton(
-                      title: "Seleccione la estación",
-                      list: stationList,
-                      initialValue: "Estación"),
+                  customDropButton,
                   Container(
                     width: getHorizontalPercent(context, 80),
-                    child: ItemCounter(item: "Bloque de tarjetas"),
+                    child: itemCounter,
                   ),
-                  CustomButton(
-                      text: "Confirmar",
-                      noPop: false,
-                      page: MaterialSolitude2(),
-                      pageContext: context)
+                  ElevatedButton(
+                      onPressed: () {
+                        if (itemCounter.counter == 0) {
+                          showDialogText(context, "Cantidad no valida",
+                              "La cantidad de solicitar debe ser mayor que 0.");
+                          return;
+                        }
+                        if (customDropButton.value == null) {
+                          showDialogText(context, "Campo no valido",
+                              "Seleccione una estación.");
+                          return;
+                        }
+                        backToOrigin(context);
+                        showDialogText(context, "Nota",
+                            "Operacion completada. Pendiente de revisión y aprovación.");
+                      },
+                      child: CustomText(data: "Enviar", size: 18))
                 ])));
   }
 }

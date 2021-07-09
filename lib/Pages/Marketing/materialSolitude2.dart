@@ -2,8 +2,6 @@ import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
-import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:eft_app_comercial/Widgets/userInfo.dart';
@@ -13,6 +11,8 @@ class MaterialSolitude2 extends StatelessWidget {
   MaterialSolitude2({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    CustomTextField customTextField = CustomTextField(
+        lines: 10, title: "Descripción de materiales y medidas");
     return Scaffold(
         appBar: AppBar(
             title: CustomText(
@@ -71,13 +71,19 @@ class MaterialSolitude2 extends StatelessWidget {
                   padding: EdgeInsets.only(
                       top: getVerticalPercent(context, 2.5),
                       bottom: getVerticalPercent(context, 2.5)),
-                  child: CustomTextField(
-                      lines: 10, title: "Descripción de materiales y medidas")),
-              CustomButton(
-                  text: "Enviar",
-                  noPop: false,
-                  page: Marketing(),
-                  pageContext: context)
+                  child: customTextField),
+              ElevatedButton(
+                  onPressed: () {
+                    if (customTextField.controller.text.length < 10) {
+                      showDialogText(context, "Campo no valido",
+                          "El comentario es demasiado corto.");
+                      return;
+                    }
+                    backToOrigin(context);
+                    showDialogText(context, "Nota",
+                        "Operacion completada. Pendiente de revisión y aprovación.");
+                  },
+                  child: CustomText(data: "Enviar", size: 18))
             ])));
   }
 }
