@@ -74,11 +74,14 @@ class MaterialSolitude2 extends StatelessWidget {
                   child: customTextField),
               ElevatedButton(
                   onPressed: () {
-                    if (customTextField.controller.text.length > 10) {
-                      backToOrigin(context);
-                      showDialogText(context, "Nota",
-                          "Operacion completada. Pendiente de revisión y aprovación.");
+                    if (customTextField.controller.text.length < 10) {
+                      showDialogText(context, "Campo no valido",
+                          "El comentario es demasiado corto.");
+                      return;
                     }
+                    backToOrigin(context);
+                    showDialogText(context, "Nota",
+                        "Operacion completada. Pendiente de revisión y aprovación.");
                   },
                   child: CustomText(data: "Enviar", size: 18))
             ])));

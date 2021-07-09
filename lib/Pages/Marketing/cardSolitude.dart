@@ -1,14 +1,11 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import 'marketing.dart';
 
 class CardSolitude extends StatefulWidget {
   CardSolitude({Key key}) : super(key: key);
@@ -17,6 +14,22 @@ class CardSolitude extends StatefulWidget {
 }
 
 class _CardSolitudeState extends State<CardSolitude> {
+  //Variables
+  var stationCustomDropButton = CustomDropButton(
+      title: "Seleccione la estación",
+      initialValue: " Estación",
+      list: stationList);
+  var typeCustomDropButton = CustomDropButton(
+      title: "Tipo de alta",
+      initialValue: " Alta",
+      list: [" Registrar cliente", " Reposición"]);
+  var nameCustomTextField =
+      CustomTextField(title: "Nombre del Cliente", lines: 1);
+  var phoneTextField = CustomTextField(title: "Teléfono del Cliente", lines: 1);
+  var emailCustomTextField =
+      CustomTextField(title: "Correo Electrónico", lines: 1);
+  var noteCustomTextField =
+      CustomTextField(title: "Nota / Comentario", lines: 4);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,29 +51,55 @@ class _CardSolitudeState extends State<CardSolitude> {
                 top: getVerticalMargin(context)),
             child:
                 ListView(physics: BouncingScrollPhysics(), children: <Widget>[
-              CustomDropButton(
-                  title: "Seleccione la estación",
-                  initialValue: " Estación",
-                  list: stationList),
+              stationCustomDropButton,
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomDropButton(
-                  title: "Tipo de alta",
-                  initialValue: " Alta",
-                  list: [" Registrar cliente", " Reposición"]),
+              typeCustomDropButton,
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomTextField(title: "Nombre del Cliente", lines: 1),
+              nameCustomTextField,
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomTextField(title: "Teléfono del Cliente", lines: 1),
+              phoneTextField,
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomTextField(title: "Correo Electrónico", lines: 1),
+              emailCustomTextField,
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomTextField(title: "Nota / Comentario", lines: 4),
+              noteCustomTextField,
               SizedBox(height: getVerticalPercent(context, 2)),
-              CustomButton(
-                  text: "Enviar",
-                  noPop: false,
-                  page: Marketing(),
-                  pageContext: context)
+              ElevatedButton(
+                  onPressed: () {
+                    if (stationCustomDropButton.value == null) {
+                      showDialogText(context, "Campo no valido",
+                          "Seleccione una estación.");
+                      return;
+                    }
+                    if (typeCustomDropButton.value == null) {
+                      showDialogText(context, "Campo no valido",
+                          "Seleccione un tipo de activación.");
+                      return;
+                    }
+                    if (nameCustomTextField.controller.text.length < 10) {
+                      showDialogText(context, "Campo no valido",
+                          "El nombre del cliente es demasiado corto.");
+                      return;
+                    }
+                    if (phoneTextField.controller.text.length < 9) {
+                      showDialogText(context, "Campo no valido",
+                          "El telefono es demasiado corto.");
+                      return;
+                    }
+                    if (emailCustomTextField.controller.text.length < 10) {
+                      showDialogText(context, "Campo no valido",
+                          "El correo es demasiado corto.");
+                      return;
+                    }
+                    if (noteCustomTextField.controller.text.length < 10) {
+                      showDialogText(context, "Campo no valido",
+                          "El comentario es demasiado corto.");
+                      return;
+                    }
+                    backToOrigin(context);
+                    showDialogText(context, "Nota",
+                        "Operacion completada. Pendiente de revisión y aprovación.");
+                  },
+                  child: CustomText(data: "Enviar", size: 18))
             ])));
   }
 }

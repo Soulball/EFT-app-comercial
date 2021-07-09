@@ -148,7 +148,14 @@ void showDialogText(BuildContext context, String title, String text) {
             children: [
               Padding(
                   padding: EdgeInsets.all(getVerticalMargin(context)),
-                  child: CustomText(data: text, size: 14, color: grayDark))
+                  child: CustomText(data: text, size: 14, color: grayDark)),
+              IconButton(
+                  icon: Icon(Icons.close),
+                  iconSize: 40,
+                  splashRadius: 25,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  })
             ]);
       });
 }

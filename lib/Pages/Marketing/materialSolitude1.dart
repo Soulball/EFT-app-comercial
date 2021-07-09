@@ -56,13 +56,20 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
                       padding: EdgeInsets.all(getVerticalMargin(context)),
                       child: ElevatedButton(
                           onPressed: () {
-                            if (isNotEmpty() &&
-                                customDropButton.value != null) {
-                              HomeBlocInheritedWidget.of(context)
-                                  .homebloc
-                                  .nameStation = customDropButton.value;
-                              changePage(MaterialSolitude2(), context);
+                            if (!isNotEmpty()) {
+                              showDialogText(context, "No hay materiales",
+                                  "Debe haber un minimo de un material con un valor mayor a 0 para realizar una solicitud.");
+                              return;
                             }
+                            if (customDropButton.value == null) {
+                              showDialogText(context, "Campo no valido",
+                                  "Seleccione una estación.");
+                              return;
+                            }
+                            HomeBlocInheritedWidget.of(context)
+                                .homebloc
+                                .nameStation = customDropButton.value;
+                            changePage(MaterialSolitude2(), context);
                           },
                           child: CustomText(data: "Continuar", size: 18)))
                 ])));
