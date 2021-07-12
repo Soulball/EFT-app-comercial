@@ -2,8 +2,6 @@ import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Pages/Marketing/materialSolitude2.dart';
-import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/itemCounter.dart';
@@ -54,7 +52,7 @@ class _CardBlock1State extends State<CardBlock1> {
                               null)
                           ? HomeBlocInheritedWidget.of(context).homebloc.name
                           : "Anonimo",
-                      station: "1221 - Hipodromo"),
+                      station: stationNameTest),
                   customDropButton,
                   Container(
                     width: getHorizontalPercent(context, 80),
