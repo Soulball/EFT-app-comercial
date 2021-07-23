@@ -2,7 +2,7 @@ import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/sendreport.dart';
-import 'package:eft_app_comercial/Widgets/customButton.dart';
+import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
@@ -65,8 +65,14 @@ class _RequestReportState extends State<RequestReport> {
               SizedBox(
                 height: getHorizontalPercent(context, 5),
               ),
-              CustomButton(
-                  text: "Siguiente", page: SendReport(), pageContext: context),
+              ButtonSend(
+                sizeh: 10,
+                sizew: 50,
+                sizef: 5,
+                text: 'Enviar',
+                page: SendReport(),
+                pageContext: context,
+              ),
             ],
           ),
         ),

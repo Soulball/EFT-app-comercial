@@ -4,6 +4,7 @@ import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ButtonSend extends StatelessWidget {
   double sizeh;
   double sizew;
