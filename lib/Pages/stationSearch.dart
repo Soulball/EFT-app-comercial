@@ -1,10 +1,10 @@
-import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:eft_app_comercial/Libraries/media.dart';
 
 //Pagina principal de la seccion para solicitudes
 class StationSearcher extends StatefulWidget {
@@ -103,9 +103,19 @@ class _StationSearcherState extends State<StationSearcher> {
             icon: Icon(Icons.subdirectory_arrow_left_rounded),
             backgroundColor: blueNeutral,
             onPressed: () {
-              HomeBlocInheritedWidget.of(context).homebloc.nameStation =
-                  selectedStation;
-              print(HomeBlocInheritedWidget.of(context).homebloc.nameStation);
+              if (selectedStation == "") {
+                showDialogText(context, "Error", "No ha seleccionado ninguna estación.");
+                return;
+              }
+              stationNameTest = selectedStation;
+              print(stationNameTest);
+              Navigator.pop(context);
+              showDialogText(
+                  context,
+                  "Cambio completado",
+                  "Se ha establecido la estacion " +
+                      selectedStation +
+                      " correctamente.");
             }));
   }
 }

@@ -123,7 +123,8 @@ Widget getDrawer(BuildContext context) {
         title: Text("Estaciones"),
         leading: Icon(Icons.ev_station_outlined),
         onTap: () {
-          changePage(StationSearcher(), context);
+          changePage(StationSearcher(),
+              HomeBlocInheritedWidget.of(context).homebloc.context);
         }),
     ListTile(
         title: Text("Cerrar sesión"),
@@ -190,3 +191,5 @@ void deleteUser() async {
   await prefs.setString('station', null);
   await prefs.setString('name', null);
 }
+
+String stationNameTest = "";
