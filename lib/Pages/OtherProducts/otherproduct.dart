@@ -3,6 +3,7 @@ import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Commission/commission.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Settings/adjustment.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class OtherProduct extends StatelessWidget {
               text: "Comisiones", page: Commission(), pageContext: context),
           CustomButton(
               text: "Ajuste de Inventario",
-              page: Promotion(),
+              page: Adjustment(),
               pageContext: context),
           //CustomButton(text: "Pro Service", page: Promotion(), pageContext: context),
           CustomButton(text: "Reportar", page: Report(), pageContext: context)

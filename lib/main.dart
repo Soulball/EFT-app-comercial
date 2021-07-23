@@ -1,7 +1,7 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'Libraries/decoration_colors.dart';
-import 'Pages/Login/login.dart';
 
 //Inicio de la aplicacion
 void main() => runApp(MyApp());

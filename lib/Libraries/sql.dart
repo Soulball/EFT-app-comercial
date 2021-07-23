@@ -8,7 +8,7 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:http/http.dart';
 
 //String ip = "172.30.16.1";
-String ip = "192.168.209.130";
+String ip = "192.168.209.123";
 
 //Promociones
 Future getApi(int station, int user) async {
