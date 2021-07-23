@@ -1,3 +1,4 @@
+import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/temporal_List.dart';
@@ -9,6 +10,8 @@ import 'package:flutter/material.dart';
 //Pagina principal del visualizador de todas las noticias
 class News extends StatefulWidget {
   News({Key key}) : super(key: key);
+  //Lista
+  static List<Announcement> newList = <Announcement>[];
   @override
   _NewsState createState() => _NewsState();
 }

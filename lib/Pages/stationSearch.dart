@@ -1,3 +1,5 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
+import 'package:eft_app_comercial/Classes/station.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
@@ -5,10 +7,12 @@ import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 
 //Pagina principal de la seccion para solicitudes
 class StationSearcher extends StatefulWidget {
   StationSearcher({Key key}) : super(key: key);
+  static List<Station> stationZonelist = [];
   @override
   _StationSearcherState createState() => _StationSearcherState();
 }
@@ -16,11 +20,11 @@ class StationSearcher extends StatefulWidget {
 class _StationSearcherState extends State<StationSearcher> {
   //Variables
   int zone = 0;
-  List<String> stationZonelist = [];
-  String selectedStation = "";
-
+  List<Station> stationCoincidence = [];
+  Station selectedStation = Station(name: "", number: 0);
   @override
   Widget build(BuildContext context) {
+    getStations();
     return Scaffold(
         appBar: AppBar(title: CustomTextAppBar(data: 'Estaciones')),
         body: Container(
@@ -56,11 +60,19 @@ class _StationSearcherState extends State<StationSearcher> {
                     icon: Icon(Icons.search,
                         size: getHorizontalPercent(context, 8)),
                     onPressed: () {
-                      stationZonelist.clear();
                       setState(() {
-                        stationZonelist.add(zone.toString() + " - Estacion A");
-                        stationZonelist.add(zone.toString() + " - Estacion B");
-                        stationZonelist.add(zone.toString() + " - Estacion C");
+                        stationCoincidence.clear();
+                        print(zone);
+                        for (int c = 0;
+                            c < StationSearcher.stationZonelist.length;
+                            c++) {
+                          if (StationSearcher.stationZonelist[c].number ==
+                              zone) {
+                            stationCoincidence
+                                .add(StationSearcher.stationZonelist[c]);
+                            break;
+                          }
+                        }
                       });
                     })
               ]),
@@ -71,24 +83,29 @@ class _StationSearcherState extends State<StationSearcher> {
                       child: ListView.builder(
                           padding: EdgeInsets.all(getHorizontalMargin(context)),
                           physics: BouncingScrollPhysics(),
-                          itemCount: stationZonelist.length,
+                          itemCount: stationCoincidence.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Card(
-                                color:
-                                    (selectedStation == stationZonelist[index])
-                                        ? blueNeutral
-                                        : grayDark,
+                                color: (selectedStation ==
+                                        stationCoincidence[index])
+                                    ? blueNeutral
+                                    : grayDark,
                                 child: InkWell(
                                   onTap: () {
                                     setState(() {
-                                      selectedStation = stationZonelist[index];
+                                      selectedStation =
+                                          stationCoincidence[index];
                                     });
                                   },
                                   child: Padding(
                                       padding: EdgeInsets.all(
                                           getHorizontalMargin(context)),
                                       child: CustomText(
-                                          data: stationZonelist[index],
+                                          data: stationCoincidence[index]
+                                                  .number
+                                                  .toString() +
+                                              " - " +
+                                              stationCoincidence[index].name,
                                           size: 18,
                                           color: whiteLight)),
                                 ));
@@ -96,25 +113,28 @@ class _StationSearcherState extends State<StationSearcher> {
             ])),
         floatingActionButton: FloatingActionButton.extended(
             label: CustomText(
-                data: selectedStation,
+                data: selectedStation.name,
                 color: whiteNeutral,
                 size: 18,
                 weight: FontWeight.bold),
             icon: Icon(Icons.subdirectory_arrow_left_rounded),
             backgroundColor: blueNeutral,
             onPressed: () {
-              if (selectedStation == "") {
-                showDialogText(context, "Error", "No ha seleccionado ninguna estación.");
+              if (selectedStation.name == "" || selectedStation.name == null) {
+                showDialogText(
+                    context, "Error", "No ha seleccionado ninguna estación.");
                 return;
               }
-              stationNameTest = selectedStation;
-              print(stationNameTest);
+              HomeBlocInheritedWidget.of(context).homebloc.nameStation =
+                  selectedStation.name;
+              HomeBlocInheritedWidget.of(context).homebloc.station =
+                  selectedStation.number;
               Navigator.pop(context);
               showDialogText(
                   context,
                   "Cambio completado",
                   "Se ha establecido la estacion " +
-                      selectedStation +
+                      selectedStation.name +
                       " correctamente.");
             }));
   }

@@ -122,8 +122,7 @@ Widget getDrawer(BuildContext context) {
         title: Text("Estaciones"),
         leading: Icon(Icons.ev_station_outlined),
         onTap: () {
-          changePage(StationSearcher(),
-              HomeBlocInheritedWidget.of(context).homebloc.context);
+          changePage(StationSearcher(), context);
         }),
     ListTile(
         title: Text("Cerrar sesión"),

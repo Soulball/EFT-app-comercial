@@ -3,12 +3,54 @@ import 'dart:convert';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
+import 'package:eft_app_comercial/Classes/station.dart';
+import 'package:eft_app_comercial/Classes/tutorial.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
+import 'package:eft_app_comercial/Pages/News/news.dart';
+import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
+import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
 //String ip = "172.30.16.1";
-String ip = "192.168.209.130";
+String ip = "192.168.209.118";
+
+//Buscar todas las estaciónes
+Future getStations() async {
+  //Peticion
+  Response response =
+      await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
+
+  //Comprobar si es nulo
+  if (json.decode(response.body)["stations"] != null) {
+    List data = json.decode(response.body)["stations"];
+    for (int c = 0; c < data.length; c++) {
+      StationSearcher.stationZonelist.add(new Station(
+          number: data[c]["number"], name: data[c]["commercialname"]));
+    }
+    print(StationSearcher.stationZonelist.length.toString());
+  }
+}
+
+//Conseguir noticias
+Future getNews(int station) async {
+  Response response = await get(
+      Uri.encodeFull("http://$ip:50000/announcement?station=$station"));
+
+  //Comprobar si es nulo
+  if (json.decode(response.body)["announcements"] != null) {
+    List data = json.decode(response.body)["announcements"];
+    for (int c = 0; c < data.length; c++) {
+      News.newList.add(new Announcement(
+          id: data[c]["announcement_id"],
+          name: data[c]["a_name"],
+          categoryName: data[c]["c_name"],
+          image:
+              "https://upload.wikimedia.org/wikipedia/commons/f/f5/Petrol_pump_mp3h0355.jpg",
+          text: data[c]["text"]));
+    }
+  }
+}
 
 //Promociones
 Future getApi(int station, int user) async {
@@ -85,18 +127,17 @@ Future getDetails(int announcement) async {
 }
 
 //Tutoriales
-Future getTutorials(int station, String type) async {
+Future getTutorials(int station, String type, int position) async {
   //Peticion
-  Response response = await get(
-      Uri.encodeFull("http://$ip:50000/tutorial?station=$station&type=$type"));
-  //PromotionDetails.detailList.clear();
+  Response response = await get(Uri.encodeFull(
+      "http://$ip:50000/tutorial?station=$station&type=$type&position=$position"));
 
   //Comprobar si es nulo
   if (json.decode(response.body)["tutorials"] != null) {
     List data = json.decode(response.body)["tutorials"];
     for (int c = 0; c < data.length; c++) {
-      //PromotionDetails.detailList.add(
-      //new Detail(title: data[c]["title"], subtitle: data[c]["subtitle"]));
+      Tutorials.tutorialList
+          .add(new Tutorial(name: data[c]["name"], source: data[c]["source"]));
     }
   }
 }
