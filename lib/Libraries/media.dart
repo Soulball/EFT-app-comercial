@@ -181,6 +181,15 @@ Future<void> getLogedUser() async {
   final prefs3 = await SharedPreferences.getInstance();
   String name = prefs3.getString('name');
   Login.name = name;
+  final prefs4 = await SharedPreferences.getInstance();
+  String stationName = prefs4.getString('stationName');
+  Login.stationName = stationName;
+}
+
+void setStation(String station, String nameStation) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.setString('station', station);
+  await prefs.setString('stationName', nameStation);
 }
 
 //Borrar usuario y estacion
@@ -189,6 +198,5 @@ void deleteUser() async {
   await prefs.setString('user', null);
   await prefs.setString('station', null);
   await prefs.setString('name', null);
+  await prefs.setString('stationName', null);
 }
-
-String stationNameTest = "";

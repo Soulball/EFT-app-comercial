@@ -13,7 +13,6 @@ import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
 //String ip = "172.30.16.1";
-<<<<<<< HEAD
 String ip = "192.168.209.118";
 
 //Buscar todas las estaciónes
@@ -52,9 +51,6 @@ Future getNews(int station) async {
     }
   }
 }
-=======
-String ip = "192.168.209.123";
->>>>>>> 6dd1522804cef21b08799e97248bd43afe620806
 
 //Promociones
 Future getApi(int station, int user) async {

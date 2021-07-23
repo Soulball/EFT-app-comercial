@@ -129,6 +129,7 @@ class _StationSearcherState extends State<StationSearcher> {
                   selectedStation.name;
               HomeBlocInheritedWidget.of(context).homebloc.station =
                   selectedStation.number;
+              setStation(selectedStation.name, selectedStation.number.toString());
               Navigator.pop(context);
               showDialogText(
                   context,

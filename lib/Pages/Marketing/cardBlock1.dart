@@ -46,13 +46,10 @@ class _CardBlock1State extends State<CardBlock1> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   UserInfo(
-                      user: (HomeBlocInheritedWidget.of(context)
-                                  .homebloc
-                                  .name !=
-                              null)
-                          ? HomeBlocInheritedWidget.of(context).homebloc.name
-                          : "Anonimo",
-                      station: stationNameTest),
+                      user: HomeBlocInheritedWidget.of(context).homebloc.name,
+                      station: HomeBlocInheritedWidget.of(context)
+                          .homebloc
+                          .nameStation),
                   customDropButton,
                   Container(
                     width: getHorizontalPercent(context, 80),

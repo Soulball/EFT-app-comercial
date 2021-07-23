@@ -11,6 +11,7 @@ class Login extends StatelessWidget {
   static int user;
   static int station;
   static String name;
+  static String stationName;
 
   @override
   Widget build(BuildContext context) {
