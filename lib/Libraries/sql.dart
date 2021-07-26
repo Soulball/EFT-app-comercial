@@ -13,9 +13,9 @@ import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
 //String ip = "172.30.16.1";
-String ip = "192.168.209.118";
+String ip = "192.168.100.9";
 
-//Buscar todas las estaciónes
+//Buscar todas las estaciónes ---------------------------------------------------------------------
 Future getStations() async {
   //Peticion
   Response response =
@@ -32,12 +32,13 @@ Future getStations() async {
   }
 }
 
-//Conseguir noticias
+//Conseguir noticias ------------------------------------------------------------------------------
 Future getNews(int station) async {
   Response response = await get(
       Uri.encodeFull("http://$ip:50000/announcement?station=$station"));
 
   //Comprobar si es nulo
+  News.newList.clear();
   if (json.decode(response.body)["announcements"] != null) {
     List data = json.decode(response.body)["announcements"];
     for (int c = 0; c < data.length; c++) {
@@ -50,9 +51,10 @@ Future getNews(int station) async {
           text: data[c]["text"]));
     }
   }
+  print(News.newList.length);
 }
 
-//Promociones
+//Promociones -------------------------------------------------------------------------------------
 Future getApi(int station, int user) async {
   //Peticion
   Response response =
@@ -87,7 +89,7 @@ Future getApi(int station, int user) async {
   }
 }
 
-//Insertar reacciones
+//Insertar reacciones -----------------------------------------------------------------------------
 Future insertReactions(
     int user, int announcement, bool favorite, bool like) async {
   //Peticion
@@ -102,14 +104,14 @@ Future updateFavorite(int user, int announcement, bool favorite) async {
       "http://$ip:50000/updatefavorite?user=$user&announcement=$announcement&favorite=$favorite"));
 }
 
-//Actualizar favorito
+//Actualizar gustado
 Future updateLike(int user, int announcement, bool like) async {
   //Peticion
   await get(Uri.encodeFull(
       "http://$ip:50000/updatelike?user=$user&announcement=$announcement&favorite=$like"));
 }
 
-//Detalles
+//Detalles ----------------------------------------------------------------------------------------
 Future getDetails(int announcement) async {
   //Peticion
   Response response = await get(
@@ -126,7 +128,7 @@ Future getDetails(int announcement) async {
   }
 }
 
-//Tutoriales
+//Tutoriales --------------------------------------------------------------------------------------
 Future getTutorials(int station, String type, int position) async {
   //Peticion
   Response response = await get(Uri.encodeFull(
@@ -142,7 +144,7 @@ Future getTutorials(int station, String type, int position) async {
   }
 }
 
-//Buscar en la lista
+//Buscar en la lista ------------------------------------------------------------------------------
 bool insertInList(int announcementId) {
   for (int c = 0; c < Promotion.favAndLikeList.length; c++) {
     if (Promotion.favAndLikeList[c].id == announcementId) {

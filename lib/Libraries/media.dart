@@ -186,9 +186,9 @@ Future<void> getLogedUser() async {
   Login.stationName = stationName;
 }
 
-void setStation(String station, String nameStation) async {
+void setStation(int station, String nameStation) async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('station', station);
+  await prefs.setInt('station', station);
   await prefs.setString('stationName', nameStation);
 }
 
@@ -196,7 +196,7 @@ void setStation(String station, String nameStation) async {
 void deleteUser() async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setString('user', null);
-  await prefs.setString('station', null);
+  await prefs.setInt('station', null);
   await prefs.setString('name', null);
   await prefs.setString('stationName', null);
 }
