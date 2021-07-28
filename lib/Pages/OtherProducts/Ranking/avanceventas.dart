@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/advancecommission.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/showusers.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -37,21 +36,7 @@ class _AvanceVentasState extends State<AvanceVentas> {
               SizedBox(
                 height: getHorizontalPercent(context, 2),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: <Widget>[
-                  CustomText(
-                    data: 'Producto',
-                    size: getVerticalPercent(context, 3),
-                    color: grayDark,
-                  ),
-                  CustomText(
-                    data: 'Transacciones',
-                    size: getVerticalPercent(context, 3),
-                    color: grayDark,
-                  ),
-                ],
-              )
+              AdvanceCommission(),
             ],
           ),
         ),
