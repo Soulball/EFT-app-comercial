@@ -1,8 +1,8 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
-import 'package:eft_app_comercial/Pages/OtherProducts/avanceventas.dart';
-import 'package:eft_app_comercial/Pages/OtherProducts/rankingxzona.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/avanceventas.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/rankingxzona.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
