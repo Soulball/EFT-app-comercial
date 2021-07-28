@@ -200,3 +200,5 @@ void deleteUser() async {
   await prefs.setString('name', null);
   await prefs.setString('stationName', null);
 }
+
+int defaultStation = 9999;
