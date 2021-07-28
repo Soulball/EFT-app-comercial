@@ -9,7 +9,7 @@ class DateT extends StatefulWidget {
 }
 
 class _DateTState extends State<DateT> {
-  HDTRefreshController _hdtRefreshController = HDTRefreshController();
+  //HDTRefreshController _hdtRefreshController = HDTRefreshController();
 
   @override
   Widget build(BuildContext context) {

@@ -4,11 +4,9 @@ import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Classes/station.dart';
-import 'package:eft_app_comercial/Classes/tutorial.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
-import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
@@ -124,22 +122,6 @@ Future getDetails(int announcement) async {
     for (int c = 0; c < data.length; c++) {
       PromotionDetails.detailList.add(
           new Detail(title: data[c]["title"], subtitle: data[c]["subtitle"]));
-    }
-  }
-}
-
-//Tutoriales --------------------------------------------------------------------------------------
-Future getTutorials(int station, String type, int offset) async {
-  //Peticion
-  Response response = await get(Uri.encodeFull(
-      "http://$ip:50000/tutorial?station=$station&type=$type&offset=$offset"));
-
-  //Comprobar si es nulo
-  if (json.decode(response.body)["tutorials"] != null) {
-    List data = json.decode(response.body)["tutorials"];
-    for (int c = 0; c < data.length; c++) {
-      Tutorials.tutorialList
-          .add(new Tutorial(name: data[c]["name"], source: data[c]["source"]));
     }
   }
 }

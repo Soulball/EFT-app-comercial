@@ -28,7 +28,8 @@ class _InfosState extends State<Infos> {
     get10(defaultStation, offset);
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) get10(defaultStation, offset);
+          scrollController.position.maxScrollExtent)
+        get10(defaultStation, offset);
     });
   }
 
@@ -77,15 +78,15 @@ class _InfosState extends State<Infos> {
   get10(int station, int offset) async {
     final response = await get(Uri.encodeFull(
         "http://$ip:50000/tutorial?station=$station&type=info&offset=$offset"));
-    setState(() {
-      if (json.decode(response.body)["tutorial"] != null) {
+    if (json.decode(response.body)["tutorial"] != null) {
+      setState(() {
         List data = json.decode(response.body)["tutorial"];
         for (int c = 0; c < data.length; c++) {
           infoList.add(
               new Tutorial(name: data[c]["name"], source: data[c]["source"]));
         }
         this.offset = this.offset + 10;
-      }
-    });
+      });
+    }
   }
 }
