@@ -12,8 +12,9 @@ import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
-//String ip = "172.30.16.1";
+//String ip = "172.30.16.1"
 String ip = "192.168.209.146";
+//String ip = "192.168.209.151";
 
 //Buscar todas las estaciónes ---------------------------------------------------------------------
 Future getStations() async {
@@ -129,10 +130,10 @@ Future getDetails(int announcement) async {
 }
 
 //Tutoriales --------------------------------------------------------------------------------------
-Future getTutorials(int station, String type, int position) async {
+Future getTutorials(int station, String type, int offset) async {
   //Peticion
   Response response = await get(Uri.encodeFull(
-      "http://$ip:50000/tutorial?station=$station&type=$type&position=$position"));
+      "http://$ip:50000/tutorial?station=$station&type=$type&offset=$offset"));
 
   //Comprobar si es nulo
   if (json.decode(response.body)["tutorials"] != null) {
