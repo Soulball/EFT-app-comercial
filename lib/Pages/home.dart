@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 
 //Menu principal con Navigation Bar
 class Home extends StatefulWidget {
-  Home({Key key, this.user, this.station, this.name}) : super(key: key);
+  Home({Key key, this.user, this.station, this.name, this.nameStation}) : super(key: key);
   //Variables
   final user;
   final station;
   final name;
+  final nameStation;
 
   @override
   _HomeState createState() => _HomeState();
@@ -25,7 +26,7 @@ class _HomeState extends State<Home> {
         user: widget.user,
         station: widget.station,
         name: widget.name,
-        nameStation: "",
+        nameStation: widget.nameStation,
         context: context);
     return WillPopScope(
         onWillPop: () async => false,

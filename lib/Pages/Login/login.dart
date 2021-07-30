@@ -11,7 +11,7 @@ class Login extends StatelessWidget {
   static int user;
   static int station;
   static String name;
-  static String stationName;
+  static String nameStation;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class Login extends StatelessWidget {
                     LoginForm(),
                   ],
                 );
-              return Home(user: user, station: station, name: name);
+              return Home(user: user, station: station, name: name, nameStation: nameStation);
             }),
       ),
     );

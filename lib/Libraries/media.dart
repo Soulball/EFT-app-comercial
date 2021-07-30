@@ -125,7 +125,10 @@ Widget getDrawer(BuildContext context) {
         title: Text("Estaciones"),
         leading: Icon(Icons.ev_station_outlined),
         onTap: () {
-          changePage(StationSearcher(), context);
+          changePage(
+              StationSearcher(
+                  homebloc: HomeBlocInheritedWidget.of(context).homebloc),
+              HomeBlocInheritedWidget.of(context).homebloc.context);
         }),
     ListTile(
         title: Text("Cerrar sesión"),
@@ -184,8 +187,8 @@ Future<void> getLogedUser() async {
   String name = prefs3.getString('name');
   Login.name = name;
   final prefs4 = await SharedPreferences.getInstance();
-  String stationName = prefs4.getString('stationName');
-  Login.stationName = stationName;
+  String nameStation = prefs4.getString('stationName');
+  Login.nameStation = nameStation;
 }
 
 void setStation(int station, String nameStation) async {
