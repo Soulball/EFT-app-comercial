@@ -2,7 +2,8 @@ import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
+import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
+import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:eft_app_comercial/Widgets/userInfo.dart';
@@ -17,10 +18,11 @@ class CardBlock1 extends StatefulWidget {
 
 class _CardBlock1State extends State<CardBlock1> {
   //Variables
-  var customDropButton = CustomDropButton(
-      title: "Seleccione la estación",
-      list: stationList,
-      initialValue: "Estación");
+  var customSearchDropButton = CustomSearchDropButton(
+      name: "Estación",
+      defaultValue: "Seleccione la estación",
+      search: true,
+      items: Marketing.allStationList);
   var itemCounter = ItemCounter(item: "Bloque de tarjetas");
   @override
   Widget build(BuildContext context) {
@@ -50,7 +52,7 @@ class _CardBlock1State extends State<CardBlock1> {
                       station: HomeBlocInheritedWidget.of(context)
                           .homebloc
                           .nameStation),
-                  customDropButton,
+                  customSearchDropButton,
                   Container(
                     width: getHorizontalPercent(context, 80),
                     child: itemCounter,
@@ -62,7 +64,7 @@ class _CardBlock1State extends State<CardBlock1> {
                               "La cantidad de solicitar debe ser mayor que 0.");
                           return;
                         }
-                        if (customDropButton.value == null) {
+                        if (customSearchDropButton.selectedItem == null) {
                           showDialogText(context, "Campo no valido",
                               "Seleccione una estación.");
                           return;

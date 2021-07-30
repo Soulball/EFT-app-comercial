@@ -1,7 +1,8 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
+import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
+import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +16,16 @@ class CardSolitude extends StatefulWidget {
 
 class _CardSolitudeState extends State<CardSolitude> {
   //Variables
-  var stationCustomDropButton = CustomDropButton(
-      title: "Seleccione la estación",
-      initialValue: " Estación",
-      list: stationList);
-  var typeCustomDropButton = CustomDropButton(
-      title: "Tipo de alta",
-      initialValue: " Alta",
-      list: [" Registrar cliente", " Reposición"]);
+  var stationCustomSearchDropButton = CustomSearchDropButton(
+      name: "Seleccione la estación",
+      defaultValue: "Estación",
+      search: true,
+      items: Marketing.allStationList);
+  var typeCustomSearchDropButton = CustomSearchDropButton(
+      name: "Tipo de alta",
+      defaultValue: "Seleccióne el tipo de alta",
+      search: false,
+      items: registerType);
   var nameCustomTextField =
       CustomTextField(title: "Nombre del Cliente", lines: 1);
   var phoneTextField = CustomTextField(title: "Teléfono del Cliente", lines: 1);
@@ -30,6 +33,7 @@ class _CardSolitudeState extends State<CardSolitude> {
       CustomTextField(title: "Correo Electrónico", lines: 1);
   var noteCustomTextField =
       CustomTextField(title: "Nota / Comentario", lines: 4);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,9 +55,9 @@ class _CardSolitudeState extends State<CardSolitude> {
                 top: getVerticalMargin(context)),
             child:
                 ListView(physics: BouncingScrollPhysics(), children: <Widget>[
-              stationCustomDropButton,
+              stationCustomSearchDropButton,
               SizedBox(height: getVerticalPercent(context, 2)),
-              typeCustomDropButton,
+              typeCustomSearchDropButton,
               SizedBox(height: getVerticalPercent(context, 2)),
               nameCustomTextField,
               SizedBox(height: getVerticalPercent(context, 2)),
@@ -65,12 +69,12 @@ class _CardSolitudeState extends State<CardSolitude> {
               SizedBox(height: getVerticalPercent(context, 2)),
               ElevatedButton(
                   onPressed: () {
-                    if (stationCustomDropButton.value == null) {
+                    if (stationCustomSearchDropButton.selectedItem == null) {
                       showDialogText(context, "Campo no valido",
                           "Seleccione una estación.");
                       return;
                     }
-                    if (typeCustomDropButton.value == null) {
+                    if (typeCustomSearchDropButton.selectedItem == null) {
                       showDialogText(context, "Campo no valido",
                           "Seleccione un tipo de activación.");
                       return;

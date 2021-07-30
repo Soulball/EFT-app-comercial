@@ -34,7 +34,9 @@ final List stationList = [
   " 1221 - La mesa"
 ];
 
-final List activationType = [
+final List<String> registerType = ["Registrar cliente", "Reposición"];
+
+final List<String> activationType = [
   " Estrategia de Precio",
   " Otros productos",
   " Generación de tráfico"

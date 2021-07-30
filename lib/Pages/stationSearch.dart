@@ -48,7 +48,7 @@ class _StationSearcherState extends State<StationSearcher> {
                     width: getHorizontalPercent(context, 75),
                     alignment: Alignment.center,
                     child: TextField(
-                        maxLength: 4,
+                        maxLength: 5,
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
