@@ -4,6 +4,7 @@ import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Classes/station.dart';
+import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
@@ -11,10 +12,10 @@ import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
 //String ip = "172.30.16.1"
-String ip = "192.168.209.146";
+String ip = "192.168.209.109";
 //String ip = "192.168.209.151";
 
-//Buscar todas las estaciónes ---------------------------------------------------------------------
+//Buscar todas las estaciónes en buscador de estaciónes ---------------------------------------------------------------------
 Future getStations() async {
   //Peticion
   Response response =
@@ -27,7 +28,25 @@ Future getStations() async {
       StationSearcher.stationZonelist.add(new Station(
           number: data[c]["number"], name: data[c]["commercialname"]));
     }
-    print(StationSearcher.stationZonelist.length.toString());
+  }
+}
+
+//Buscar todas las estaciónes en marketing ---------------------------------------------------------------------
+Future getAllStations() async {
+  //Peticion
+  Response response =
+      await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
+
+  //Comprobar si es nulo
+  if (json.decode(response.body)["stations"] != null) {
+    List data = json.decode(response.body)["stations"];
+    for (int c = 0; c < data.length; c++) {
+      Marketing.allStationList.add(
+          data[c]["commercialname"] + " - " + data[c]["number"].toString());
+      Marketing.allStationListClass.add(new Station(
+          number: data[c]["number"], name: data[c]["commercialname"]));
+    }
+    print(data.length.toString());
   }
 }
 

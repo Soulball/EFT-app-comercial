@@ -2,8 +2,10 @@ import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/Marketing/materialSolitude2.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
+import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
@@ -15,10 +17,12 @@ class MaterialSolitude1 extends StatefulWidget {
 }
 
 class _MaterialSolitude1State extends State<MaterialSolitude1> {
-  CustomDropButton customDropButton = CustomDropButton(
-      title: "Seleccione la estación",
-      initialValue: "Estación",
-      list: stationList);
+  //Variables
+  CustomSearchDropButton customSearchDropButton = CustomSearchDropButton(
+      name: "Estación",
+      defaultValue: "Seleccione una estación",
+      search: true,
+      items: Marketing.allStationList);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  customDropButton,
+                  customSearchDropButton,
                   Container(
                       height: getVerticalPercent(context, 53),
                       width: getHorizontalPercent(context, 80),
@@ -61,15 +65,18 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
                                   "Debe haber un minimo de un material con un valor mayor a 0 para realizar una solicitud.");
                               return;
                             }
-                            if (customDropButton.value == null) {
+                            if (customSearchDropButton.selectedItem == null) {
                               showDialogText(context, "Campo no valido",
                                   "Seleccione una estación.");
                               return;
                             }
-                            HomeBlocInheritedWidget.of(context)
-                                .homebloc
-                                .nameStation = customDropButton.value;
-                            changePage(MaterialSolitude2(), context);
+                            changePage(
+                                MaterialSolitude2(
+                                    station: Marketing.allStationListClass[
+                                        Marketing.allStationList.indexOf(
+                                            customSearchDropButton
+                                                .selectedItem)]),
+                                context);
                           },
                           child: CustomText(data: "Continuar", size: 18)))
                 ])));
