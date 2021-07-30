@@ -34,7 +34,7 @@ class _FavoriteIconState extends State<FavoriteIcon> {
                     ? Icons.favorite
                     : Icons.favorite_border_outlined,
                 color: widget.favorite ? Colors.red : Colors.black,
-                size: getHorizontalPercent(context, 10)),
+                size: getHorizontalPercent(context, 8)),
             onPressed: onClick));
   }
 

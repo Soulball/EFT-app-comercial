@@ -27,7 +27,7 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
     return Scaffold(
         appBar: AppBar(
             title: CustomText(
-                data: 'Solicitud',
+                data: 'Solicitud de materiales',
                 size: 30,
                 color: whiteNeutral,
                 weight: FontWeight.bold),

@@ -91,35 +91,29 @@ class PromotionDetails extends StatelessWidget {
                                                         BorderRadius.all(
                                                             Radius.circular(
                                                                 15))),
-                                                child:
-                                                    Column(children: <Widget>[
-                                                  CustomText(
-                                                      data: detailList[index]
-                                                          .title,
-                                                      size: 14,
-                                                      color: whiteLight,
-                                                      weight: FontWeight.bold),
-                                                  CustomText(
-                                                      data: detailList[index]
-                                                          .subtitle,
-                                                      size: 14,
-                                                      color: whiteLight)
-                                                ])));
+                                                child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: <Widget>[
+                                                      CustomText(
+                                                          data:
+                                                              detailList[index]
+                                                                  .title,
+                                                          size: 18,
+                                                          color: whiteLight,
+                                                          weight:
+                                                              FontWeight.bold),
+                                                      CustomText(
+                                                          data:
+                                                              detailList[index]
+                                                                  .subtitle,
+                                                          size: 14,
+                                                          color: whiteLight)
+                                                    ])));
                                       });
                                 })))
-                  ])),
-              Container(
-                  height: getVerticalPercent(context, 8.5),
-                  alignment: Alignment.centerRight,
-                  color: graySubtitle2,
-                  child: Container(
-                      width: getHorizontalPercent(context, 32),
-                      color: blueDark,
-                      alignment: Alignment.center,
-                      child: CustomText(
-                          data: announcement.categoryName,
-                          size: 14,
-                          color: whiteLight)))
+                  ]))
             ])));
   }
 }

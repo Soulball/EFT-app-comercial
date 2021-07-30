@@ -19,7 +19,7 @@ class MaterialSolitude2 extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             title: CustomText(
-                data: 'Solicitud',
+                data: 'Solicitud de materiales',
                 size: 30,
                 color: whiteNeutral,
                 weight: FontWeight.bold),

@@ -63,6 +63,7 @@ class _PromotionState extends State<Promotion> {
                             Container(
                               height: getHorizontalPercent(context, 15),
                               width: getHorizontalPercent(context, 15),
+                              alignment: Alignment.center,
                               child: FavoriteIcon(
                                   announcementId: Promotion.promoList[index].id,
                                   containerColor: grayIconLigth),
@@ -70,6 +71,7 @@ class _PromotionState extends State<Promotion> {
                             Container(
                               height: getHorizontalPercent(context, 15),
                               width: getHorizontalPercent(context, 15),
+                              alignment: Alignment.center,
                               child: LikeIcon(
                                   announcementId: Promotion.promoList[index].id,
                                   containerColor: grayIconDark),

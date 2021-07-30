@@ -33,7 +33,7 @@ class _LikeIconState extends State<LikeIcon> {
             icon: Icon(
                 widget.like ? Icons.thumb_up : Icons.thumb_up_alt_outlined,
                 color: widget.like ? Colors.blue : Colors.black,
-                size: getHorizontalPercent(context, 10)),
+                size: getHorizontalPercent(context, 8)),
             onPressed: onClick));
   }
 
