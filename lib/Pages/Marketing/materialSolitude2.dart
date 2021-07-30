@@ -36,7 +36,8 @@ class MaterialSolitude2 extends StatelessWidget {
             child: ListView(physics: BouncingScrollPhysics(), children: [
               UserInfo(
                   user: HomeBlocInheritedWidget.of(context).homebloc.name,
-                  station: station.name),
+                  station:
+                      HomeBlocInheritedWidget.of(context).homebloc.nameStation),
               Card(
                   child: Container(
                       height: getVerticalPercent(context, 20),
