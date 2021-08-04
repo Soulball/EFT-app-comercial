@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:convert' as convert;
+import 'package:eft_app_comercial/Classes/OtherProducts/advancecommission.dart';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
@@ -10,12 +12,45 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 //String ip = "172.30.16.1"
+<<<<<<< HEAD
 String ip = "192.168.209.123";
 //String ip = "192.168.209.151";
 
 //Buscar todas las estaciónes en buscador de estaciónes -----------------------
+=======
+//String ip = "192.168.209.151";
+
+//obtencion de Comisiones del empleado
+Future<AdCommission> getCommission(int employee) async {
+  AdCommission resp;
+  final response = await http
+      .get(Uri.encodeFull("http://$ip:50000/commission?employee=$employee"));
+
+  if (response.statusCode == 200) {
+    try {
+      final jResponse = convert.jsonDecode(response.body);
+      resp = (jResponse).map((p) => AdCommission.fromJson(p)).toList();
+      return null;
+    } catch (error) {
+      print('Falla deserealizable');
+      print(error);
+      return null;
+    }
+  } else {
+    print('Falla en getCommission');
+    print(response.statusCode);
+  }
+  return resp;
+}
+
+//Buscar todas las estaciónes ---------------------------------------------------------------------
+String ip = "192.168.209.151";
+
+//Buscar todas las estaciónes en buscador de estaciónes ---------------------------------------------------------------------
+>>>>>>> 52817c15e116886a49b882636f6820c95cd7edac
 Future getStations() async {
   //Peticion
   Response response =

@@ -1,9 +1,11 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/otherproduct.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
+import 'package:eft_app_comercial/Widgets/userInfo.dart';
 import 'package:flutter/material.dart';
 
 class SendAdjustment extends StatefulWidget {
@@ -35,12 +37,12 @@ class _SendAdjustmentState extends State<SendAdjustment> {
             padding: EdgeInsets.all(getVerticalMargin(context)),
             physics: BouncingScrollPhysics(),
             children: [
-              /*UserInfo(
-                user:
-                    (HomeBlocInheritedWidget.of(context).homebloc.name != null)
-                        ? HomeBlocInheritedWidget.of(context).homebloc.name
-                        : "Anonimo",
-                station: "1221 - Hipodromo"),*/
+              UserInfo(
+                  user: (HomeBlocInheritedWidget.of(context).homebloc.name !=
+                          null)
+                      ? HomeBlocInheritedWidget.of(context).homebloc.name
+                      : "Anonimo",
+                  station: "1221 - Hipodromo"),
               SizedBox(
                 height: getHorizontalPercent(context, 10),
               ),
