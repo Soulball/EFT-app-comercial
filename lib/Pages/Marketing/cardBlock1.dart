@@ -8,6 +8,7 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:eft_app_comercial/Widgets/userInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 
 class CardBlock1 extends StatefulWidget {
   CardBlock1({Key key}) : super(key: key);
@@ -69,6 +70,15 @@ class _CardBlock1State extends State<CardBlock1> {
                               "Seleccione una estación.");
                           return;
                         }
+                        uploadCardBlock(
+                            HomeBlocInheritedWidget.of(context).homebloc.user,
+                            Marketing
+                                .allStationListClass[Marketing.allStationList
+                                    .indexOf(
+                                        customSearchDropButton.selectedItem)]
+                                .number,
+                            itemCounter.counter,
+                            int.parse(getTurn()));
                         backToOrigin(context);
                         showDialogText(context, "Nota",
                             "Operacion completada. Pendiente de revisión y aprovación.");

@@ -177,7 +177,7 @@ insertReactions(int announcement, int user, bool liked, bool favorite) async {
   print('piola3');
 }
 
-//Insertar reacciónes ---------------------------------------------------------
+//Subir activación ---------------------------------------------------------
 uploadActivation(
     int employee, int station, String activationType, String note) async {
   await post(Uri.parse('http://$ip:50000/sendcardactivation'),
@@ -192,3 +192,20 @@ uploadActivation(
       }));
   print('piola4');
 }
+
+//Subir bloque de tarjeta ---------------------------------------------------------
+uploadCardBlock(
+    int employee, int station, int amount, int turn) async {
+  await post(Uri.parse('http://$ip:50000/sendblocksolicitude'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "amount": amount,
+        "turn": turn
+      }));
+  print('piola');
+}
+
