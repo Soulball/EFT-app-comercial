@@ -1,7 +1,8 @@
-import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
+import 'package:eft_app_comercial/Bloc/Home/home_bloc.dart';
 import 'package:eft_app_comercial/Classes/station.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Pages/home.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextAppBar.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,12 @@ import 'package:eft_app_comercial/Libraries/sql.dart';
 
 //Pagina principal de la seccion para solicitudes
 class StationSearcher extends StatefulWidget {
-  StationSearcher({Key key}) : super(key: key);
+  final HomeBloc homebloc;
+
+  StationSearcher({Key key, this.homebloc}) : super(key: key);
+  //Variables
   static List<Station> stationZonelist = [];
+
   @override
   _StationSearcherState createState() => _StationSearcherState();
 }
@@ -48,7 +53,7 @@ class _StationSearcherState extends State<StationSearcher> {
                     width: getHorizontalPercent(context, 75),
                     alignment: Alignment.center,
                     child: TextField(
-                        maxLength: 4,
+                        maxLength: 5,
                         keyboardType: TextInputType.number,
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
@@ -125,12 +130,14 @@ class _StationSearcherState extends State<StationSearcher> {
                     context, "Error", "No ha seleccionado ninguna estación.");
                 return;
               }
-              HomeBlocInheritedWidget.of(context).homebloc.nameStation =
-                  selectedStation.name;
-              HomeBlocInheritedWidget.of(context).homebloc.station =
-                  selectedStation.number;
               setStation(selectedStation.number, selectedStation.name);
-              Navigator.pop(context);
+              changePageDrop(
+                  Home(
+                      user: widget.homebloc.user,
+                      name: widget.homebloc.name,
+                      station: selectedStation.number,
+                      nameStation: selectedStation.name),
+                  context);
               showDialogText(
                   context,
                   "Cambio completado",

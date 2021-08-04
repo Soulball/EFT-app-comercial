@@ -1,7 +1,8 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
+import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
+import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
@@ -17,14 +18,17 @@ class Activations extends StatefulWidget {
 class _ActivationsState extends State<Activations> {
   @override
   Widget build(BuildContext context) {
-    var stationCustomDropButton = CustomDropButton(
-        title: "Seleccione la estación",
-        initialValue: " Estación",
-        list: stationList);
-    var typeCustomDropButton = CustomDropButton(
-        title: "Tipo de activación",
-        initialValue: " Tipo de activación",
-        list: activationType);
+    //Variables
+    var stationCustomSearchDropButton = CustomSearchDropButton(
+        name: "Estación",
+        defaultValue: "Seleccione la estación",
+        search: true,
+        items: Marketing.allStationList);
+    var typeCustomSearchDropButton = CustomSearchDropButton(
+        name: "Tipo de activación",
+        defaultValue: "Seleccione un tipo de activación",
+        search: false,
+        items: activationType);
     var noteCustomTextField = CustomTextField(
         title: "Describe el proposito de la activación", lines: 10);
     return Scaffold(
@@ -46,20 +50,20 @@ class _ActivationsState extends State<Activations> {
                 top: getVerticalMargin(context)),
             child:
                 ListView(physics: BouncingScrollPhysics(), children: <Widget>[
-              stationCustomDropButton,
+              stationCustomSearchDropButton,
               SizedBox(height: getVerticalPercent(context, 4)),
-              typeCustomDropButton,
+              typeCustomSearchDropButton,
               SizedBox(height: getVerticalPercent(context, 4)),
               noteCustomTextField,
               SizedBox(height: getVerticalPercent(context, 4)),
               ElevatedButton(
                   onPressed: () {
-                    if (stationCustomDropButton.value == null) {
+                    if (stationCustomSearchDropButton.selectedItem == null) {
                       showDialogText(context, "Campo no valido",
                           "Seleccione una estación.");
                       return;
                     }
-                    if (typeCustomDropButton.value == null) {
+                    if (typeCustomSearchDropButton.selectedItem == null) {
                       showDialogText(
                           context, "Campo no valido", "Seleccione un tipo.");
                       return;

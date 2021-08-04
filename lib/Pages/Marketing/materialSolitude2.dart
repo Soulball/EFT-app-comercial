@@ -1,4 +1,5 @@
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
+import 'package:eft_app_comercial/Classes/station.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
@@ -8,7 +9,9 @@ import 'package:eft_app_comercial/Widgets/userInfo.dart';
 import 'package:flutter/material.dart';
 
 class MaterialSolitude2 extends StatelessWidget {
-  MaterialSolitude2({Key key}) : super(key: key);
+  MaterialSolitude2({Key key, this.station}) : super(key: key);
+  final Station station;
+
   @override
   Widget build(BuildContext context) {
     CustomTextField customTextField = CustomTextField(
@@ -16,7 +19,7 @@ class MaterialSolitude2 extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             title: CustomText(
-                data: 'Solicitud',
+                data: 'Solicitud de materiales',
                 size: 30,
                 color: whiteNeutral,
                 weight: FontWeight.bold),

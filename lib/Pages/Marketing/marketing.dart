@@ -1,4 +1,5 @@
 //Pagina principal de la seccion de marketing
+import 'package:eft_app_comercial/Classes/station.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Marketing/cardBlock1.dart';
@@ -9,11 +10,16 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 import 'CardSolitude.dart';
 import 'activations.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 
 class Marketing extends StatelessWidget {
   Marketing({Key key}) : super(key: key);
+  static List<String> allStationList = [];
+  static List<Station> allStationListClass = [];
+
   @override
   Widget build(BuildContext context) {
+    getAllStations();
     return Scaffold(
         appBar: AppBar(
             title: CustomText(
