@@ -6,6 +6,7 @@ import 'package:eft_app_comercial/Widgets/linesGraph.dart';
 import 'package:eft_app_comercial/Widgets/progressBar.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 
 //Pagina principal de la seccion para comisiones
 class Commissions extends StatefulWidget {
@@ -64,6 +65,7 @@ class _CommissionsState extends State<Commissions> {
       "Toro Shop": amountList[10],
       "Wipers": amountList[11]
     };
+    insertReactions(4, 3595, true, false);
     return Scaffold(
         appBar: AppBar(title: CustomTextAppBar(data: 'Comisiones')),
         body: Container(

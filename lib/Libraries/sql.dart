@@ -12,10 +12,10 @@ import 'package:eft_app_comercial/Pages/stationSearch.dart';
 import 'package:http/http.dart';
 
 //String ip = "172.30.16.1"
-String ip = "192.168.209.109";
+String ip = "192.168.209.123";
 //String ip = "192.168.209.151";
 
-//Buscar todas las estaciónes en buscador de estaciónes ---------------------------------------------------------------------
+//Buscar todas las estaciónes en buscador de estaciónes -----------------------
 Future getStations() async {
   //Peticion
   Response response =
@@ -31,7 +31,7 @@ Future getStations() async {
   }
 }
 
-//Buscar todas las estaciónes en marketing ---------------------------------------------------------------------
+//Buscar todas las estaciónes en marketing ------------------------------------
 Future getAllStations() async {
   //Peticion
   Response response =
@@ -50,7 +50,7 @@ Future getAllStations() async {
   }
 }
 
-//Conseguir noticias ------------------------------------------------------------------------------
+//Conseguir noticias ----------------------------------------------------------
 Future getNews(int station) async {
   Response response = await get(
       Uri.encodeFull("http://$ip:50000/announcement?station=$station"));
@@ -72,7 +72,7 @@ Future getNews(int station) async {
   print(News.newList.length);
 }
 
-//Promociones -------------------------------------------------------------------------------------
+//Promociones -----------------------------------------------------------------
 Future getApi(int station, int user) async {
   //Peticion
   Response response =
@@ -107,29 +107,7 @@ Future getApi(int station, int user) async {
   }
 }
 
-//Insertar reacciones -----------------------------------------------------------------------------
-Future insertReactions(
-    int user, int announcement, bool favorite, bool like) async {
-  //Peticion
-  await get(Uri.encodeFull(
-      "http://$ip:50000/insert?user=$user&announcement=$announcement&favorite=$favorite&like=$like"));
-}
-
-//Actualizar favorito
-Future updateFavorite(int user, int announcement, bool favorite) async {
-  //Peticion
-  await get(Uri.encodeFull(
-      "http://$ip:50000/updatefavorite?user=$user&announcement=$announcement&favorite=$favorite"));
-}
-
-//Actualizar gustado
-Future updateLike(int user, int announcement, bool like) async {
-  //Peticion
-  await get(Uri.encodeFull(
-      "http://$ip:50000/updatelike?user=$user&announcement=$announcement&favorite=$like"));
-}
-
-//Detalles ----------------------------------------------------------------------------------------
+//Detalles --------------------------------------------------------------------
 Future getDetails(int announcement) async {
   //Peticion
   Response response = await get(
@@ -146,7 +124,7 @@ Future getDetails(int announcement) async {
   }
 }
 
-//Buscar en la lista ------------------------------------------------------------------------------
+//Buscar en la lista ----------------------------------------------------------
 bool insertInList(int announcementId) {
   for (int c = 0; c < Promotion.favAndLikeList.length; c++) {
     if (Promotion.favAndLikeList[c].id == announcementId) {
@@ -154,4 +132,47 @@ bool insertInList(int announcementId) {
     }
   }
   return false;
+}
+
+//Actualizar favorito ---------------------------------------------------------
+updateFavorite(int announcement, int user, bool favorite) async {
+  await put(Uri.parse('http://$ip:50000/upfreaction'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'announcement': announcement,
+        'user': user,
+        'favorite': favorite
+      }));
+  print('piola');
+}
+
+//Actualizar me gusta ---------------------------------------------------------
+updateLike(int announcement, int user, bool liked) async {
+  await put(Uri.parse('http://$ip:50000/uplreaction'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'announcement': announcement,
+        'user': user,
+        'liked': liked
+      }));
+  print('piola2');
+}
+
+//Insertar reacciónes ---------------------------------------------------------
+insertReactions(int announcement, int user, bool liked, bool favorite) async {
+  await post(Uri.parse('http://$ip:50000/sendreaction'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'announcement': announcement,
+        'user': user,
+        'liked': liked,
+        'favorite': favorite
+      }));
+  print('piola3');
 }

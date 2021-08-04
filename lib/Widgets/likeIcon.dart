@@ -1,4 +1,5 @@
 //Icono de me gusta
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
@@ -38,23 +39,20 @@ class _LikeIconState extends State<LikeIcon> {
   }
 
 //Metodos
-  // ignore: missing_return
-  bool onClick() {
+  void onClick() {
     setState(() {
       widget.like = !widget.like;
       if (!insertInList(widget.announcementId)) {
         //Solicitud para insertar nuevo
         Promotion.favAndLikeList.add(new Reactions(
             id: widget.announcementId, favorite: true, like: false));
-        print("se insertó");
+        insertReactions(widget.announcementId,
+            HomeBlocInheritedWidget.of(context).homebloc.user, true, false);
         return;
       }
-      if (widget.like) {
-        //Solicitud para cambiar a falso
-        return;
-      }
-      //Solicitud para cambiar a verdadero
-      return;
+      updateLike(widget.announcementId,
+          HomeBlocInheritedWidget.of(context).homebloc.user, widget.like);
+      print(HomeBlocInheritedWidget.of(context));
     });
   }
 
