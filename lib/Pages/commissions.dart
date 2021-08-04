@@ -65,7 +65,7 @@ class _CommissionsState extends State<Commissions> {
       "Toro Shop": amountList[10],
       "Wipers": amountList[11]
     };
-    insertReactions(4, 3595, true, false);
+    uploadActivation(123456888, 9999, "alta", "Detalles");
     return Scaffold(
         appBar: AppBar(title: CustomTextAppBar(data: 'Comisiones')),
         body: Container(

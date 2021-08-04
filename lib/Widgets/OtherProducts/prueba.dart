@@ -1,7 +1,6 @@
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/advancecommission.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'dart:async' show Future;
@@ -22,8 +21,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    futureCommission =
-        getCommission(HomeBlocInheritedWidget.of(context).homebloc.user);
+    /*futureCommission =
+        getCommission(HomeBlocInheritedWidget.of(context).homebloc.user);*/
   }
 
   @override
@@ -83,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _getTitleItemWidget(String label, double width) {
     return FutureBuilder(
-      future: getCommission(HomeBlocInheritedWidget.of(context).homebloc.user),
+      //future: getCommission(HomeBlocInheritedWidget.of(context).homebloc.user),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting)
           return Center(child: CircularProgressIndicator());
@@ -110,8 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
     return FutureBuilder(
-        future:
-            getCommission(HomeBlocInheritedWidget.of(context).homebloc.user),
+        /*future:
+            getCommission(HomeBlocInheritedWidget.of(context).homebloc.user),*/
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting)
             return Center(child: CircularProgressIndicator());

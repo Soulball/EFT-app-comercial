@@ -1,3 +1,4 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
@@ -7,6 +8,7 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 
 class Activations extends StatefulWidget {
   Activations({Key key}) : super(key: key);
@@ -73,6 +75,15 @@ class _ActivationsState extends State<Activations> {
                           "El comentario es demasiado corto.");
                       return;
                     }
+                    uploadActivation(
+                        HomeBlocInheritedWidget.of(context).homebloc.user,
+                        Marketing
+                            .allStationListClass[Marketing.allStationList
+                                .indexOf(
+                                    stationCustomSearchDropButton.selectedItem)]
+                            .number,
+                        typeCustomSearchDropButton.selectedItem,
+                        noteCustomTextField.controller.text);
                     backToOrigin(context);
                     showDialogText(context, "Nota",
                         "Operacion completada. Pendiente de revisión y aprovación.");
