@@ -1,11 +1,13 @@
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
 
-class AdvanceCommission extends StatelessWidget {
-  const AdvanceCommission({
-    Key key,
-  }) : super(key: key);
+class AdvanceCommission extends StatefulWidget {
+  @override
+  _AdvanceCommissionState createState() => _AdvanceCommissionState();
+}
 
+class _AdvanceCommissionState extends State<AdvanceCommission> {
+  List<AdvanceCommission> listadoCommission = [];
   @override
   Widget build(BuildContext context) {
     return Column(

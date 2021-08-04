@@ -1,9 +1,9 @@
 class ComisionDirecta {
-  int lubricantes;
   int aditivos;
+  int lubricantes;
+  int aromas;
   int minas;
   int wipers;
-  int aromas;
   int servicios;
   int agua;
   int hielo;
