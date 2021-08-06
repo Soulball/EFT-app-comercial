@@ -1,4 +1,3 @@
-import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/advancecommission.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';

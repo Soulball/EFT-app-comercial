@@ -4,6 +4,7 @@ import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Classes/station.dart';
+import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
@@ -177,7 +178,7 @@ insertReactions(int announcement, int user, bool liked, bool favorite) async {
   print('piola3');
 }
 
-//Subir activación ---------------------------------------------------------
+//Subir activación ------------------------------------------------------------
 uploadActivation(
     int employee, int station, String activationType, String note) async {
   await post(Uri.parse('http://$ip:50000/sendcardactivation'),
@@ -193,9 +194,8 @@ uploadActivation(
   print('piola4');
 }
 
-//Subir bloque de tarjeta ---------------------------------------------------------
-uploadCardBlock(
-    int employee, int station, int amount, int turn) async {
+//Subir bloque de tarjeta -----------------------------------------------------
+uploadCardBlock(int employee, int station, int amount, int turn) async {
   await post(Uri.parse('http://$ip:50000/sendblocksolicitude'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -209,3 +209,57 @@ uploadCardBlock(
   print('piola');
 }
 
+//Subir Solicitud de Tarjeta --------------------------------------------------
+uploadCardSolicitude(int employee, int station, String type, String name,
+    String phone, String email, String note) async {
+  await post(Uri.parse('http://$ip:50000/sendcardsolicitude'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "card_type": type,
+        "customer_name": name,
+        "customer_phone": phone,
+        "customer_email": email,
+        "note": note
+      }));
+  print('piola');
+}
+
+//Subir Solicitud de Materiales --------------------------------------------------
+uploadMaterialSolicitude(
+    int employee, int station, int turn, String note) async {
+  Response response = await post(Uri.parse('http://$ip:50000/sendmaterial'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "turn": turn,
+        "note": note
+      }));
+  for (int c = 0; c < materialList.length; c++) {
+    if (materialList[c].counter > 0)
+      uploadMaterialSolicitudeRelation(json.decode(response.body)["material"],
+          c + 1, materialList[c].counter);
+  }
+  print('piola');
+}
+
+//Subir a la tabla de relación Solicitudes y materiales
+uploadMaterialSolicitudeRelation(
+    int materialSolicitude, int material, int amount) async {
+  await post(Uri.parse('http://$ip:50000/sendfmaterial'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, int>{
+        "material_solicitude": materialSolicitude,
+        "material": material,
+        "amount": amount
+      }));
+  print(amount.toString() + " de " + material.toString());
+}

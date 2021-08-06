@@ -7,6 +7,7 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:eft_app_comercial/Widgets/userInfo.dart';
 import 'package:flutter/material.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 
 class MaterialSolitude2 extends StatelessWidget {
   MaterialSolitude2({Key key, this.station}) : super(key: key);
@@ -82,6 +83,11 @@ class MaterialSolitude2 extends StatelessWidget {
                           "El comentario es demasiado corto.");
                       return;
                     }
+                    uploadMaterialSolicitude(
+                        HomeBlocInheritedWidget.of(context).homebloc.user,
+                        station.number,
+                        int.parse(getTurn()),
+                        customTextField.controller.text);
                     backToOrigin(context);
                     showDialogText(context, "Nota",
                         "Operacion completada. Pendiente de revisión y aprovación.");
