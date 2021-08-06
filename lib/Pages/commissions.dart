@@ -65,7 +65,6 @@ class _CommissionsState extends State<Commissions> {
       "Toro Shop": amountList[10],
       "Wipers": amountList[11]
     };
-    uploadMaterialSolicitudeRelation(1,1,1);
     return Scaffold(
         appBar: AppBar(title: CustomTextAppBar(data: 'Comisiones')),
         body: Container(
