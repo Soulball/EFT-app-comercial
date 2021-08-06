@@ -1,6 +1,8 @@
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
@@ -99,6 +101,18 @@ class _CardSolitudeState extends State<CardSolitude> {
                           "El comentario es demasiado corto.");
                       return;
                     }
+                    uploadCardSolicitude(
+                        HomeBlocInheritedWidget.of(context).homebloc.user,
+                        Marketing
+                            .allStationListClass[Marketing.allStationList
+                                .indexOf(
+                                    stationCustomSearchDropButton.selectedItem)]
+                            .number,
+                        typeCustomSearchDropButton.selectedItem,
+                        nameCustomTextField.controller.text,
+                        phoneTextField.controller.text,
+                        emailCustomTextField.controller.text,
+                        noteCustomTextField.controller.text);
                     backToOrigin(context);
                     showDialogText(context, "Nota",
                         "Operacion completada. Pendiente de revisión y aprovación.");
