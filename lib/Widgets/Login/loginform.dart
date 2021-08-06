@@ -36,7 +36,8 @@ class _LoginForm extends State<LoginForm> {
           Home(
               user: int.parse(user),
               station: json.decode(response.body)["station"],
-              name: json.decode(response.body)["name"]),
+              name: json.decode(response.body)["name"],
+              nameStation: "No especificado"),
           context);
     } else
       print('invalido');
