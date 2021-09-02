@@ -47,7 +47,11 @@ class Login extends StatelessWidget {
                     LoginForm(),
                   ],
                 );
-              return Home(user: user, station: station, name: name, nameStation: nameStation);
+              return Home(
+                  user: user,
+                  station: station,
+                  name: name,
+                  nameStation: nameStation);
             }),
       ),
     );

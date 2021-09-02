@@ -1,6 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:convert' as convert;
+import 'package:eft_app_comercial/Classes/OtherProducts/descriptioncommission.dart';
+import 'package:eft_app_comercial/Classes/OtherProducts/productsold.dart';
+import 'package:eft_app_comercial/Classes/OtherProducts/rankingxventas.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:eft_app_comercial/Classes/OtherProducts/advancecommission.dart';
 import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
@@ -11,37 +16,83 @@ import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
-import 'package:http/http.dart';
-import 'package:http/http.dart' as http;
 
-//String ip = "172.30.16.1"
-//String ip = "192.168.209.151";
+String ip = "172.25.144.1";
 
-//obtencion de Comisiones del empleado
-Future<AdCommission> getCommission(int employee) async {
-  AdCommission resp;
-  final response = await http
-      .get(Uri.encodeFull("http://$ip:50000/commission?employee=$employee"));
-
+// obtencion del total de las comisiones
+Future<Total> getTotal(int user) async {
+  final response =
+      await http.get("http://$ip:50000/commissionT?employee=$user");
   if (response.statusCode == 200) {
-    try {
-      final jResponse = convert.jsonDecode(response.body);
-      resp = (jResponse).map((p) => AdCommission.fromJson(p)).toList();
-      return null;
-    } catch (error) {
-      print('Falla deserealizable');
-      print(error);
-      return null;
-    }
+    final Total totalC = totalFromJson(response.body);
+    print(response.body);
+    print(totalC);
+    return totalC;
   } else {
-    print('Falla en getCommission');
-    print(response.statusCode);
+    throw Total(code: -1, message: "Error al llamar el servicio");
+  }
+}
+
+// obtencion de datos para el apartado de ranking para las descripciones de comisiones
+Future<Description> getDescription() async {
+  final response = await http.get("http://$ip:50000/description");
+  if (response.statusCode == 200) {
+    final Description description = descriptionFromJson(response.body);
+    print(description.descriptions.length);
+    print(response.body);
+    return description;
+  } else {
+    throw Exception('Failed to load Data');
+  }
+}
+
+//obtencion de imagenes para los apartados de imagenes x zonas, foraneas y de concursos
+Future<ImageRanking> getranking(int user, String type) async {
+  ImageRanking resp = new ImageRanking();
+  final response =
+      await http.get("http://$ip:50000/consultimage?user=$user&type=$type");
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    resp = ImageRanking.fromJson(jsonResponse);
+    print(jsonResponse);
+    print(resp);
+    return resp;
+  } else {
+    resp = ImageRanking(code: -1, message: "Error al llamar el servicio");
   }
   return resp;
 }
 
+// obtencion de Productos vendidos por el empleado
+Future<ProductSold> getTransaction(int employee) async {
+  final response =
+      await http.get("http://$ip:50000/transaction?user=$employee");
+  if (response.statusCode == 200) {
+    final ProductSold product = ProductSoldFromJson(response.body);
+    print(response.body);
+    print(product.products.length);
+    return product;
+  } else {
+    throw Exception('Failed to load Data');
+  }
+}
+
+//obtencion de Comisiones del empleado
+Future<Acommission> getcommissions(int employee) async {
+  final response =
+      await http.get("http://$ip:50000/commission?employee=$employee");
+  if (response.statusCode == 200) {
+    final Acommission commissions = AcommissionFromJson(response.body);
+    print(response.body);
+    print(commissions.commission.length);
+    return commissions;
+  } else {
+    throw Exception('Failed to load Data');
+  }
+}
+
 //Buscar todas las estaciónes ---------------------------------------------------------------------
-String ip = "192.168.209.151";
+//String ip = "172.27.16.1";
 
 //Buscar todas las estaciónes en buscador de estaciónes ---------------------------------------------------------------------
 Future getStations() async {

@@ -1,7 +1,8 @@
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
-import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/avanceventas.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/rankingconcursos.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/rankingforaneas.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/rankingxzona.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
@@ -31,11 +32,13 @@ class Ranking extends StatelessWidget {
               page: AvanceVentas(),
               pageContext: context),
           CustomButton(
-              text: "Ranking Generales x Zona",
+              text: "Generales x Zona",
               page: RankingxZona(),
               pageContext: context),
           CustomButton(
-              text: "Concursos", page: Promotion(), pageContext: context),
+              text: "Foraneas", page: Foraneas(), pageContext: context),
+          CustomButton(
+              text: "Concursos", page: Concursos(), pageContext: context),
         ]),
       ),
     );

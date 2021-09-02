@@ -7,5 +7,6 @@ class HomeBloc extends ChangeNotifier {
   String nameStation;
   BuildContext context;
 
-  HomeBloc({this.user, this.station, this.name, this.context, this.nameStation});
+  HomeBloc(
+      {this.user, this.station, this.name, this.context, this.nameStation});
 }

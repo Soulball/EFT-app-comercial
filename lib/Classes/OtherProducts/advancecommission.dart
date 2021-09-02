@@ -1,70 +1,75 @@
-class AdCommission {
-  List<Acommissions> commission;
+import 'dart:convert';
 
-  AdCommission({
+// ignore: non_constant_identifier_names
+Acommission AcommissionFromJson(String str) =>
+    Acommission.fromJson(json.decode(str));
+
+// ignore: non_constant_identifier_names
+String AcommissionToJson(Acommission data) => json.encode(data.toJson());
+
+class Acommission {
+  Acommission({
     this.commission,
   });
 
-  factory AdCommission.fromJson(Map<String, dynamic> json) {
-    return AdCommission(
-        commission: (json['commission'] as List)
-            .map((data) => Acommissions.fromJson(data))
-            .toList());
-  }
+  List<Commission> commission;
+
+  factory Acommission.fromJson(Map<String, dynamic> json) => Acommission(
+      commission: List<Commission>.from(
+          json["commission"].map((x) => Commission.fromJson(x))));
+
+  Map<String, dynamic> toJson() => {
+        "commission": List<dynamic>.from(commission.map((x) => x.toJson())),
+      };
 }
 
-class Acommissions {
-  String clasification;
-  int points;
-  int goal;
-  int immediate;
-  double accumulated;
-  double bonus;
-  double total;
-  Acommissions({
-    this.clasification,
+class Commission {
+  Commission({
+    this.classification,
     this.points,
     this.goal,
-    this.immediate,
     this.accumulated,
     this.bonus,
     this.total,
   });
 
-  factory Acommissions.fromJson(Map<String, dynamic> parsedJson) {
-    return Acommissions(
-      clasification: parsedJson['classification'],
-      points: int.parse(parsedJson['points'].toString()),
-      goal: int.parse(parsedJson['goal'].toString()),
-      immediate: int.parse(['immediate'].toString()),
-      accumulated: double.parse(parsedJson['accumulated'].toString()),
-      bonus: double.parse(parsedJson['bonus'].toString()),
-      total: double.parse(parsedJson['total'].toString()),
-    );
-  }
+  String classification;
+  int points;
+  int goal;
+  int accumulated;
+  int bonus;
+  int total;
+
+  factory Commission.fromJson(Map<String, dynamic> json) => Commission(
+        classification: json["classification"],
+        points: json["points"],
+        goal: json["goal"],
+        accumulated: json["accumulated"],
+        bonus: json["bonus"],
+        total: json["total"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "classification": classification,
+        "points": points,
+        "goal": goal,
+        "accumulated": accumulated,
+        "bonus": bonus,
+        "total": total,
+      };
 }
-// Future<List<UserTransactions>> getTransactions({String employeeNumber}) async {
-//   List<UserTransactions> resp;
-//   var response = await http.get(
-//       Uri.parse(urlServer + "RH/user/transactions/" + employeeNumber),
-//       headers: {
-//         HttpHeaders.contentTypeHeader: "application/json",
-//       });
-//   if (response.statusCode == 200) {
-//     try {
-//       var jsonResponse = convert.jsonDecode(response.body);
-//       resp = (jsonResponse as List).map((p) => UserTransactions.fromJson(p))
-//           .toList();
-//       print("success");
-//     } catch (error) {
-//       resp = [];
-//       print('Fail deserialize getTransactions');
-//       print(error);
-//     }
-//   } else {
-//     resp = [];
-//     print('Fail getTransactions');
-//     print(response.statusCode);
-//   }
-//   return resp;
-// }
+
+Total totalFromJson(String str) => Total.fromJson(json.decode(str));
+
+class Total {
+  int totalc;
+  int code;
+  String message;
+  Total({
+    this.totalc,
+    this.code,
+    this.message,
+  });
+  factory Total.fromJson(Map<String, dynamic> json) => Total(
+      code: json["code"], totalc: json["totalc"], message: json["message"]);
+}

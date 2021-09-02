@@ -2,8 +2,8 @@ import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Settings/sendadjustment.dart';
+import 'package:eft_app_comercial/Pages/commissions.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
-import 'package:eft_app_comercial/Widgets/OtherProducts/prueba.dart';
 import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class Adjustment extends StatelessWidget {
               SizedBox(
                 height: getHorizontalPercent(context, 5),
               ),
-              MyHomePage(),
+              Commissions(),
               SizedBox(
                 height: getHorizontalPercent(context, 5),
               ),

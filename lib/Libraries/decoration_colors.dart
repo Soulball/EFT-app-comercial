@@ -2,10 +2,13 @@ library decoration_colors;
 
 import 'package:flutter/material.dart';
 
+// color para el tipo de letra negro
+Color black = Color(0x00000000);
+
 //Color utilizado en icono activo en la Navigation Bar
 Color blueLight = Color(0xFF31BEE8);
 
-//Color utilizado en la Navigation Bar
+//Color utilizado en la Navigation Bars
 Color blueNeutral = Color(0xFF1987CC);
 
 //Color utilizado en algunos compoinentes

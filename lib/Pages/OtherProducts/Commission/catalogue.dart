@@ -36,7 +36,7 @@ class Catalogue extends StatelessWidget {
               ShowUsers(),
               DirectCommission(),
               SizedBox(
-                height: getVerticalPercent(context, 5),
+                height: getVerticalPercent(context, 15),
               ),
               CompositeCommission(),
             ],

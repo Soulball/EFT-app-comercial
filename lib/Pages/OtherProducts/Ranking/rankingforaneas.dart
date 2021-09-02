@@ -5,8 +5,8 @@ import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
-class RankingxZona extends StatelessWidget {
-  const RankingxZona({Key key}) : super(key: key);
+class Foraneas extends StatelessWidget {
+  const Foraneas({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +23,14 @@ class RankingxZona extends StatelessWidget {
       body: SafeArea(
         child: FutureBuilder(
             future: getranking(
-                HomeBlocInheritedWidget.of(context).homebloc.user, 'zone'),
+                HomeBlocInheritedWidget.of(context).homebloc.user, 'foreign'),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Center(child: CircularProgressIndicator());
+
               var image1 = snapshot.data.imagepodium;
               var image2 = snapshot.data.imagegeneral;
+
               if (image1 == null || image1 == "") {
                 image1 = 'assets/imagen4.jpg';
               }
@@ -73,7 +75,7 @@ class RankingxZona extends StatelessWidget {
                     ),
                     Center(
                       child: CustomText(
-                        data: "Baja California",
+                        data: "Foraneas",
                         size: 25,
                         color: blueDark,
                         weight: FontWeight.w700,
