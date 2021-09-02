@@ -1,4 +1,5 @@
 //Icono de favoritos
+import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
@@ -49,23 +50,20 @@ class _FavoriteIconState extends State<FavoriteIcon> {
     }
   }
 
-  // ignore: missing_return
-  bool onClick() {
+  void onClick() {
     setState(() {
       widget.favorite = !widget.favorite;
       if (!insertInList(widget.announcementId)) {
         //Solicitud para insertar nuevo
         Promotion.favAndLikeList.add(new Reactions(
             id: widget.announcementId, favorite: true, like: false));
-        print("se insertó");
+        insertReactions(widget.announcementId,
+            HomeBlocInheritedWidget.of(context).homebloc.user, false, true);
         return;
       }
-      if (widget.favorite) {
-        //Solicitud para cambiar a falso
-        return;
-      }
-      //Solicitud para cambiar a verdadero
-      return;
+      updateFavorite(widget.announcementId,
+          HomeBlocInheritedWidget.of(context).homebloc.user, widget.favorite);
+      print(HomeBlocInheritedWidget.of(context));
     });
   }
 }

@@ -11,13 +11,14 @@ import 'package:eft_app_comercial/Classes/announcement.dart';
 import 'package:eft_app_comercial/Classes/detail.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Classes/station.dart';
+import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
-String ip = "172.25.144.1";
+//String ip = "172.25.144.1";
 
 // obtencion del total de las comisiones
 Future<Total> getTotal(int user) async {
@@ -95,6 +96,12 @@ Future<Acommission> getcommissions(int employee) async {
 //String ip = "172.27.16.1";
 
 //Buscar todas las estaciónes en buscador de estaciónes ---------------------------------------------------------------------
+
+//String ip = "172.30.16.1"
+String ip = "192.168.209.123";
+//String ip = "192.168.209.151";
+
+//Buscar todas las estaciónes en buscador de estaciónes -----------------------
 Future getStations() async {
   //Peticion
   Response response =
@@ -110,7 +117,7 @@ Future getStations() async {
   }
 }
 
-//Buscar todas las estaciónes en marketing ---------------------------------------------------------------------
+//Buscar todas las estaciónes en marketing ------------------------------------
 Future getAllStations() async {
   //Peticion
   Response response =
@@ -129,7 +136,7 @@ Future getAllStations() async {
   }
 }
 
-//Conseguir noticias ------------------------------------------------------------------------------
+//Conseguir noticias ----------------------------------------------------------
 Future getNews(int station) async {
   Response response = await get(
       Uri.encodeFull("http://$ip:50000/announcement?station=$station"));
@@ -151,7 +158,7 @@ Future getNews(int station) async {
   print(News.newList.length);
 }
 
-//Promociones -------------------------------------------------------------------------------------
+//Promociones -----------------------------------------------------------------
 Future getApi(int station, int user) async {
   //Peticion
   Response response =
@@ -186,29 +193,7 @@ Future getApi(int station, int user) async {
   }
 }
 
-//Insertar reacciones -----------------------------------------------------------------------------
-Future insertReactions(
-    int user, int announcement, bool favorite, bool like) async {
-  //Peticion
-  await get(Uri.encodeFull(
-      "http://$ip:50000/insert?user=$user&announcement=$announcement&favorite=$favorite&like=$like"));
-}
-
-//Actualizar favorito
-Future updateFavorite(int user, int announcement, bool favorite) async {
-  //Peticion
-  await get(Uri.encodeFull(
-      "http://$ip:50000/updatefavorite?user=$user&announcement=$announcement&favorite=$favorite"));
-}
-
-//Actualizar gustado
-Future updateLike(int user, int announcement, bool like) async {
-  //Peticion
-  await get(Uri.encodeFull(
-      "http://$ip:50000/updatelike?user=$user&announcement=$announcement&favorite=$like"));
-}
-
-//Detalles ----------------------------------------------------------------------------------------
+//Detalles --------------------------------------------------------------------
 Future getDetails(int announcement) async {
   //Peticion
   Response response = await get(
@@ -225,7 +210,7 @@ Future getDetails(int announcement) async {
   }
 }
 
-//Buscar en la lista ------------------------------------------------------------------------------
+//Buscar en la lista ----------------------------------------------------------
 bool insertInList(int announcementId) {
   for (int c = 0; c < Promotion.favAndLikeList.length; c++) {
     if (Promotion.favAndLikeList[c].id == announcementId) {
@@ -233,4 +218,133 @@ bool insertInList(int announcementId) {
     }
   }
   return false;
+}
+
+//Actualizar favorito ---------------------------------------------------------
+updateFavorite(int announcement, int user, bool favorite) async {
+  await put(Uri.parse('http://$ip:50000/upfreaction'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'announcement': announcement,
+        'user': user,
+        'favorite': favorite
+      }));
+  print('piola');
+}
+
+//Actualizar me gusta ---------------------------------------------------------
+updateLike(int announcement, int user, bool liked) async {
+  await put(Uri.parse('http://$ip:50000/uplreaction'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'announcement': announcement,
+        'user': user,
+        'liked': liked
+      }));
+  print('piola2');
+}
+
+//Insertar reacciónes ---------------------------------------------------------
+insertReactions(int announcement, int user, bool liked, bool favorite) async {
+  await post(Uri.parse('http://$ip:50000/sendreaction'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'announcement': announcement,
+        'user': user,
+        'liked': liked,
+        'favorite': favorite
+      }));
+  print('piola3');
+}
+
+//Subir activación ------------------------------------------------------------
+uploadActivation(
+    int employee, int station, String activationType, String note) async {
+  await post(Uri.parse('http://$ip:50000/sendcardactivation'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "activation_type": activationType,
+        "note": note
+      }));
+  print('piola4');
+}
+
+//Subir bloque de tarjeta -----------------------------------------------------
+uploadCardBlock(int employee, int station, int amount, int turn) async {
+  await post(Uri.parse('http://$ip:50000/sendblocksolicitude'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "amount": amount,
+        "turn": turn
+      }));
+  print('piola');
+}
+
+//Subir Solicitud de Tarjeta --------------------------------------------------
+uploadCardSolicitude(int employee, int station, String type, String name,
+    String phone, String email, String note) async {
+  await post(Uri.parse('http://$ip:50000/sendcardsolicitude'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "card_type": type,
+        "customer_name": name,
+        "customer_phone": phone,
+        "customer_email": email,
+        "note": note
+      }));
+  print('piola');
+}
+
+//Subir Solicitud de Materiales --------------------------------------------------
+uploadMaterialSolicitude(
+    int employee, int station, int turn, String note) async {
+  Response response = await post(Uri.parse('http://$ip:50000/sendmaterial'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        "employee": employee,
+        "station": station,
+        "turn": turn,
+        "note": note
+      }));
+  for (int c = 0; c < materialList.length; c++) {
+    if (materialList[c].counter > 0)
+      uploadMaterialSolicitudeRelation(json.decode(response.body)["material"],
+          c + 1, materialList[c].counter);
+  }
+  print('piola');
+}
+
+//Subir a la tabla de relación Solicitudes y materiales
+uploadMaterialSolicitudeRelation(
+    int materialSolicitude, int material, int amount) async {
+  await post(Uri.parse('http://$ip:50000/sendfmaterial'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, int>{
+        "material_solicitude": materialSolicitude,
+        "material": material,
+        "amount": amount
+      }));
+  print(amount.toString() + " de " + material.toString());
 }
