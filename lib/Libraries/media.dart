@@ -171,6 +171,7 @@ void setLogedUser(int user, int station, String name) async {
   prefs.setInt('user', user);
   prefs.setInt('station', station);
   prefs.setString('name', name);
+  prefs.setString('stationName', "");
   print('insertados');
 }
 

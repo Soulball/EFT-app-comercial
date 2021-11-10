@@ -5,9 +5,9 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
-class ToroShop extends StatelessWidget {
-  final List<DescriptionElement> dataT;
-  ToroShop({Key key, this.dataT}) : super(key: key);
+class Lubricantes extends StatelessWidget {
+  final List<DescriptionElement> dataL;
+  Lubricantes({Key key, this.dataL}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class ToroShop extends StatelessWidget {
                 headerWidgets: _getTitleWidget(),
                 leftSideItemBuilder: _generateFirstColumnRow,
                 rightSideItemBuilder: _generateRightHandSideColumnRow,
-                itemCount: dataT.length,
+                itemCount: dataL.length,
                 rowSeparatorWidget: const Divider(
                   color: Colors.black54,
                   height: 1.0,
@@ -78,7 +78,7 @@ class ToroShop extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     return Container(
-      child: Text(dataT[index].classificationName),
+      child: Text(dataL[index].classificationName),
       width: 100,
       height: 52,
       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -93,21 +93,21 @@ class ToroShop extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                child: Text(dataT[index].employeeAmount.toString()),
+                child: Text(dataL[index].employeeAmount.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.centerLeft,
               ),
               Container(
-                child: Text(dataT[index].quantity.toString()),
+                child: Text(dataL[index].quantity.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.centerLeft,
               ),
               Container(
-                child: Text(dataT[index].currency),
+                child: Text(dataL[index].currency),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),

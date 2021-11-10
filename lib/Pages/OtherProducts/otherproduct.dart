@@ -4,7 +4,7 @@ import 'package:eft_app_comercial/Pages/Marketing/promotions.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Ranking/ranking.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Commission/commission.dart';
-import 'package:eft_app_comercial/Pages/OtherProducts/Settings/adjustment.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/adjustment.dart';
 import 'package:eft_app_comercial/Widgets/customButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class OtherProduct extends StatelessWidget {
               text: "Promociones", page: Promotion(), pageContext: context),
           CustomButton(text: "Ranking", page: Ranking(), pageContext: context),
           CustomButton(
-              text: "Comisiones", page: Commission(), pageContext: context),
+              text: "Comisiones", page: CommissionT(), pageContext: context),
           CustomButton(
               text: "Ajuste de Inventario",
               page: Adjustment(),

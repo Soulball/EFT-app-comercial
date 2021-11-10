@@ -5,9 +5,9 @@ import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
-class ToroShop extends StatelessWidget {
-  final List<DescriptionElement> dataT;
-  ToroShop({Key key, this.dataT}) : super(key: key);
+class Recargas extends StatelessWidget {
+  final List<DescriptionElement> dataR;
+  Recargas({Key key, this.dataR}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,28 +30,29 @@ class ToroShop extends StatelessWidget {
         child: Container(
           height: getVerticalPercent(context, 50),
           child: Container(
-              height: getVerticalPercent(context, 50),
-              child: HorizontalDataTable(
-                leftHandSideColumnWidth: 100,
-                rightHandSideColumnWidth: 300,
-                isFixedHeader: true,
-                headerWidgets: _getTitleWidget(),
-                leftSideItemBuilder: _generateFirstColumnRow,
-                rightSideItemBuilder: _generateRightHandSideColumnRow,
-                itemCount: dataT.length,
-                rowSeparatorWidget: const Divider(
-                  color: Colors.black54,
-                  height: 1.0,
-                  thickness: 0.0,
-                ),
-                leftHandSideColBackgroundColor: Color(0xFFFFFFFF),
-                rightHandSideColBackgroundColor: Color(0xFFFFFFFF),
-                verticalScrollbarStyle: const ScrollbarStyle(
-                  isAlwaysShown: true,
-                  thickness: 4.0,
-                  radius: Radius.circular(5.0),
-                ),
-              )),
+            height: getVerticalPercent(context, 50),
+            child: HorizontalDataTable(
+              leftHandSideColumnWidth: getHorizontalPercent(context, 30),
+              rightHandSideColumnWidth: 300,
+              isFixedHeader: true,
+              headerWidgets: _getTitleWidget(),
+              leftSideItemBuilder: _generateFirstColumnRow,
+              rightSideItemBuilder: _generateRightHandSideColumnRow,
+              itemCount: dataR.length,
+              rowSeparatorWidget: const Divider(
+                color: Colors.black54,
+                height: 1.0,
+                thickness: 0.0,
+              ),
+              leftHandSideColBackgroundColor: Color(0xFFFFFFFF),
+              rightHandSideColBackgroundColor: Color(0xFFFFFFFF),
+              verticalScrollbarStyle: const ScrollbarStyle(
+                isAlwaysShown: true,
+                thickness: 4.0,
+                radius: Radius.circular(5.0),
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -78,8 +79,8 @@ class ToroShop extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     return Container(
-      child: Text(dataT[index].classificationName),
-      width: 100,
+      child: Text(dataR[index].classificationName),
+      width: getHorizontalPercent(context, 30),
       height: 52,
       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
       alignment: Alignment.centerLeft,
@@ -93,25 +94,25 @@ class ToroShop extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                child: Text(dataT[index].employeeAmount.toString()),
+                child: Text(dataR[index].employeeAmount.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
               ),
               Container(
-                child: Text(dataT[index].quantity.toString()),
+                child: Text(dataR[index].quantity.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
               ),
               Container(
-                child: Text(dataT[index].currency),
+                child: Text(dataR[index].currency),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.centerLeft,
+                alignment: Alignment.center,
               ),
             ],
           ),

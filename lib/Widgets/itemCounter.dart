@@ -45,8 +45,11 @@ class _ItemCounterState extends State<ItemCounter> {
               size: 24,
               color: grayDark,
               weight: FontWeight.bold),
-          IconButton(splashRadius: 16,
-              icon: Icon(Icons.arrow_right), iconSize: 32, onPressed: plus)
+          IconButton(
+              splashRadius: 16,
+              icon: Icon(Icons.arrow_right),
+              iconSize: 32,
+              onPressed: plus)
         ]));
   }
 

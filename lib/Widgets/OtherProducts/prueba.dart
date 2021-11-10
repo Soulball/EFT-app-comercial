@@ -1,34 +1,36 @@
-import 'package:eft_app_comercial/Classes/OtherProducts/advancecommission.dart';
-import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
-import 'dart:async' show Future;
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({
+class Prueba extends StatefulWidget {
+  Prueba({
     Key key,
   }) : super(key: key);
-  static List<AdCommission> newList = <AdCommission>[];
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _PruebaState createState() => _PruebaState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  AdCommission commissions = new AdCommission();
+class _PruebaState extends State<Prueba> {
   HDTRefreshController _hdtRefreshController = HDTRefreshController();
-  Future<AdCommission> futureCommission;
+
+  static const int sortName = 0;
+  static const int sortStatus = 1;
+  bool isAscending = true;
+  int sortType = sortName;
+
   @override
   void initState() {
+    user.initData(100);
     super.initState();
-    /*futureCommission =
-        getCommission(HomeBlocInheritedWidget.of(context).homebloc.user);*/
   }
 
   @override
   Widget build(BuildContext context) {
+    return _getBodyWidget();
+  }
+
+  Widget _getBodyWidget() {
     return Container(
-      height: getVerticalPercent(context, 50),
-      width: getHorizontalPercent(context, 20),
       child: HorizontalDataTable(
         leftHandSideColumnWidth: 100,
         rightHandSideColumnWidth: 600,
@@ -36,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
         rightSideItemBuilder: _generateRightHandSideColumnRow,
-        //itemCount: commissions.commission.length,
+        itemCount: user.userInfo.length,
         rowSeparatorWidget: const Divider(
           color: Colors.black54,
           height: 1.0,
@@ -64,41 +66,60 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         htdRefreshController: _hdtRefreshController,
       ),
+      height: MediaQuery.of(context).size.height,
     );
   }
 
   List<Widget> _getTitleWidget() {
     return [
-      _getTitleItemWidget('Clasificacion', 100),
-      _getTitleItemWidget('Trans', 100),
-      _getTitleItemWidget('Meta', 100),
-      _getTitleItemWidget('Inmediato', 100),
-      _getTitleItemWidget('Acumulado', 100),
-      _getTitleItemWidget('Bono', 100),
-      _getTitleItemWidget('Total', 100),
+      TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+        child: _getTitleItemWidget(
+            'Name' + (sortType == sortName ? (isAscending ? '↓' : '↑') : ''),
+            100),
+        onPressed: () {
+          sortType = sortName;
+          isAscending = !isAscending;
+          user.sortName(isAscending);
+          setState(() {});
+        },
+      ),
+      TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+        ),
+        child: _getTitleItemWidget(
+            'Status' +
+                (sortType == sortStatus ? (isAscending ? '↓' : '↑') : ''),
+            100),
+        onPressed: () {
+          sortType = sortStatus;
+          isAscending = !isAscending;
+          user.sortStatus(isAscending);
+          setState(() {});
+        },
+      ),
+      _getTitleItemWidget('Phone', 200),
+      _getTitleItemWidget('Register', 100),
+      _getTitleItemWidget('Termination', 200),
     ];
   }
 
   Widget _getTitleItemWidget(String label, double width) {
-    return FutureBuilder(
-      //future: getCommission(HomeBlocInheritedWidget.of(context).homebloc.user),
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting)
-          return Center(child: CircularProgressIndicator());
-        return Container(
-          child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
-          width: width,
-          height: 56,
-          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-          alignment: Alignment.centerLeft,
-        );
-      },
+    return Container(
+      child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+      width: width,
+      height: 56,
+      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+      alignment: Alignment.centerLeft,
     );
   }
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     return Container(
-      child: Text(commissions.commission[index].clasification),
+      child: Text(user.userInfo[index].name),
       width: 100,
       height: 52,
       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -107,64 +128,97 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _generateRightHandSideColumnRow(BuildContext context, int index) {
-    return FutureBuilder(
-        /*future:
-            getCommission(HomeBlocInheritedWidget.of(context).homebloc.user),*/
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting)
-            return Center(child: CircularProgressIndicator());
-          return Row(
+    return Row(
+      children: <Widget>[
+        Container(
+          child: Row(
             children: <Widget>[
-              Container(
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      child: Text(snapshot.data.points.toString()),
-                      width: 100,
-                      height: 52,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      alignment: Alignment.centerLeft,
-                    ),
-                    Container(
-                      child: Text(snapshot.data.goal.toString()),
-                      width: 100,
-                      height: 52,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      alignment: Alignment.centerLeft,
-                    ),
-                    Container(
-                      child: Text(snapshot.data.accumulated.toString()),
-                      width: 100,
-                      height: 52,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      alignment: Alignment.centerLeft,
-                    ),
-                    Container(
-                      child: Text(snapshot.data.accumulated.toString()),
-                      width: 100,
-                      height: 52,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      alignment: Alignment.centerLeft,
-                    ),
-                    Container(
-                      child: Text(snapshot.data.bonus.toString()),
-                      width: 100,
-                      height: 52,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      alignment: Alignment.centerLeft,
-                    ),
-                    Container(
-                      child: Text(snapshot.data.total.toString()),
-                      width: 100,
-                      height: 52,
-                      padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                      alignment: Alignment.centerLeft,
-                    ),
-                  ],
-                ),
-              ),
+              Icon(
+                  user.userInfo[index].status
+                      ? Icons.notifications_off
+                      : Icons.notifications_active,
+                  color:
+                      user.userInfo[index].status ? Colors.red : Colors.green),
+              Text(user.userInfo[index].status ? 'Disabled' : 'Active')
             ],
-          );
-        });
+          ),
+          width: 100,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+        Container(
+          child: Text(user.userInfo[index].phone),
+          width: 200,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+        Container(
+          child: Text(user.userInfo[index].registerDate),
+          width: 100,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+        Container(
+          child: Text(user.userInfo[index].terminationDate),
+          width: 200,
+          height: 52,
+          padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+          alignment: Alignment.centerLeft,
+        ),
+      ],
+    );
   }
+}
+
+User user = User();
+
+class User {
+  List<UserInfo> userInfo = [];
+
+  void initData(int size) {
+    for (int i = 0; i < size; i++) {
+      userInfo.add(UserInfo(
+          "User_$i", i % 3 == 0, '+001 9999 9999', '2019-01-01', 'N/A'));
+    }
+  }
+
+  ///
+  /// Single sort, sort Name's id
+  void sortName(bool isAscending) {
+    userInfo.sort((a, b) {
+      int aId = int.tryParse(a.name.replaceFirst('User_', '')) ?? 0;
+      int bId = int.tryParse(b.name.replaceFirst('User_', '')) ?? 0;
+      return (aId - bId) * (isAscending ? 1 : -1);
+    });
+  }
+
+  ///
+  /// sort with Status and Name as the 2nd Sort
+  void sortStatus(bool isAscending) {
+    userInfo.sort((a, b) {
+      if (a.status == b.status) {
+        int aId = int.tryParse(a.name.replaceFirst('User_', '')) ?? 0;
+        int bId = int.tryParse(b.name.replaceFirst('User_', '')) ?? 0;
+        return (aId - bId);
+      } else if (a.status) {
+        return isAscending ? 1 : -1;
+      } else {
+        return isAscending ? -1 : 1;
+      }
+    });
+  }
+}
+
+class UserInfo {
+  String name;
+  bool status;
+  String phone;
+  String registerDate;
+  String terminationDate;
+
+  UserInfo(this.name, this.status, this.phone, this.registerDate,
+      this.terminationDate);
 }

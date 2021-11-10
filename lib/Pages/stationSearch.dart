@@ -59,7 +59,7 @@ class _StationSearcherState extends State<StationSearcher> {
                           FilteringTextInputFormatter.digitsOnly
                         ],
                         onChanged: (value) {
-                          zone = int.parse(value);
+                          if (value != "") zone = int.parse(value);
                         })),
                 IconButton(
                     icon: Icon(Icons.search,

@@ -21,7 +21,6 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
       defaultValue: "Seleccione una estación",
       search: true,
       items: Marketing.allStationList);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,8 +36,8 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
             width: double.infinity,
             alignment: Alignment.center,
             padding: EdgeInsets.only(
-                left: getHorizontalPercent(context, 10),
-                right: getHorizontalPercent(context, 10),
+                left: getHorizontalPercent(context, 5),
+                right: getHorizontalPercent(context, 5),
                 bottom: getVerticalMargin(context),
                 top: getVerticalMargin(context)),
             child: Column(
@@ -47,7 +46,7 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
                   customSearchDropButton,
                   Container(
                       height: getVerticalPercent(context, 53),
-                      width: getHorizontalPercent(context, 80),
+                      width: getHorizontalPercent(context, 85),
                       child: ListView.builder(
                           physics: BouncingScrollPhysics(),
                           itemCount: materialList.length,

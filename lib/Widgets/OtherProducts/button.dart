@@ -4,6 +4,8 @@ import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
+import 'materialbutton.dart';
+
 // ignore: must_be_immutable
 class ButtonSend extends StatelessWidget {
   double sizeh;
@@ -13,6 +15,7 @@ class ButtonSend extends StatelessWidget {
   String colorg;
   Widget page;
   BuildContext pageContext;
+  List<ButtonAdjust> data;
 
   ButtonSend(
       {this.sizeh,
@@ -21,7 +24,8 @@ class ButtonSend extends StatelessWidget {
       this.text,
       this.colorg,
       this.page,
-      this.pageContext});
+      this.pageContext,
+      this.data});
 
   @override
   Widget build(BuildContext context) {

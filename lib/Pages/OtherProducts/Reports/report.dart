@@ -1,33 +1,39 @@
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:eft_app_comercial/Classes/OtherProducts/exhibitors.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
-import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
+import 'package:eft_app_comercial/Libraries/sql.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/adjustment.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/requestreport.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
-import 'package:eft_app_comercial/Widgets/customDropbutton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Report extends StatefulWidget {
   Report({Key key}) : super(key: key);
+  // ignore: non_constant_identifier_names
+  static List<String> CExhibitorString = [];
+  // ignore: non_constant_identifier_names
+  static List<ComponentsExhibitor> CExhibitorsList = [];
+  // ignore: non_constant_identifier_names
+  static List<String> ExhibitorString = [];
+  // ignore: non_constant_identifier_names
+  static List<Exhibitor> ExhibitorsList = [];
 
   @override
   _ReportState createState() => _ReportState();
 }
 
 class _ReportState extends State<Report> {
+  bool visible = false;
+  String selectE;
+  String selectS;
+  int exhibidorId;
   @override
   Widget build(BuildContext context) {
-    var stationCDB = CustomDropButton(
-      title: "Seleccione la estación",
-      initialValue: "Estación",
-      list: stationList,
-    );
-    var exhibidorCDB = CustomDropButton(
-      title: 'Selecciona el exhibidor',
-      initialValue: 'Exhibidor',
-      list: exhibidores,
-    );
-
+    getExhibitors();
+    getStation();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey[600],
@@ -55,26 +61,80 @@ class _ReportState extends State<Report> {
               SizedBox(
                 height: getHorizontalPercent(context, 5),
               ),
-              stationCDB,
+              DropdownSearch(
+                  label: "Estacion",
+                  mode: Mode.MENU,
+                  showSearchBox: true,
+                  showSelectedItem: true,
+                  hint: "Seleccione la Estacion",
+                  selectedItem: selectS,
+                  items: Adjustment.StationList,
+                  onChanged: (dato) {
+                    getVisibleS(dato);
+                  }),
               SizedBox(
                 height: getHorizontalPercent(context, 5),
               ),
-              exhibidorCDB,
+              DropdownSearch(
+                  label: "Exhibidor",
+                  mode: Mode.MENU,
+                  showSearchBox: true,
+                  showSelectedItem: true,
+                  hint: "Seleccione el Exhibidor",
+                  selectedItem: selectE,
+                  items: Report.ExhibitorString,
+                  onChanged: (dato) {
+                    getVisibleE(dato);
+                  }),
               SizedBox(
                 height: getHorizontalPercent(context, 40),
               ),
-              ButtonSend(
-                sizeh: 10,
-                sizew: 80,
-                sizef: 5,
-                text: 'Enviar',
-                page: RequestReport(),
-                pageContext: context,
-              ),
+              _getVisibility(visible, selectE, selectS),
             ],
           ),
         ),
       ),
     );
   }
+
+  _getVisibility(bool visible, String station, String exhibidor) {
+    if (station == null || exhibidor == null) {
+      Container(
+        child: Center(child: Text("Elija una Estacion")),
+      );
+    } else {
+      return ButtonSend(
+        text: "Enviar",
+        sizef: 6,
+        sizeh: 7,
+        sizew: 60,
+        page: RequestReport(data: exhibidorId),
+        pageContext: context,
+      );
+    }
+    return Container();
+  }
+
+  void getVisibleE(dato) {
+    setState(() {
+      selectE = dato;
+      exhibidorId = _getMethod(selectE);
+      print(exhibidorId);
+    });
+  }
+
+  void getVisibleS(dato) {
+    setState(() {
+      selectS = dato;
+    });
+  }
+}
+
+int _getMethod(String select) {
+  for (int c = 0; c < Report.ExhibitorString.length; c++) {
+    if (select == Report.ExhibitorString[c]) {
+      return Report.ExhibitorsList[c].exhibitor;
+    }
+  }
+  return 0;
 }

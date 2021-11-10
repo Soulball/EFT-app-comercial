@@ -31,7 +31,7 @@ class DescriptionElement {
     this.employeeAmount,
     this.currency,
     this.hasDetail,
-    this.descriptionsd,
+    this.descriptions,
   });
 
   int classificationId;
@@ -41,7 +41,7 @@ class DescriptionElement {
   double employeeAmount;
   String currency;
   int hasDetail;
-  List<DescriptionElement> descriptionsd;
+  List<DescriptionElement> descriptions;
 
   factory DescriptionElement.fromJson(Map<String, dynamic> json) =>
       DescriptionElement(
@@ -52,7 +52,7 @@ class DescriptionElement {
         employeeAmount: json["employee_amount"].toDouble(),
         currency: json["currency"],
         hasDetail: json["hasDetail"],
-        descriptionsd: json["descriptions"] == null
+        descriptions: json["descriptions"] == null
             ? []
             : List<DescriptionElement>.from(json["descriptions"]
                 .map((x) => DescriptionElement.fromJson(x))),

@@ -8,12 +8,13 @@ class CustomSearchDropButton extends StatefulWidget {
   String name;
   String defaultValue;
   bool search;
+  bool visible;
   String selectedItem;
   List<String> items;
 
   //Constructor
   CustomSearchDropButton(
-      {this.name, this.defaultValue, this.search, this.items});
+      {this.name, this.defaultValue, this.search, this.items, this.visible});
 
   @override
   _CustomSearchDropButtonState createState() => _CustomSearchDropButtonState();

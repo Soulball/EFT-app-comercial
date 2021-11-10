@@ -1,9 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:convert' as convert;
+import 'package:eft_app_comercial/Classes/OtherProducts/adjust.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/descriptioncommission.dart';
+import 'package:eft_app_comercial/Classes/OtherProducts/exhibitors.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/productsold.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/rankingxventas.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/adjustment.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
+import 'package:eft_app_comercial/Widgets/OtherProducts/maxmin.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:eft_app_comercial/Classes/OtherProducts/advancecommission.dart';
@@ -18,7 +23,87 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
-//String ip = "172.25.144.1";
+String ip = "172.27.128.1";
+
+// obtiene los diferentes componenetes de los exhibidores
+Future getCExhibitors(int exhibitor) async {
+  //Peticion
+  Response response = await get(
+      Uri.encodeFull("http://$ip:50000/exhibitorsc?exhibitor=$exhibitor"));
+  //Comprobar si es nulo
+  if (json.decode(response.body)["componentes"] != null) {
+    List data = json.decode(response.body)["componentes"];
+    for (int c = 0; c < data.length; c++) {
+      Report.CExhibitorString.add(data[c]["descriptions"]);
+      Report.CExhibitorsList.add(
+          new ComponentsExhibitor(data[c]["descriptions"]));
+    }
+  }
+}
+
+//obtiene los diferentes exhibidores
+Future getExhibitors() async {
+  //Peticion
+  Response response = await get(Uri.encodeFull("http://$ip:50000/exhibitor"));
+  //Comprobar si es nulo
+  if (json.decode(response.body)["exhibitors"] != null) {
+    List data = json.decode(response.body)["exhibitors"];
+    for (int c = 0; c < data.length; c++) {
+      Report.ExhibitorString.add(data[c]["name"]);
+      Report.ExhibitorsList.add(new Exhibitor(
+        exhibitor: data[c]["id_exhibitors"],
+        name: data[c]["name"],
+      ));
+    }
+  }
+}
+
+//obtiene los diferentes cambios que se hagan en el apartado de otros productos en max y min
+Future getChange() async {
+  //Peticion
+  Response response = await get(Uri.encodeFull("http://$ip:50000/change"));
+  //Comprobar si es nulo
+  if (json.decode(response.body)["change"] != null) {
+    List data = json.decode(response.body)["change"];
+    for (int c = 0; c < data.length; c++) {
+      MaxMin.ChangeState.add(data[c]["change"]);
+      MaxMin.ChangeStateClass.add(new StateChange(
+        type: data[c]["type"],
+        change: data[c]["change"],
+      ));
+    }
+  }
+}
+
+//Obtencion de los productos para max y min
+Future<Adjust> getAdjust(int station) async {
+  final response = await http.get("http://$ip:50000/adjust?station=$station");
+  if (response.statusCode == 200) {
+    final Adjust adjust = adjustFromJson(response.body);
+    return adjust;
+  } else {
+    throw Total(code: -1, message: "Error al llamar el servicio");
+  }
+}
+
+//obtencion de estaciones para el apartado de Ajustes
+Future getStation() async {
+  //Peticion
+  Response response =
+      await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
+  //Comprobar si es nulo
+  if (json.decode(response.body)["stations"] != null) {
+    List data = json.decode(response.body)["stations"];
+    for (int c = 0; c < data.length; c++) {
+      Adjustment.StationList.add(
+          data[c]["number"].toString() + " - " + data[c]["commercialname"]);
+      Adjustment.StationListClass.add(new Station(
+          number: data[c]["number"],
+          name: data[c]["commercialname"],
+          id: data[c]["station"]));
+    }
+  }
+}
 
 // obtencion del total de las comisiones
 Future<Total> getTotal(int user) async {
@@ -26,8 +111,6 @@ Future<Total> getTotal(int user) async {
       await http.get("http://$ip:50000/commissionT?employee=$user");
   if (response.statusCode == 200) {
     final Total totalC = totalFromJson(response.body);
-    print(response.body);
-    print(totalC);
     return totalC;
   } else {
     throw Total(code: -1, message: "Error al llamar el servicio");
@@ -39,11 +122,9 @@ Future<Description> getDescription() async {
   final response = await http.get("http://$ip:50000/description");
   if (response.statusCode == 200) {
     final Description description = descriptionFromJson(response.body);
-    print(description.descriptions.length);
-    print(response.body);
     return description;
   } else {
-    throw Exception('Failed to load Data');
+    throw Description(code: -1, message: "Falla del Servicio");
   }
 }
 
@@ -55,8 +136,6 @@ Future<ImageRanking> getranking(int user, String type) async {
   if (response.statusCode == 200) {
     var jsonResponse = convert.jsonDecode(response.body);
     resp = ImageRanking.fromJson(jsonResponse);
-    print(jsonResponse);
-    print(resp);
     return resp;
   } else {
     resp = ImageRanking(code: -1, message: "Error al llamar el servicio");
@@ -70,8 +149,6 @@ Future<ProductSold> getTransaction(int employee) async {
       await http.get("http://$ip:50000/transaction?user=$employee");
   if (response.statusCode == 200) {
     final ProductSold product = ProductSoldFromJson(response.body);
-    print(response.body);
-    print(product.products.length);
     return product;
   } else {
     throw Exception('Failed to load Data');
@@ -84,29 +161,19 @@ Future<Acommission> getcommissions(int employee) async {
       await http.get("http://$ip:50000/commission?employee=$employee");
   if (response.statusCode == 200) {
     final Acommission commissions = AcommissionFromJson(response.body);
-    print(response.body);
     print(commissions.commission.length);
+    print(commissions);
     return commissions;
   } else {
     throw Exception('Failed to load Data');
   }
 }
 
-//Buscar todas las estaciónes ---------------------------------------------------------------------
-//String ip = "172.27.16.1";
-
-//Buscar todas las estaciónes en buscador de estaciónes ---------------------------------------------------------------------
-
-//String ip = "172.30.16.1"
-String ip = "192.168.209.123";
-//String ip = "192.168.209.151";
-
 //Buscar todas las estaciónes en buscador de estaciónes -----------------------
 Future getStations() async {
   //Peticion
   Response response =
       await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
-
   //Comprobar si es nulo
   if (json.decode(response.body)["stations"] != null) {
     List data = json.decode(response.body)["stations"];
@@ -122,7 +189,6 @@ Future getAllStations() async {
   //Peticion
   Response response =
       await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
-
   //Comprobar si es nulo
   if (json.decode(response.body)["stations"] != null) {
     List data = json.decode(response.body)["stations"];
@@ -132,6 +198,7 @@ Future getAllStations() async {
       Marketing.allStationListClass.add(new Station(
           number: data[c]["number"], name: data[c]["commercialname"]));
     }
+    print(data);
     print(data.length.toString());
   }
 }

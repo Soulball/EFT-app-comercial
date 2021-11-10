@@ -1,13 +1,14 @@
-import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/otherproduct.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
+import 'package:eft_app_comercial/Widgets/OtherProducts/viewmaxmin.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:eft_app_comercial/Widgets/userInfo.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SendAdjustment extends StatefulWidget {
   SendAdjustment({Key key}) : super(key: key);
 
@@ -32,52 +33,22 @@ class _SendAdjustmentState extends State<SendAdjustment> {
         child: Container(
           height: double.infinity,
           width: double.infinity,
+          padding: EdgeInsets.only(
+              left: getHorizontalPercent(context, 5),
+              right: getHorizontalPercent(context, 5)),
           child: ListView(
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.all(getVerticalMargin(context)),
             physics: BouncingScrollPhysics(),
             children: [
-              UserInfo(
-                  user: (HomeBlocInheritedWidget.of(context).homebloc.name !=
-                          null)
-                      ? HomeBlocInheritedWidget.of(context).homebloc.name
-                      : "Anonimo",
-                  station: "1221 - Hipodromo"),
+              SizedBox(
+                height: getHorizontalPercent(context, 5),
+              ),
+              UserInfo(station: "4562", user: "Juanita"),
               SizedBox(
                 height: getHorizontalPercent(context, 10),
               ),
-              DataTable(
-                columns: [
-                  DataColumn(
-                    label: Text('No. Producto'),
-                  ),
-                  DataColumn(
-                    label: Text('Estatus'),
-                  ),
-                ],
-                rows: [
-                  DataRow(
-                    cells: [
-                      DataCell(
-                        Text('No. Producto 1'),
-                      ),
-                      DataCell(
-                        Text('Subir'),
-                      ),
-                    ],
-                  ),
-                  DataRow(
-                    cells: [
-                      DataCell(
-                        Text('No. Producto 1'),
-                      ),
-                      DataCell(
-                        Text('Subir'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              ViewMaxMin(),
               SizedBox(
                 height: getHorizontalPercent(context, 10),
               ),
