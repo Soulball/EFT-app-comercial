@@ -31,13 +31,13 @@ class _LoginForm extends State<LoginForm> {
     if (response.statusCode == 200) {
       // ignore: await_only_futures
       await setLogedUser(int.parse(user), json.decode(response.body)["station"],
-          json.decode(response.body)["name"]);
+          json.decode(response.body)["name"], json.decode(response.body)["namestation"]);
       changePageDrop(
           Home(
               user: int.parse(user),
               station: json.decode(response.body)["station"],
               name: json.decode(response.body)["name"],
-              nameStation: "No especificado"),
+              nameStation: json.decode(response.body)["namestation"]),
           context);
     } else
       print('invalido');

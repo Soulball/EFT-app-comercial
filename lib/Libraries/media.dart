@@ -166,12 +166,13 @@ void showDialogText(BuildContext context, String title, String text) {
 }
 
 //Cargar usuario
-void setLogedUser(int user, int station, String name) async {
+void setLogedUser(int user, int station, String name, String nameStation) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setInt('user', user);
   prefs.setInt('station', station);
   prefs.setString('name', name);
-  prefs.setString('stationName', "");
+  prefs.setString('namestation', nameStation);
+  defaultStation = station;
   print('insertados');
 }
 
@@ -184,17 +185,19 @@ Future<void> getLogedUser() async {
   int station = prefs2.getInt('station');
   Login.station = station;
   final prefs3 = await SharedPreferences.getInstance();
+  defaultStation = station;
   String name = prefs3.getString('name');
   Login.name = name;
   final prefs4 = await SharedPreferences.getInstance();
-  String nameStation = prefs4.getString('stationName');
+  String nameStation = prefs4.getString('namestation');
   Login.nameStation = nameStation;
 }
 
 void setStation(int station, String nameStation) async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.setInt('station', station);
-  await prefs.setString('stationName', nameStation);
+  defaultStation = station;
+  await prefs.setString('namestation', nameStation);
 }
 
 //Borrar usuario y estacion
@@ -203,7 +206,7 @@ void deleteUser() async {
   await prefs.setString('user', null);
   await prefs.setInt('station', null);
   await prefs.setString('name', null);
-  await prefs.setString('stationName', null);
+  await prefs.setString('namestation', null);
 }
 
 int defaultStation = 9999;

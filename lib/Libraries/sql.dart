@@ -23,7 +23,7 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
-String ip = "172.27.128.1";
+String ip = "192.168.209.114";
 
 // obtiene los diferentes componenetes de los exhibidores
 Future getCExhibitors(int exhibitor) async {
