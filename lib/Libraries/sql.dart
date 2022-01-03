@@ -4,9 +4,11 @@ import 'dart:convert' as convert;
 import 'package:eft_app_comercial/Classes/OtherProducts/adjust.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/descriptioncommission.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/exhibitors.dart';
+import 'package:eft_app_comercial/Classes/OtherProducts/idRequest.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/productsold.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/rankingxventas.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/adjustment.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/sendadjustment.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/maxmin.dart';
 import 'package:http/http.dart';
@@ -23,7 +25,49 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
-String ip = "192.168.209.114";
+String ip = "172.27.144.1";
+
+//envia las acciones de maximos y minimos
+getSend(int requestId, int productId, int stationId, int maxMovement,
+    int minMovement) async {
+  await post(
+    Uri.parse('http://172.27.144.1:50000/productsave'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(
+      <String, int>{
+        "requestId": requestId,
+        "productId": productId,
+        "stationId": stationId,
+        "maxMovement": maxMovement,
+        "minMovement": minMovement,
+      },
+    ),
+  );
+  print(requestId.toString() +
+      " " +
+      productId.toString() +
+      " " +
+      stationId.toString() +
+      " " +
+      maxMovement.toString() +
+      " " +
+      minMovement.toString());
+}
+
+//obtiene el idrequest para el envio de maximos y minimos
+Future getidRequest(int employee, DateTime date, int stationId) async {
+  Response response = await get(Uri.encodeFull(
+      "http://$ip:50000/requestId?employee=$employee&date=$date&stationId=$stationId"));
+  if (json.decode(response.body)["requestId"] != null) {
+    int data = json.decode(response.body)["requestId"];
+    if (data != null) {
+      SendAdjustment.IdRequestString = data;
+      SendAdjustment.IdRequestClass = new IdRequest();
+    }
+  }
+}
 
 // obtiene los diferentes componenetes de los exhibidores
 Future getCExhibitors(int exhibitor) async {
@@ -76,13 +120,27 @@ Future getChange() async {
 }
 
 //Obtencion de los productos para max y min
-Future<Adjust> getAdjust(int station) async {
-  final response = await http.get("http://$ip:50000/adjust?station=$station");
-  if (response.statusCode == 200) {
-    final Adjust adjust = adjustFromJson(response.body);
-    return adjust;
-  } else {
-    throw Total(code: -1, message: "Error al llamar el servicio");
+Future getAdjust(int station) async {
+  Response response =
+      await http.get("http://$ip:50000/adjust?station=$station");
+  if (json.decode(response.body)["adjust"] != null) {
+    List data = json.decode(response.body)["adjust"];
+    for (int c = 0; c < data.length; c++) {
+      MaxMin.AdjustList.add(data[c]["codes"].toString() +
+          data[c]["name"] +
+          data[c]["type"].toString() +
+          data[c]["max"].toString() +
+          data[c]["min"].toString());
+      MaxMin.AdjustListClass.add(
+        new Adjust(
+            codes: data[c]["codes"],
+            name: data[c]["name"],
+            type: data[c]["type"],
+            max: data[c]["max"],
+            min: data[c]["min"]),
+      );
+      print(Adjustment.StationList.length);
+    }
   }
 }
 
@@ -95,8 +153,12 @@ Future getStation() async {
   if (json.decode(response.body)["stations"] != null) {
     List data = json.decode(response.body)["stations"];
     for (int c = 0; c < data.length; c++) {
-      Adjustment.StationList.add(
-          data[c]["number"].toString() + " - " + data[c]["commercialname"]);
+      Adjustment.StationList.add(data[c]["station"].toString() +
+          ".-" +
+          " " +
+          data[c]["number"].toString() +
+          " - " +
+          data[c]["commercialname"]);
       Adjustment.StationListClass.add(new Station(
           number: data[c]["number"],
           name: data[c]["commercialname"],

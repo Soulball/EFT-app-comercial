@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class Report extends StatefulWidget {
-  Report({Key key}) : super(key: key);
   // ignore: non_constant_identifier_names
   static List<String> CExhibitorString = [];
   // ignore: non_constant_identifier_names
@@ -21,6 +20,7 @@ class Report extends StatefulWidget {
   // ignore: non_constant_identifier_names
   static List<Exhibitor> ExhibitorsList = [];
 
+  Report({Key key}) : super(key: key);
   @override
   _ReportState createState() => _ReportState();
 }
@@ -39,7 +39,7 @@ class _ReportState extends State<Report> {
         backgroundColor: Colors.grey[600],
         toolbarHeight: getVerticalPercent(context, 12),
         title: CustomText(
-            data: 'Otros Productos',
+            data: 'Reportar',
             size: getVerticalPercent(context, 5),
             color: whiteNeutral,
             weight: FontWeight.bold),

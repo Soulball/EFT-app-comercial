@@ -37,7 +37,7 @@ class _ActivationsState extends State<Activations> {
         appBar: AppBar(
             title: CustomText(
                 data: 'Solicitud de Tarjeta',
-                size: 30,
+                size: 22,
                 color: whiteNeutral,
                 weight: FontWeight.bold),
             backgroundColor: grayNeutral),
@@ -86,7 +86,7 @@ class _ActivationsState extends State<Activations> {
                         noteCustomTextField.controller.text);
                     backToOrigin(context);
                     showDialogText(context, "Nota",
-                        "Operacion completada. Pendiente de revisión y aprovación.");
+                        "Operacion completada. Pendiente de revisión y aprobación.");
                   },
                   child: CustomText(data: "Continuar", size: 18))
             ])));

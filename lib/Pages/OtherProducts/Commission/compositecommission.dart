@@ -76,7 +76,7 @@ class CompositeCommission extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                child: Text("_______________"),
+                child: Text("_____________"),
                 width: getHorizontalPercent(context, 30),
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),

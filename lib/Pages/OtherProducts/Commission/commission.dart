@@ -42,7 +42,7 @@ class _CommissionTState extends State<CommissionT> {
                     backgroundColor: Colors.grey[600],
                     toolbarHeight: getVerticalPercent(context, 12),
                     title: CustomText(
-                        data: 'Otros Productos',
+                        data: 'Comisiones',
                         size: getVerticalPercent(context, 5),
                         color: whiteNeutral,
                         weight: FontWeight.bold),

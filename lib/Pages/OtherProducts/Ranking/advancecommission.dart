@@ -13,8 +13,8 @@ class AdvanceCommission extends StatelessWidget {
     return Container(
       height: getVerticalPercent(context, 50),
       child: HorizontalDataTable(
-        leftHandSideColumnWidth: getHorizontalPercent(context, 70),
-        rightHandSideColumnWidth: getHorizontalPercent(context, 30),
+        leftHandSideColumnWidth: getHorizontalPercent(context, 60),
+        rightHandSideColumnWidth: getHorizontalPercent(context, 40),
         isFixedHeader: true,
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,

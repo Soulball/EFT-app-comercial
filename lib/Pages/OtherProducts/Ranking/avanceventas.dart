@@ -25,7 +25,7 @@ class _AvanceVentasState extends State<AvanceVentas> {
         backgroundColor: Colors.grey[600],
         toolbarHeight: getVerticalPercent(context, 12),
         title: CustomText(
-            data: 'Otros Productos',
+            data: 'Avance de Ventas',
             size: getVerticalPercent(context, 5),
             color: whiteNeutral,
             weight: FontWeight.bold),
@@ -39,7 +39,6 @@ class _AvanceVentasState extends State<AvanceVentas> {
             final List<Product> item = snapshot.data.products;
             final List<Product> item1 =
                 item.where((d) => d.transaction > 0).toList();
-            print(item1);
             return SafeArea(
               child: Container(
                 padding: EdgeInsets.all(10),

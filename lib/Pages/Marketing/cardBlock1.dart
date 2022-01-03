@@ -31,7 +31,7 @@ class _CardBlock1State extends State<CardBlock1> {
         appBar: AppBar(
             title: CustomText(
                 data: 'Solicitud',
-                size: 30,
+                size: 22,
                 color: whiteNeutral,
                 weight: FontWeight.bold),
             backgroundColor: grayNeutral),
@@ -40,8 +40,8 @@ class _CardBlock1State extends State<CardBlock1> {
             width: double.infinity,
             alignment: Alignment.center,
             padding: EdgeInsets.only(
-                left: getHorizontalPercent(context, 10),
-                right: getHorizontalPercent(context, 10),
+                left: getHorizontalPercent(context, 5),
+                right: getHorizontalPercent(context, 5),
                 bottom: getVerticalMargin(context),
                 top: getVerticalMargin(context)),
             child: Column(
@@ -55,7 +55,6 @@ class _CardBlock1State extends State<CardBlock1> {
                           .nameStation),
                   customSearchDropButton,
                   Container(
-                    width: getHorizontalPercent(context, 80),
                     child: itemCounter,
                   ),
                   ElevatedButton(
@@ -81,7 +80,7 @@ class _CardBlock1State extends State<CardBlock1> {
                             int.parse(getTurn()));
                         backToOrigin(context);
                         showDialogText(context, "Nota",
-                            "Operacion completada. Pendiente de revisión y aprovación.");
+                            "Operacion completada. Pendiente de revisión y aprobación.");
                       },
                       child: CustomText(data: "Enviar", size: 18))
                 ])));

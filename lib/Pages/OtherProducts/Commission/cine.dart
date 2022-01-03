@@ -14,8 +14,8 @@ class Cine extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: CustomText(
-              data: 'Otros Productos',
-              size: 30,
+              data: 'Catalogo de Comisiones Cinepolis',
+              size: 14,
               color: whiteNeutral,
               weight: FontWeight.bold),
           backgroundColor: grayNeutral),

@@ -14,12 +14,11 @@ class _ShowUsersState extends State<ShowUsers> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
       height: getVerticalPercent(context, 10),
       alignment: Alignment.centerLeft,
       child: CustomText(
         data: ' Colaborador | Alejandro Hernadez ',
-        size: 24,
+        size: 22,
         color: grayDark,
         weight: FontWeight.normal,
       ),

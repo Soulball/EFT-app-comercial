@@ -21,7 +21,7 @@ class MaterialSolitude2 extends StatelessWidget {
         appBar: AppBar(
             title: CustomText(
                 data: 'Solicitud de materiales',
-                size: 30,
+                size: 22,
                 color: whiteNeutral,
                 weight: FontWeight.bold),
             backgroundColor: grayText),
@@ -90,7 +90,7 @@ class MaterialSolitude2 extends StatelessWidget {
                         customTextField.controller.text);
                     backToOrigin(context);
                     showDialogText(context, "Nota",
-                        "Operacion completada. Pendiente de revisión y aprovación.");
+                        "Operacion completada. Pendiente de revisión y aprobación.");
                   },
                   child: CustomText(data: "Enviar", size: 18))
             ])));

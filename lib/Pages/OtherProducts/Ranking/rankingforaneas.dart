@@ -15,7 +15,7 @@ class Foraneas extends StatelessWidget {
         backgroundColor: Colors.grey[600],
         toolbarHeight: getVerticalPercent(context, 12),
         title: CustomText(
-            data: 'Otros Productos',
+            data: 'Ranking Foraneas',
             size: getVerticalPercent(context, 5),
             color: whiteNeutral,
             weight: FontWeight.bold),

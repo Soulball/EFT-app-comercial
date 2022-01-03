@@ -7,7 +7,7 @@ class ButtonAdjust extends StatefulWidget {
 //variables
   Color picture;
   String select;
-  int count;
+  int count = 0;
   int type;
 
 //Constructor
@@ -23,40 +23,36 @@ class _ButtonAdjustState extends State<ButtonAdjust> {
     getChange();
     return Container(
       decoration: BoxDecoration(
-        color: picture,
+        color: widget.picture,
         border: Border.all(width: 2.0),
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: InkWell(
-          child: Text(select),
+          child: Text(widget.select),
           onTap: () {
-            switch (count) {
-              case 0:
-                setState(() {
-                  select = MaxMin.ChangeState[1];
-                  picture = Colors.blue;
-                  _getMethod(select);
-                });
-                count++;
-                break;
-              case 1:
-                setState(() {
-                  select = MaxMin.ChangeState[2];
-                  picture = Colors.red;
-                  _getMethod(select);
-                });
-                count++;
-                break;
-              case 2:
-                setState(() {
-                  select = MaxMin.ChangeState[0];
-                  picture = Colors.grey;
-                  _getMethod(select);
-                });
-                count = 0;
-                break;
-              default:
-            }
+            setState(() {
+              switch (widget.count) {
+                case 0:
+                  widget.select = MaxMin.ChangeState[1];
+                  widget.picture = Colors.blue;
+                  _getMethod(widget.select);
+                  widget.count++;
+                  break;
+                case 1:
+                  widget.select = MaxMin.ChangeState[2];
+                  widget.picture = Colors.red;
+                  _getMethod(widget.select);
+                  widget.count++;
+                  break;
+                case 2:
+                  widget.select = MaxMin.ChangeState[0];
+                  widget.picture = Colors.grey;
+                  _getMethod(widget.select);
+                  widget.count = 0;
+                  break;
+                default:
+              }
+            });
           }),
     );
   }

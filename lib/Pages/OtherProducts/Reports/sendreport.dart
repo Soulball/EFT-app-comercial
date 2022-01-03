@@ -12,7 +12,9 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class SendReport extends StatefulWidget {
-  SendReport({Key key}) : super(key: key);
+  // ignore: deprecated_member_use
+  int data;
+  SendReport({Key key, this.data}) : super(key: key);
 
   @override
   _SendReportState createState() => _SendReportState();
@@ -48,37 +50,8 @@ class _SendReportState extends State<SendReport> {
                         : "Anonimo",
                 station: "1221 - Hipodromo"),
             Card(
-                child: Container(
-                    height: getVerticalPercent(context, 20),
-                    child: ListView.builder(
-                        physics: BouncingScrollPhysics(),
-                        itemCount: Report.CExhibitorString.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return (productAceite[index].counter == 0)
-                              ? Card(
-                                  child: Padding(
-                                      padding: EdgeInsets.all(
-                                          getHorizontalMargin(context)),
-                                      child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            CustomText(
-                                                data: Report
-                                                    .CExhibitorString[index],
-                                                size: 20,
-                                                color: grayDark,
-                                                weight: FontWeight.bold),
-                                            CustomText(
-                                                data: productAceite[index]
-                                                    .counter
-                                                    .toString(),
-                                                size: 24,
-                                                color: grayDark,
-                                                weight: FontWeight.bold)
-                                          ])))
-                              : SizedBox(height: 1);
-                        }))),
+              child: _mSelectd(widget.data),
+            ),
             Padding(
                 padding: EdgeInsets.only(
                     top: getVerticalPercent(context, 2.5),
@@ -93,6 +66,275 @@ class _SendReportState extends State<SendReport> {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _mSelectd(data) {
+    print(data);
+    switch (data) {
+      case 1:
+        return _mAceite();
+        break;
+      case 2:
+        return _mCiel();
+        break;
+      case 3:
+        return _mToros();
+        break;
+      case 4:
+        return _mGas();
+        break;
+      case 5:
+        return _mAromas();
+        break;
+      default:
+    }
+    return Container(
+      child: Text("Hola"),
+    );
+  }
+
+  Widget _mAceite() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText(
+              data: "Exhibidores: ",
+              size: 20,
+              weight: FontWeight.bold,
+            ),
+            CustomText(
+              data: "Aceite",
+              size: 20,
+              weight: FontWeight.bold,
+            )
+          ],
+        ),
+        Container(
+          height: getVerticalPercent(context, 20),
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: exhibitoraceite.length,
+            itemBuilder: (BuildContext context, int index) {
+              return (exhibitoraceite[index].counter > 0)
+                  ? Card(
+                      child: Padding(
+                          padding: EdgeInsets.all(getHorizontalMargin(context)),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                CustomText(
+                                    data: exhibitoraceite[index].item,
+                                    size: 20,
+                                    color: grayDark,
+                                    weight: FontWeight.normal),
+                                CustomText(
+                                    data: exhibitoraceite[index]
+                                        .counter
+                                        .toString(),
+                                    size: 24,
+                                    color: grayDark,
+                                    weight: FontWeight.normal)
+                              ])))
+                  : SizedBox(height: 1);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _mCiel() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText(
+              data: "Exhibidores: ",
+              size: 20,
+              weight: FontWeight.bold,
+            ),
+            CustomText(
+              data: "Ciel",
+              size: 20,
+              weight: FontWeight.bold,
+            )
+          ],
+        ),
+        Container(
+          height: getVerticalPercent(context, 20),
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: exhibitorciel.length,
+            itemBuilder: (BuildContext context, int index) {
+              return (exhibitorciel[index].select2 == true)
+                  ? Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(getHorizontalMargin(context)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            CustomText(
+                                data: Report.CExhibitorString[index],
+                                size: 20,
+                                color: grayDark,
+                                weight: FontWeight.normal),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Container();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  _mToros() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText(
+              data: "Exhibidores: ",
+              size: 20,
+              weight: FontWeight.bold,
+            ),
+            CustomText(
+              data: "Ciel",
+              size: 20,
+              weight: FontWeight.bold,
+            )
+          ],
+        ),
+        Container(
+          height: getVerticalPercent(context, 20),
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: exhibitorciel.length,
+            itemBuilder: (BuildContext context, int index) {
+              return (exhibitorciel[index].select2 == true)
+                  ? Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(getHorizontalMargin(context)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            CustomText(
+                                data: Report.CExhibitorString[index],
+                                size: 20,
+                                color: grayDark,
+                                weight: FontWeight.normal),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Container();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  _mGas() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText(
+              data: "Exhibidores: ",
+              size: 20,
+              weight: FontWeight.bold,
+            ),
+            CustomText(
+              data: "Ciel",
+              size: 20,
+              weight: FontWeight.bold,
+            )
+          ],
+        ),
+        Container(
+          height: getVerticalPercent(context, 20),
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: exhibitorciel.length,
+            itemBuilder: (BuildContext context, int index) {
+              return (exhibitorciel[index].select2 == true)
+                  ? Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(getHorizontalMargin(context)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            CustomText(
+                                data: Report.CExhibitorString[index],
+                                size: 20,
+                                color: grayDark,
+                                weight: FontWeight.normal),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Container();
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  _mAromas() {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomText(
+              data: "Exhibidores: ",
+              size: 20,
+              weight: FontWeight.bold,
+            ),
+            CustomText(
+              data: "Ciel",
+              size: 20,
+              weight: FontWeight.bold,
+            )
+          ],
+        ),
+        Container(
+          height: getVerticalPercent(context, 20),
+          child: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: exhibitorciel.length,
+            itemBuilder: (BuildContext context, int index) {
+              return (exhibitorciel[index].select2 == true)
+                  ? Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(getHorizontalMargin(context)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            CustomText(
+                                data: Report.CExhibitorString[index],
+                                size: 20,
+                                color: grayDark,
+                                weight: FontWeight.normal),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Container();
+            },
+          ),
+        ),
+      ],
     );
   }
 }

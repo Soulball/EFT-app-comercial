@@ -20,7 +20,6 @@ class Adjustment extends StatefulWidget {
   // ignore: non_constant_identifier_names
   static List<Station> StationListClass = [];
   Adjustment({Key key, this.visible}) : super(key: key);
-
   @override
   _AdjustmentState createState() => _AdjustmentState();
 }
@@ -38,8 +37,8 @@ class _AdjustmentState extends State<Adjustment> {
         backgroundColor: Colors.grey[600],
         toolbarHeight: getVerticalPercent(context, 12),
         title: CustomText(
-            data: 'Otros Productos',
-            size: getVerticalPercent(context, 5),
+            data: 'Ajuste de Inventarios',
+            size: getVerticalPercent(context, 4),
             color: whiteNeutral,
             weight: FontWeight.bold),
       ),
@@ -102,14 +101,9 @@ class _AdjustmentState extends State<Adjustment> {
     } else {
       return Visibility(
         visible: visible,
-        child: FutureBuilder(
-            future: getAdjust(station),
-            builder: (BuildContext context, AsyncSnapshot snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting)
-                return Center(child: CircularProgressIndicator());
-              final Adjust maxmin = snapshot.data;
-              return MaxMin(data: maxmin);
-            }),
+        child: MaxMin(
+          data: stationid,
+        ),
       );
     }
     return Container();
@@ -134,7 +128,7 @@ class _AdjustmentState extends State<Adjustment> {
         sizef: 6,
         sizeh: 7,
         sizew: 60,
-        page: SendAdjustment(),
+        page: SendAdjustment(data: stationid),
         pageContext: context,
       );
     }

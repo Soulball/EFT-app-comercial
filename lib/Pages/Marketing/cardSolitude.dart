@@ -42,7 +42,7 @@ class _CardSolitudeState extends State<CardSolitude> {
         appBar: AppBar(
             title: CustomText(
                 data: 'Solicitud de Tarjeta',
-                size: 30,
+                size: 22,
                 color: whiteNeutral,
                 weight: FontWeight.bold),
             backgroundColor: grayNeutral),
@@ -115,7 +115,7 @@ class _CardSolitudeState extends State<CardSolitude> {
                         noteCustomTextField.controller.text);
                     backToOrigin(context);
                     showDialogText(context, "Nota",
-                        "Operacion completada. Pendiente de revisión y aprovación.");
+                        "Operacion completada. Pendiente de revisión y aprobación.");
                   },
                   child: CustomText(data: "Enviar", size: 18))
             ])));

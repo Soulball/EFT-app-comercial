@@ -18,8 +18,8 @@ class Catalogue extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: CustomText(
-              data: 'Otros Productos',
-              size: 30,
+              data: 'Catalogo de Comisiones',
+              size: 20,
               color: whiteNeutral,
               weight: FontWeight.bold),
           backgroundColor: grayNeutral),
@@ -50,12 +50,17 @@ class Catalogue extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ShowUsers(),
+                    SizedBox(
+                      height: getVerticalPercent(context, 10),
+                    ),
+                    Text("Comisiones Directas"),
                     DirectCommission(
                       data: item,
                     ),
                     SizedBox(
                       height: getVerticalPercent(context, 10),
                     ),
+                    Text("Comisiones Compuestas"),
                     CompositeCommission(
                       datac: itemc,
                     ),

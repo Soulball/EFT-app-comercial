@@ -5,10 +5,12 @@ import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/Login/login.dart';
 import 'package:eft_app_comercial/Pages/Marketing/marketing.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
+import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/otherproduct.dart';
 import 'package:eft_app_comercial/Pages/Tutorials/tutorials.dart';
 import 'package:eft_app_comercial/Pages/commissions.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
+import 'package:eft_app_comercial/Widgets/OtherProducts/customchecklist.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +51,6 @@ final List exhibidores = [
   "Aromas/Wipers",
 ];
 
-List<ItemCounter> productAceite = [
-  ItemCounter(item: 'Acrilico'),
-  ItemCounter(item: 'Remplazo'),
-];
-
 List<ItemCounter> materialList = [
   ItemCounter(item: "Lona"),
   ItemCounter(item: "Bandera"),
@@ -62,6 +59,18 @@ List<ItemCounter> materialList = [
   ItemCounter(item: "Activaciones"),
   ItemCounter(item: "Coroplast"),
   ItemCounter(item: "Otro")
+];
+
+// Envia la lista de los componentes de los exhibidores de aceites
+List<ItemCounter> exhibitoraceite = [
+  ItemCounter(item: Report.CExhibitorString[0]),
+  ItemCounter(item: Report.CExhibitorString[1])
+];
+// Envia la lista de los componentes de los exhibidores de ciel
+List<CustomCheckList> exhibitorciel = [
+  CustomCheckList(text: Text(Report.CExhibitorString[0])),
+  CustomCheckList(text: Text(Report.CExhibitorString[1])),
+  CustomCheckList(text: Text(Report.CExhibitorString[2])),
 ];
 
 List<ItemCounter> cardBlockItemCounter = [

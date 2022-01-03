@@ -7,12 +7,12 @@ class CustomCheckList extends StatefulWidget {
   Color color;
   bool select;
   bool select2;
-  Widget component;
+  Widget text;
   CustomCheckList({
     Key key,
     this.select,
     this.select2,
-    this.component,
+    this.text,
     this.color,
   }) : super(key: key);
 
@@ -31,6 +31,7 @@ class _CustomCheckListState extends State<CustomCheckList> {
       child: CheckboxListTile(
         activeColor: Colors.grey,
         value: widget.select2,
+        title: widget.text,
         tristate: true,
         onChanged: (select) {
           setState(() {
@@ -41,7 +42,6 @@ class _CustomCheckListState extends State<CustomCheckList> {
             }
           });
         },
-        title: widget.component,
       ),
     );
   }

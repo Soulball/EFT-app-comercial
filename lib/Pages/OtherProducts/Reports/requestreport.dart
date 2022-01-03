@@ -1,32 +1,27 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
+import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/adjustment.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/sendreport.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
-import 'package:eft_app_comercial/Widgets/OtherProducts/counter.dart';
-import 'package:eft_app_comercial/Widgets/OtherProducts/customchecklist.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:eft_app_comercial/Widgets/imagePicker.dart';
-import 'package:eft_app_comercial/Widgets/itemCounter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
 
 // ignore: must_be_immutable
 class RequestReport extends StatefulWidget {
-  CustomCounter count = CustomCounter();
   int data;
-  RequestReport({Key key, this.data, this.count}) : super(key: key);
+  RequestReport({Key key, this.data}) : super(key: key);
   @override
   _RequestReportState createState() => _RequestReportState();
 }
 
 String selectS;
-bool select = true;
-bool select2 = false;
 Color colors;
 
 class _RequestReportState extends State<RequestReport> {
@@ -85,7 +80,9 @@ class _RequestReportState extends State<RequestReport> {
                     sizef: 6,
                     sizeh: 7,
                     sizew: 60,
-                    page: SendReport(),
+                    page: SendReport(
+                      data: widget.data,
+                    ),
                     pageContext: context),
               ],
             ),
@@ -106,13 +103,13 @@ class _RequestReportState extends State<RequestReport> {
         return _ciel(data);
         break;
       case 3:
-        return _toros();
+        return _toros(data);
         break;
       case 4:
-        return _gas();
+        return _gas(data);
         break;
       case 5:
-        return _aromas();
+        return _aromas(data);
         break;
       default:
     }
@@ -152,11 +149,9 @@ Widget _aceite(descripcion) {
                 return ListView.builder(
                     shrinkWrap: true,
                     physics: BouncingScrollPhysics(),
-                    itemCount: Report.CExhibitorsList.length,
+                    itemCount: exhibitoraceite.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return ItemCounter(
-                        item: Report.CExhibitorString[index],
-                      );
+                      return exhibitoraceite[index];
                     });
               }),
         ),
@@ -176,51 +171,67 @@ Widget _ciel(descripcion) {
           return ListView.builder(
               shrinkWrap: true,
               physics: BouncingScrollPhysics(),
-              itemCount: Report.CExhibitorsList.length,
+              itemCount: exhibitorciel.length,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 50,
-                  color: colors,
-                  child: CustomCheckList(
-                    select: select,
-                    select2: select2,
-                    component: Text(Report.CExhibitorString[index]),
-                  ),
-                );
+                return exhibitorciel[index];
               });
         }),
   );
 }
 
-Widget _toros() {
-  return ListView(
-    physics: BouncingScrollPhysics(),
-    children: [
-      Container(
-        child: Text("Toros"),
-      )
-    ],
+Widget _toros(descripcion) {
+  return Container(
+    height: 150,
+    child: FutureBuilder(
+        future: getCExhibitors(descripcion),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(child: CircularProgressIndicator());
+          return ListView.builder(
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
+              itemCount: exhibitorciel.length,
+              itemBuilder: (BuildContext context, int index) {
+                return exhibitorciel[index];
+              });
+        }),
   );
 }
 
-Widget _gas() {
-  return ListView(
-    physics: BouncingScrollPhysics(),
-    children: [
-      Container(
-        child: Text("Gas"),
-      )
-    ],
+Widget _gas(descripcion) {
+  return Container(
+    height: 150,
+    child: FutureBuilder(
+        future: getCExhibitors(descripcion),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(child: CircularProgressIndicator());
+          return ListView.builder(
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
+              itemCount: exhibitorciel.length,
+              itemBuilder: (BuildContext context, int index) {
+                return exhibitorciel[index];
+              });
+        }),
   );
 }
 
-Widget _aromas() {
-  return ListView(
-    physics: BouncingScrollPhysics(),
-    children: [
-      Container(
-        child: Text("Aromas"),
-      )
-    ],
+Widget _aromas(descripcion) {
+  return Container(
+    height: 150,
+    child: FutureBuilder(
+        future: getCExhibitors(descripcion),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Center(child: CircularProgressIndicator());
+          return ListView.builder(
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
+              itemCount: exhibitorciel.length,
+              itemBuilder: (BuildContext context, int index) {
+                return exhibitorciel[index];
+              });
+        }),
   );
 }

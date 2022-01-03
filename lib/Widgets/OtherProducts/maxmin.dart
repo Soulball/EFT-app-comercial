@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/materialbutton.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/viewmaxmin.dart';
 import 'package:flutter/material.dart';
@@ -12,22 +13,23 @@ class MaxMin extends StatefulWidget {
   static List<String> ChangeState = [];
   // ignore: non_constant_identifier_names
   static List<StateChange> ChangeStateClass = [];
-  Adjust data = Adjust();
+  // ignore: non_constant_identifier_names
+  static List<String> AdjustList = [];
+  // ignore: non_constant_identifier_names
+  static List<Adjust> AdjustListClass = [];
+  int data;
   MaxMin({Key key, this.data}) : super(key: key);
   @override
   _MaxMinState createState() => _MaxMinState();
 }
 
-List<AdjustElement> listap = [];
 List<ButtonAdjust> listaW = [];
-String select = "Sin Cambios";
-Color picture = Colors.grey;
-int count = 0;
 
 class _MaxMinState extends State<MaxMin> {
   @override
   Widget build(BuildContext context) {
-    _getButton(widget.data);
+    _getButton();
+    getAdjust(widget.data);
     return Container(
       height: getVerticalPercent(context, 50),
       child: HorizontalDataTable(
@@ -37,7 +39,7 @@ class _MaxMinState extends State<MaxMin> {
         headerWidgets: _getTitleWidget(),
         leftSideItemBuilder: _generateFirstColumnRow,
         rightSideItemBuilder: _generateRightHandSideColumnRow,
-        itemCount: widget.data.adjust.length,
+        itemCount: MaxMin.AdjustList.length,
         rowSeparatorWidget: const Divider(
           color: Colors.black54,
           height: 1.0,
@@ -80,7 +82,7 @@ class _MaxMinState extends State<MaxMin> {
           alignment: Alignment.center,
         ),
         Container(
-          child: Text(widget.data.adjust[index].codes.toString()),
+          child: Text(MaxMin.AdjustListClass[index].codes.toString()),
           width: 50,
           height: 52,
           padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -97,28 +99,28 @@ class _MaxMinState extends State<MaxMin> {
           child: Row(
             children: <Widget>[
               Container(
-                child: Text(widget.data.adjust[index].name.toString()),
+                child: Text(MaxMin.AdjustListClass[index].name.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.centerLeft,
               ),
               Container(
-                child: Text(widget.data.adjust[index].name),
-                width: 100,
-                height: 52,
-                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                alignment: Alignment.centerLeft,
-              ),
-              Container(
-                child: Text(widget.data.adjust[index].max.toString()),
+                child: Text(MaxMin.AdjustListClass[index].type.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.center,
               ),
               Container(
-                child: Text(widget.data.adjust[index].min.toString()),
+                child: Text(MaxMin.AdjustListClass[index].max.toString()),
+                width: 100,
+                height: 52,
+                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                alignment: Alignment.center,
+              ),
+              Container(
+                child: Text(MaxMin.AdjustListClass[index].min.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -126,26 +128,30 @@ class _MaxMinState extends State<MaxMin> {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
 }
 
-void _getButton(Adjust data) {
+_getButton() {
   listaW.clear();
-  for (int c = 0; c < data.adjust.length; c++) {
-    listaW.add(new ButtonAdjust());
+  for (int c = 0; c < MaxMin.AdjustListClass.length; c++) {
+    listaW.add(
+      new ButtonAdjust(
+        select: "Sin Cambios",
+        picture: Colors.grey,
+        count: 0,
+      ),
+    );
   }
+  print(listaW);
   _getSendButton(listaW);
-  print(listaW.length);
 }
 
 Widget _getSendButton(List<ButtonAdjust> listaW) {
-  print(listaW.length);
-  if (listaW != null) {
-    return ViewMaxMin(listW: listaW);
-  } else {
+  if (listaW != null)
+    return ViewMaxMin(data: listaW);
+  else
     return Container();
-  }
 }

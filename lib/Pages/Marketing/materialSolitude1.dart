@@ -27,7 +27,7 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
         appBar: AppBar(
             title: CustomText(
                 data: 'Solicitud de materiales',
-                size: 30,
+                size: 22,
                 color: whiteNeutral,
                 weight: FontWeight.bold),
             backgroundColor: grayNeutral),
@@ -36,10 +36,9 @@ class _MaterialSolitude1State extends State<MaterialSolitude1> {
             width: double.infinity,
             alignment: Alignment.center,
             padding: EdgeInsets.only(
-                left: getHorizontalPercent(context, 5),
-                right: getHorizontalPercent(context, 5),
-                bottom: getVerticalMargin(context),
-                top: getVerticalMargin(context)),
+              left: getHorizontalPercent(context, 5),
+              right: getHorizontalPercent(context, 5),
+            ),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
