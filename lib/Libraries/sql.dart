@@ -25,7 +25,7 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
-String ip = "172.27.144.1";
+String ip = "172.24.160.1";
 
 //envia las acciones de maximos y minimos
 getSend(int requestId, int productId, int stationId, int maxMovement,
