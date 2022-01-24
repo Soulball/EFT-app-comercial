@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:eft_app_comercial/Libraries/sql.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/materialbutton.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/viewmaxmin.dart';

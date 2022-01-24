@@ -9,7 +9,6 @@ import 'package:eft_app_comercial/Widgets/OtherProducts/button.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:eft_app_comercial/Widgets/imagePicker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
 

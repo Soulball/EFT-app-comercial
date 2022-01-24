@@ -8,7 +8,6 @@ import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CardSolitude extends StatefulWidget {
   CardSolitude({Key key}) : super(key: key);

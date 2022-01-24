@@ -7,7 +7,6 @@ import 'package:eft_app_comercial/Widgets/customSearchDropButton.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
 
 class Activations extends StatefulWidget {
