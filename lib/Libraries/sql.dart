@@ -25,13 +25,13 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
-String ip = "172.24.160.1";
+String ip = "http://bd36-201-174-115-7.ngrok.io";
 
 //envia las acciones de maximos y minimos
 getSend(int requestId, int productId, int stationId, int maxMovement,
     int minMovement) async {
   await post(
-    Uri.parse('http://172.27.144.1:50000/productsave'),
+    Uri.parse(ip + '/productsave'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -59,7 +59,7 @@ getSend(int requestId, int productId, int stationId, int maxMovement,
 //obtiene el idrequest para el envio de maximos y minimos
 Future getidRequest(int employee, DateTime date, int stationId) async {
   Response response = await get(Uri.encodeFull(
-      "http://$ip:50000/requestId?employee=$employee&date=$date&stationId=$stationId"));
+      ip + "/requestId?employee=$employee&date=$date&stationId=$stationId"));
   if (json.decode(response.body)["requestId"] != null) {
     int data = json.decode(response.body)["requestId"];
     if (data != null) {
@@ -72,8 +72,8 @@ Future getidRequest(int employee, DateTime date, int stationId) async {
 // obtiene los diferentes componenetes de los exhibidores
 Future getCExhibitors(int exhibitor) async {
   //Peticion
-  Response response = await get(
-      Uri.encodeFull("http://$ip:50000/exhibitorsc?exhibitor=$exhibitor"));
+  Response response =
+      await get(Uri.encodeFull(ip + "/exhibitorsc?exhibitor=$exhibitor"));
   //Comprobar si es nulo
   if (json.decode(response.body)["componentes"] != null) {
     List data = json.decode(response.body)["componentes"];
@@ -88,7 +88,7 @@ Future getCExhibitors(int exhibitor) async {
 //obtiene los diferentes exhibidores
 Future getExhibitors() async {
   //Peticion
-  Response response = await get(Uri.encodeFull("http://$ip:50000/exhibitor"));
+  Response response = await get(Uri.encodeFull(ip + "/exhibitor"));
   //Comprobar si es nulo
   if (json.decode(response.body)["exhibitors"] != null) {
     List data = json.decode(response.body)["exhibitors"];
@@ -105,7 +105,7 @@ Future getExhibitors() async {
 //obtiene los diferentes cambios que se hagan en el apartado de otros productos en max y min
 Future getChange() async {
   //Peticion
-  Response response = await get(Uri.encodeFull("http://$ip:50000/change"));
+  Response response = await get(Uri.encodeFull(ip + "/change"));
   //Comprobar si es nulo
   if (json.decode(response.body)["change"] != null) {
     List data = json.decode(response.body)["change"];
@@ -121,8 +121,7 @@ Future getChange() async {
 
 //Obtencion de los productos para max y min
 Future getAdjust(int station) async {
-  Response response =
-      await http.get("http://$ip:50000/adjust?station=$station");
+  Response response = await http.get(ip + "/adjust?station=$station");
   if (json.decode(response.body)["adjust"] != null) {
     List data = json.decode(response.body)["adjust"];
     for (int c = 0; c < data.length; c++) {
@@ -147,8 +146,7 @@ Future getAdjust(int station) async {
 //obtencion de estaciones para el apartado de Ajustes
 Future getStation() async {
   //Peticion
-  Response response =
-      await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
+  Response response = await get(Uri.encodeFull(ip + "/stationnumber"));
   //Comprobar si es nulo
   if (json.decode(response.body)["stations"] != null) {
     List data = json.decode(response.body)["stations"];
@@ -169,8 +167,7 @@ Future getStation() async {
 
 // obtencion del total de las comisiones
 Future<Total> getTotal(int user) async {
-  final response =
-      await http.get("http://$ip:50000/commissionT?employee=$user");
+  final response = await http.get(ip + "/commissionT?employee=$user");
   if (response.statusCode == 200) {
     final Total totalC = totalFromJson(response.body);
     return totalC;
@@ -179,9 +176,10 @@ Future<Total> getTotal(int user) async {
   }
 }
 
-// obtencion de datos para el apartado de ranking para las descripciones de comisiones
+// obtencion de datos para el apartado de ranking para las descripciones de ---
+// comisiones
 Future<Description> getDescription() async {
-  final response = await http.get("http://$ip:50000/description");
+  final response = await http.get(ip + "/description");
   if (response.statusCode == 200) {
     final Description description = descriptionFromJson(response.body);
     return description;
@@ -190,11 +188,11 @@ Future<Description> getDescription() async {
   }
 }
 
-//obtencion de imagenes para los apartados de imagenes x zonas, foraneas y de concursos
+//obtencion de imagenes para los apartados de imagenes x zonas, foraneas y de -
+//concursos
 Future<ImageRanking> getranking(int user, String type) async {
   ImageRanking resp = new ImageRanking();
-  final response =
-      await http.get("http://$ip:50000/consultimage?user=$user&type=$type");
+  final response = await http.get(ip + "/consultimage?user=$user&type=$type");
   if (response.statusCode == 200) {
     var jsonResponse = convert.jsonDecode(response.body);
     resp = ImageRanking.fromJson(jsonResponse);
@@ -205,10 +203,9 @@ Future<ImageRanking> getranking(int user, String type) async {
   return resp;
 }
 
-// obtencion de Productos vendidos por el empleado
+// obtencion de Productos vendidos por el empleado ----------------------------
 Future<ProductSold> getTransaction(int employee) async {
-  final response =
-      await http.get("http://$ip:50000/transaction?user=$employee");
+  final response = await http.get(ip + "/transaction?user=$employee");
   if (response.statusCode == 200) {
     final ProductSold product = ProductSoldFromJson(response.body);
     return product;
@@ -219,8 +216,7 @@ Future<ProductSold> getTransaction(int employee) async {
 
 //obtencion de Comisiones del empleado
 Future<Acommission> getcommissions(int employee) async {
-  final response =
-      await http.get("http://$ip:50000/commission?employee=$employee");
+  final response = await http.get(ip + "/commission?employee=$employee");
   if (response.statusCode == 200) {
     final Acommission commissions = AcommissionFromJson(response.body);
     print(commissions.commission.length);
@@ -234,8 +230,7 @@ Future<Acommission> getcommissions(int employee) async {
 //Buscar todas las estaciónes en buscador de estaciónes -----------------------
 Future getStations() async {
   //Peticion
-  Response response =
-      await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
+  Response response = await get(Uri.encodeFull(ip + "/stationnumber"));
   //Comprobar si es nulo
   if (json.decode(response.body)["stations"] != null) {
     List data = json.decode(response.body)["stations"];
@@ -249,8 +244,7 @@ Future getStations() async {
 //Buscar todas las estaciónes en marketing ------------------------------------
 Future getAllStations() async {
   //Peticion
-  Response response =
-      await get(Uri.encodeFull("http://$ip:50000/stationnumber"));
+  Response response = await get(Uri.encodeFull(ip + "/stationnumber"));
   //Comprobar si es nulo
   if (json.decode(response.body)["stations"] != null) {
     List data = json.decode(response.body)["stations"];
@@ -267,8 +261,8 @@ Future getAllStations() async {
 
 //Conseguir noticias ----------------------------------------------------------
 Future getNews(int station) async {
-  Response response = await get(
-      Uri.encodeFull("http://$ip:50000/announcement?station=$station"));
+  Response response =
+      await get(Uri.encodeFull(ip + "/announcement?station=$station"));
 
   //Comprobar si es nulo
   News.newList.clear();
@@ -290,8 +284,7 @@ Future getNews(int station) async {
 //Promociones -----------------------------------------------------------------
 Future getApi(int station, int user) async {
   //Peticion
-  Response response =
-      await get(Uri.encodeFull("http://$ip:50000/promo?station=$station"));
+  Response response = await get(Uri.encodeFull(ip + "/promo?station=$station"));
 
   //Comprobar si es nulo
   if (json.decode(response.body)["promos"] != null) {
@@ -306,8 +299,7 @@ Future getApi(int station, int user) async {
           text: data[c]["text"]));
     }
     //Favoritos y gustados por el usuario
-    response =
-        await get(Uri.encodeFull("http://$ip:50000/reaction?user=$user"));
+    response = await get(Uri.encodeFull(ip + "/reaction?user=$user"));
 
     //Cromprobar si es nulo
     if (json.decode(response.body)["reactions"] != null) {
@@ -325,8 +317,8 @@ Future getApi(int station, int user) async {
 //Detalles --------------------------------------------------------------------
 Future getDetails(int announcement) async {
   //Peticion
-  Response response = await get(
-      Uri.encodeFull("http://$ip:50000/detail?announcement=$announcement"));
+  Response response =
+      await get(Uri.encodeFull(ip + "/detail?announcement=$announcement"));
   PromotionDetails.detailList.clear();
 
   //Comprobar si es nulo
@@ -351,7 +343,7 @@ bool insertInList(int announcementId) {
 
 //Actualizar favorito ---------------------------------------------------------
 updateFavorite(int announcement, int user, bool favorite) async {
-  await put(Uri.parse('http://$ip:50000/upfreaction'),
+  await put(Uri.parse(ip + '/upfreaction'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -365,7 +357,7 @@ updateFavorite(int announcement, int user, bool favorite) async {
 
 //Actualizar me gusta ---------------------------------------------------------
 updateLike(int announcement, int user, bool liked) async {
-  await put(Uri.parse('http://$ip:50000/uplreaction'),
+  await put(Uri.parse(ip + '/uplreaction'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -379,7 +371,7 @@ updateLike(int announcement, int user, bool liked) async {
 
 //Insertar reacciónes ---------------------------------------------------------
 insertReactions(int announcement, int user, bool liked, bool favorite) async {
-  await post(Uri.parse('http://$ip:50000/sendreaction'),
+  await post(Uri.parse(ip + '/sendreaction'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -395,7 +387,7 @@ insertReactions(int announcement, int user, bool liked, bool favorite) async {
 //Subir activación ------------------------------------------------------------
 uploadActivation(
     int employee, int station, String activationType, String note) async {
-  await post(Uri.parse('http://$ip:50000/sendcardactivation'),
+  await post(Uri.parse(ip + '/sendcardactivation'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -410,7 +402,7 @@ uploadActivation(
 
 //Subir bloque de tarjeta -----------------------------------------------------
 uploadCardBlock(int employee, int station, int amount, int turn) async {
-  await post(Uri.parse('http://$ip:50000/sendblocksolicitude'),
+  await post(Uri.parse(ip + '/sendblocksolicitude'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -426,7 +418,7 @@ uploadCardBlock(int employee, int station, int amount, int turn) async {
 //Subir Solicitud de Tarjeta --------------------------------------------------
 uploadCardSolicitude(int employee, int station, String type, String name,
     String phone, String email, String note) async {
-  await post(Uri.parse('http://$ip:50000/sendcardsolicitude'),
+  await post(Uri.parse(ip + '/sendcardsolicitude'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -442,10 +434,10 @@ uploadCardSolicitude(int employee, int station, String type, String name,
   print('piola');
 }
 
-//Subir Solicitud de Materiales --------------------------------------------------
+//Subir Solicitud de Materiales -----------------------------------------------
 uploadMaterialSolicitude(
     int employee, int station, int turn, String note) async {
-  Response response = await post(Uri.parse('http://$ip:50000/sendmaterial'),
+  Response response = await post(Uri.parse(ip + '/sendmaterial'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -463,10 +455,10 @@ uploadMaterialSolicitude(
   print('piola');
 }
 
-//Subir a la tabla de relación Solicitudes y materiales
+//Subir a la tabla de relación Solicitudes y materiales -----------------------
 uploadMaterialSolicitudeRelation(
     int materialSolicitude, int material, int amount) async {
-  await post(Uri.parse('http://$ip:50000/sendfmaterial'),
+  await post(Uri.parse(ip + '/sendfmaterial'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
