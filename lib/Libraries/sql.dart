@@ -4,11 +4,9 @@ import 'dart:convert' as convert;
 import 'package:eft_app_comercial/Classes/OtherProducts/adjust.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/descriptioncommission.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/exhibitors.dart';
-import 'package:eft_app_comercial/Classes/OtherProducts/idRequest.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/productsold.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/rankingxventas.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/adjustment.dart';
-import 'package:eft_app_comercial/Pages/OtherProducts/Adjust/sendadjustment.dart';
 import 'package:eft_app_comercial/Pages/OtherProducts/Reports/report.dart';
 import 'package:eft_app_comercial/Widgets/OtherProducts/maxmin.dart';
 import 'package:http/http.dart';
@@ -62,10 +60,7 @@ Future getidRequest(int employee, DateTime date, int stationId) async {
       ip + "/requestId?employee=$employee&date=$date&stationId=$stationId"));
   if (json.decode(response.body)["requestId"] != null) {
     int data = json.decode(response.body)["requestId"];
-    if (data != null) {
-      SendAdjustment.IdRequestString = data;
-      SendAdjustment.IdRequestClass = new IdRequest();
-    }
+    if (data != null) {}
   }
 }
 

@@ -1,5 +1,4 @@
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
-import 'package:eft_app_comercial/Classes/OtherProducts/idRequest.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Libraries/sql.dart';
@@ -11,8 +10,6 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class SendAdjustment extends StatefulWidget {
-  static int IdRequestString;
-  static IdRequest IdRequestClass;
   int data;
   SendAdjustment({Key key, this.data}) : super(key: key);
 
