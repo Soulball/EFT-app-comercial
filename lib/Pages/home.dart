@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:eft_app_comercial/Bloc/Home/home_bloc.dart';
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
@@ -7,7 +9,8 @@ import 'package:flutter/material.dart';
 
 //Menu principal con Navigation Bar
 class Home extends StatefulWidget {
-  Home({Key key, this.user, this.station, this.name, this.nameStation}) : super(key: key);
+  Home({Key key, this.user, this.station, this.name, this.nameStation})
+      : super(key: key);
   //Variables
   final user;
   final station;
@@ -41,23 +44,23 @@ class _HomeState extends State<Home> {
                       BottomNavigationBarItem(
                           icon: Icon(Icons.home_outlined),
                           // ignore: deprecated_member_use
-                          title: Text('Noticias')),
+                          label: ('Noticias')),
                       BottomNavigationBarItem(
                           icon: Icon(Icons.monetization_on_outlined),
                           // ignore: deprecated_member_use
-                          title: Text('Marcadotecnia')),
+                          label: ('Marcadotecnia')),
                       BottomNavigationBarItem(
                           icon: Icon(Icons.library_books_outlined),
                           // ignore: deprecated_member_use
-                          title: Text('Tutotiales')),
+                          label: ('Tutotiales')),
                       BottomNavigationBarItem(
                           icon: Icon(Icons.message_outlined),
                           // ignore: deprecated_member_use
-                          title: Text('Otros ingresos')),
+                          label: ('Otros ingresos')),
                       BottomNavigationBarItem(
                           icon: Icon(Icons.payment_outlined),
                           // ignore: deprecated_member_use
-                          title: Text('Comisiones'))
+                          label: ('Comisiones'))
                     ]),
                 tabBuilder: (context, index) {
                   return CupertinoTabView(builder: (context) {

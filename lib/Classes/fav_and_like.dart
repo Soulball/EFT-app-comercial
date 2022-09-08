@@ -1,4 +1,7 @@
 //Clase para cada noticia
+
+// @dart=2.9
+
 class Reactions {
   //Variables
   int id;

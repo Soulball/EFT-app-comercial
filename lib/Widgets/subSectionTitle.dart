@@ -1,4 +1,7 @@
 //Card con titulo y proporciones para divir en 3
+
+// @dart=2.9
+
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';

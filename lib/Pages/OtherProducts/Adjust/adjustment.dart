@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/adjust.dart';
 import 'package:eft_app_comercial/Classes/station.dart';
@@ -59,11 +61,6 @@ class _AdjustmentState extends State<Adjustment> {
             physics: BouncingScrollPhysics(),
             children: <Widget>[
               DropdownSearch(
-                  label: "Estacion",
-                  mode: Mode.MENU,
-                  showSearchBox: true,
-                  showSelectedItem: true,
-                  hint: "Seleccione la Estacion",
                   selectedItem: select,
                   items: Adjustment.StationList,
                   onChanged: (dato) {

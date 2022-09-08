@@ -1,4 +1,7 @@
 //Barra de progreso para comisiones
+
+// @dart=2.9
+
 import 'package:draw_graph/draw_graph.dart';
 import 'package:draw_graph/models/feature.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';

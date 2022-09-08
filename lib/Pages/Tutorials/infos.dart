@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:convert';
 
 import 'package:eft_app_comercial/Classes/tutorial.dart';
@@ -7,7 +9,7 @@ import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:eft_app_comercial/Widgets/customText.dart';
 import 'package:eft_app_comercial/Widgets/subSectionTitle.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:eft_app_comercial/Libraries/sql.dart';
 
 //Subseccion de Tutoriales - Infografías
@@ -76,8 +78,8 @@ class _InfosState extends State<Infos> {
 
   //Petición
   get10(int station, int offset) async {
-    final response = await get(Uri.encodeFull(
-        "http://$ip:50000/tutorial?station=$station&type=info&offset=$offset"));
+    final response = await http.get(
+        Uri.parse("$ip/tutorial?station=$station&type=info&offset=$offset"));
     if (json.decode(response.body)["tutorial"] != null) {
       setState(() {
         List data = json.decode(response.body)["tutorial"];

@@ -1,4 +1,7 @@
 //clase que envia los diferentes estados para maximizar o minimizar un producto
+
+// @dart=2.9
+
 class StateChange {
   int type;
   String change;

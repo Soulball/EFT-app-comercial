@@ -1,4 +1,7 @@
 //Text con estilo de fuente personalizado
+
+// @dart=2.9
+
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';

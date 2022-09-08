@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:convert';
 
 import 'package:eft_app_comercial/Classes/tutorial.dart';
@@ -68,7 +70,7 @@ class _ManualsState extends State<Manuals> {
 
   //Petición
   get10(int station, int offset) async {
-    final response = await get(Uri.encodeFull(
+    final response = await get(Uri.parse(
         "http://$ip:50000/tutorial?station=$station&type=manual&offset=$offset"));
     if (json.decode(response.body)["tutorial"] != null) {
       setState(() {

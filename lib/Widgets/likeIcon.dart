@@ -1,4 +1,7 @@
 //Icono de me gusta
+
+// @dart=2.9
+
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/fav_and_like.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';

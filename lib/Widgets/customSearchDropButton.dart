@@ -1,4 +1,7 @@
 //Boton que permite cambiar la pantalla
+
+// @dart=2.9
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
@@ -24,10 +27,6 @@ class _CustomSearchDropButtonState extends State<CustomSearchDropButton> {
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>(
-        mode: Mode.MENU,
-        label: widget.name,
-        showSearchBox: widget.search,
-        hint: widget.defaultValue,
         selectedItem: widget.selectedItem,
         items: widget.items,
         onChanged: (String data) {

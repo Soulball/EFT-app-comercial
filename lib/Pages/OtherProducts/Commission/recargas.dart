@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 class Recargas extends StatelessWidget {
-  final List<DescriptionElement> dataR;
-  Recargas({Key key, this.dataR}) : super(key: key);
+  final List<DescriptionElement>? dataR;
+  Recargas({Key? key, this.dataR}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class Recargas extends StatelessWidget {
               headerWidgets: _getTitleWidget(),
               leftSideItemBuilder: _generateFirstColumnRow,
               rightSideItemBuilder: _generateRightHandSideColumnRow,
-              itemCount: dataR.length,
+              itemCount: dataR!.length,
               rowSeparatorWidget: const Divider(
                 color: Colors.black54,
                 height: 1.0,
@@ -79,7 +79,7 @@ class Recargas extends StatelessWidget {
 
   Widget _generateFirstColumnRow(BuildContext context, int index) {
     return Container(
-      child: Text(dataR[index].classificationName),
+      child: Text(dataR![index].classificationName),
       width: getHorizontalPercent(context, 30),
       height: 52,
       padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
@@ -94,21 +94,21 @@ class Recargas extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Container(
-                child: Text(dataR[index].employeeAmount.toString()),
+                child: Text(dataR![index].employeeAmount.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.center,
               ),
               Container(
-                child: Text(dataR[index].quantity.toString()),
+                child: Text(dataR![index].quantity.toString()),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 alignment: Alignment.center,
               ),
               Container(
-                child: Text(dataR[index].currency),
+                child: Text(dataR![index].currency),
                 width: 100,
                 height: 52,
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 class ImageRanking {
   String imagepodium, imagegeneral, state, message;
   int code;

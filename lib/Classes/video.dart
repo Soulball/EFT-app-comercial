@@ -1,4 +1,7 @@
 //Clase para cada noticia
+
+// @dart=2.9
+
 import 'package:video_player/video_player.dart';
 
 class Video {

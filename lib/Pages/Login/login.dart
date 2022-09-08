@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
@@ -32,8 +34,7 @@ class Login extends StatelessWidget {
                   physics: BouncingScrollPhysics(),
                   children: [
                     Stack(
-                      // ignore: deprecated_member_use
-                      overflow: Overflow.visible,
+                      clipBehavior: Clip.none,
                       alignment: Alignment.bottomCenter,
                       children: [
                         Header(),

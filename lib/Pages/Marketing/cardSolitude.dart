@@ -10,7 +10,7 @@ import 'package:eft_app_comercial/Widgets/customTextField.dart';
 import 'package:flutter/material.dart';
 
 class CardSolitude extends StatefulWidget {
-  CardSolitude({Key key}) : super(key: key);
+  CardSolitude({Key? key}) : super(key: key);
   @override
   _CardSolitudeState createState() => _CardSolitudeState();
 }

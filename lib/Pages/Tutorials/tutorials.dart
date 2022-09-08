@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
 import 'package:eft_app_comercial/Classes/tutorial.dart';
 import 'package:eft_app_comercial/Pages/Tutorials/infos.dart';

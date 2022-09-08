@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:io';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
@@ -62,11 +64,11 @@ class _RequestsState extends State<Requests> {
         });
   }
 
-  void getImage(ImageSource source) async {
-    // ignore: deprecated_member_use
-    var pickImage = await ImagePicker.pickImage(source: source);
+  void getImage(ImageSource source) {
+    // ignore: deprecated_member_use, invalid_use_of_visible_for_testing_member
+    var pickImage = ImagePicker.platform;
     setState(() {
-      image = pickImage;
+      image = pickImage as File;
     });
   }
 }

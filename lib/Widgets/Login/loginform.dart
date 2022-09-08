@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
@@ -26,12 +28,16 @@ class _LoginForm extends State<LoginForm> {
   }
 
   void fetchPost({String user, String password}) async {
-    var response = await http.get(
-        Uri.parse("http://$ip:50000/client?username=$user&password=$password"));
+    print("$ip/client?username=$user&password=$password");
+    var response = await http
+        .get(Uri.parse("$ip/client?username=$user&password=$password"));
     if (response.statusCode == 200) {
       // ignore: await_only_futures
-      await setLogedUser(int.parse(user), json.decode(response.body)["station"],
-          json.decode(response.body)["name"], json.decode(response.body)["namestation"]);
+      await setLogedUser(
+          int.parse(user),
+          json.decode(response.body)["station"],
+          json.decode(response.body)["name"],
+          json.decode(response.body)["namestation"]);
       changePageDrop(
           Home(
               user: int.parse(user),

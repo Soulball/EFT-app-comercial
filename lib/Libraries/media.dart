@@ -1,3 +1,5 @@
+// @dart=2.9
+
 library media;
 
 import 'package:eft_app_comercial/Bloc/Home/inheritedwidget.dart';
@@ -79,7 +81,9 @@ List<ItemCounter> cardBlockItemCounter = [
 
 //Abrir URL con la aplicacion
 Future<void> openURL(String url) async {
+  // ignore: deprecated_member_use
   if (await canLaunch(url)) {
+    // ignore: deprecated_member_use
     await launch(url);
   } else {
     throw 'No se ha podido cargar el enlace.';
@@ -175,7 +179,8 @@ void showDialogText(BuildContext context, String title, String text) {
 }
 
 //Cargar usuario
-void setLogedUser(int user, int station, String name, String nameStation) async {
+void setLogedUser(
+    int user, int station, String name, String nameStation) async {
   final prefs = await SharedPreferences.getInstance();
   prefs.setInt('user', user);
   prefs.setInt('station', station);

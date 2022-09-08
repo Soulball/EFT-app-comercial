@@ -1,6 +1,7 @@
+// @dart=2.9
+
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
 import 'package:flutter/material.dart';
-import '../../Libraries/proportional_sizes.dart';
 
 class Header extends StatelessWidget {
   @override

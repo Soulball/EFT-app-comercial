@@ -1,3 +1,5 @@
+// @dart=2.9
+
 library proportional_sizes;
 
 import 'package:flutter/material.dart';

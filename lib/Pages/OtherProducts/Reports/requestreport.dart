@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/media.dart';
@@ -124,11 +126,6 @@ Widget _aceite(descripcion) {
     child: Column(
       children: [
         DropdownSearch(
-          label: "Estacion",
-          mode: Mode.MENU,
-          showSearchBox: true,
-          showSelectedItem: true,
-          hint: "Seleccione la Estacion",
           selectedItem: selectS,
           items: Adjustment.StationList,
           onChanged: (dato) {

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:eft_app_comercial/Classes/OtherProducts/exhibitors.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
@@ -62,11 +64,6 @@ class _ReportState extends State<Report> {
                 height: getHorizontalPercent(context, 5),
               ),
               DropdownSearch(
-                  label: "Estacion",
-                  mode: Mode.MENU,
-                  showSearchBox: true,
-                  showSelectedItem: true,
-                  hint: "Seleccione la Estacion",
                   selectedItem: selectS,
                   items: Adjustment.StationList,
                   onChanged: (dato) {
@@ -76,11 +73,6 @@ class _ReportState extends State<Report> {
                 height: getHorizontalPercent(context, 5),
               ),
               DropdownSearch(
-                  label: "Exhibidor",
-                  mode: Mode.MENU,
-                  showSearchBox: true,
-                  showSelectedItem: true,
-                  hint: "Seleccione el Exhibidor",
                   selectedItem: selectE,
                   items: Report.ExhibitorString,
                   onChanged: (dato) {

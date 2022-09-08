@@ -1,4 +1,7 @@
 //Pagina principal de la seccion de marketing
+
+// @dart=2.9
+
 import 'package:eft_app_comercial/Classes/station.dart';
 import 'package:eft_app_comercial/Libraries/decoration_colors.dart';
 import 'package:eft_app_comercial/Libraries/proportional_sizes.dart';
