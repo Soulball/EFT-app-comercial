@@ -25,7 +25,8 @@ class Foraneas extends StatelessWidget {
       body: SafeArea(
         child: FutureBuilder(
             future: getranking(
-                HomeBlocInheritedWidget.of(context).homebloc.user, 'foreign'),
+                //HomeBlocInheritedWidget.of(context).homebloc.user, 'foreign'),
+                3595, 'foreign'),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Center(child: CircularProgressIndicator());

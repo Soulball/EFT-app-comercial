@@ -28,7 +28,8 @@ class Concursos extends StatelessWidget {
       body: SafeArea(
         child: FutureBuilder(
           future: getranking(
-              HomeBlocInheritedWidget.of(context).homebloc.user, 'contest'),
+              //HomeBlocInheritedWidget.of(context).homebloc.user, 'contest'),
+              3595, 'contest'),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting)
               return Center(child: CircularProgressIndicator());

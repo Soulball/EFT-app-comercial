@@ -22,9 +22,9 @@ import 'decoration_colors.dart';
 
 //Lista de modulos prinicpales
 final List<Widget> pagesList = [
-  News(),
   Marketing(),
   Tutorials(),
+  News(),
   OtherProduct(),
   Commissions()
 ];

@@ -27,7 +27,8 @@ class _CommissionTState extends State<CommissionT> {
   Widget build(BuildContext context) {
     return FutureBuilder(
         future:
-            getcommissions(HomeBlocInheritedWidget.of(context).homebloc.user),
+            //getcommissions(HomeBlocInheritedWidget.of(context).homebloc.user),
+            getcommissions(3595),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting)
             return Center(child: CircularProgressIndicator());
@@ -35,7 +36,8 @@ class _CommissionTState extends State<CommissionT> {
           print(data);
           return FutureBuilder(
               future:
-                  getTotal(HomeBlocInheritedWidget.of(context).homebloc.user),
+                  //getTotal(HomeBlocInheritedWidget.of(context).homebloc.user),
+                  getTotal(3595),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting)
                   return Center(child: CircularProgressIndicator());

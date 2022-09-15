@@ -34,8 +34,9 @@ class _PromotionState extends State<Promotion> {
             color: grayNeutral,
             child: FutureBuilder(
                 future: getApi(
-                    HomeBlocInheritedWidget.of(context).homebloc.station,
-                    HomeBlocInheritedWidget.of(context).homebloc.user),
+                 6617,3595),
+                    //HomeBlocInheritedWidget.of(context).homebloc.station,
+                    //HomeBlocInheritedWidget.of(context).homebloc.user),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting)
                     return Center(child: CircularProgressIndicator());

@@ -34,7 +34,8 @@ class _AvanceVentasState extends State<AvanceVentas> {
       ),
       body: FutureBuilder(
           future:
-              getTransaction(HomeBlocInheritedWidget.of(context).homebloc.user),
+              //getTransaction(HomeBlocInheritedWidget.of(context).homebloc.user),
+              getTransaction(3595),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting)
               return Center(child: CircularProgressIndicator());

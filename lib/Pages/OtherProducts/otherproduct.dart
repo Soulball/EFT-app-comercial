@@ -35,9 +35,7 @@ class OtherProduct extends StatelessWidget {
           CustomButton(
               text: "Comisiones", page: CommissionT(), pageContext: context),
           CustomButton(
-              text: "Ajuste de Inventario",
-              page: Adjustment(),
-              pageContext: context),
+              text: "Ajuste de Inventario", page: Adjustment(), pageContext: context),
           //CustomButton(text: "Pro Service", page: Promotion(), pageContext: context),
           CustomButton(text: "Reportar", page: Report(), pageContext: context)
         ]),

@@ -51,10 +51,11 @@ class _CardBlock1State extends State<CardBlock1> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   UserInfo(
-                      user: HomeBlocInheritedWidget.of(context).homebloc.name,
-                      station: HomeBlocInheritedWidget.of(context)
-                          .homebloc
-                          .nameStation),
+                      //user: HomeBlocInheritedWidget.of(context).homebloc.name,
+                      //station: HomeBlocInheritedWidget.of(context).homebloc.nameStation
+                      user: "Fanny Paola Delgado Barrita",
+                      station: "TIJ-WASHMOBILE"
+                  ),
                   customSearchDropButton,
                   Container(
                     child: itemCounter,

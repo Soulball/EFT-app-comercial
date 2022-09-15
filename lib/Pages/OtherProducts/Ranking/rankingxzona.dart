@@ -25,7 +25,8 @@ class RankingxZona extends StatelessWidget {
       body: SafeArea(
         child: FutureBuilder(
             future: getranking(
-                HomeBlocInheritedWidget.of(context).homebloc.user, 'zone'),
+                //HomeBlocInheritedWidget.of(context).homebloc.user, 'zone'),
+                3595, 'zone'),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting)
                 return Center(child: CircularProgressIndicator());

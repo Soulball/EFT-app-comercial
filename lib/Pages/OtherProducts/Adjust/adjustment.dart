@@ -49,8 +49,8 @@ class _AdjustmentState extends State<Adjustment> {
           height: double.infinity,
           width: double.infinity,
           padding: EdgeInsets.only(
-            left: getHorizontalPercent(context, 10),
-            right: getHorizontalPercent(context, 10),
+            left: getHorizontalPercent(context, 5),
+            right: getHorizontalPercent(context, 5),
             bottom: getVerticalMargin(context),
             top: getVerticalMargin(context),
           ),
