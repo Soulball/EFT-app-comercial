@@ -121,14 +121,15 @@ String getTurn() {
 }
 
 Widget getDrawer(BuildContext context) {
+  print("Hola");
+  print(HomeBlocInheritedWidget.of(context).homebloc.name);
   return Drawer(
       child: ListView(children: <Widget>[
     DrawerHeader(
         decoration: BoxDecoration(color: grayDark),
         child: UserAccountsDrawerHeader(
             accountEmail: Text(
-                HomeBlocInheritedWidget.of(context).homebloc.name +
-                    "@gmail.com"),
+                "${HomeBlocInheritedWidget.of(context).homebloc.name}@gmail.com"),
             accountName:
                 Text(HomeBlocInheritedWidget.of(context).homebloc.name),
             currentAccountPicture:

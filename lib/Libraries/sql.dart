@@ -25,8 +25,28 @@ import 'package:eft_app_comercial/Pages/Marketing/promotionDetails.dart';
 import 'package:eft_app_comercial/Pages/News/news.dart';
 import 'package:eft_app_comercial/Pages/stationSearch.dart';
 
+import '../Classes/LoginResponse.dart';
+
 String ip = "http://10.255.247.111:5698";
 
+Future<LoginResponse> makeLogin (String user, String password) async {
+  final response = await http.get(
+    Uri.parse('$ip/client?username=${user}&password=${password}'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+  );
+
+  if (response.statusCode == 200) {
+    var json=jsonDecode(response.body);
+    print(json);
+    return LoginResponse.fromJson(json);
+
+  }
+  else {
+    throw Exception('Failed to make login');
+  }
+}
 //envia las acciones de maximos y minimos
 getSend(int requestId, int productId, int stationId, int maxMovement,
     int minMovement) async {
