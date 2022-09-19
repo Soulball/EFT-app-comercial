@@ -36,57 +36,68 @@ class OtherProduct extends StatelessWidget {
             childAspectRatio: 1),
         children: [
           Card(
-            color: Colors.blue,
+            color: Colors.blue.shade200,
             child: GestureDetector(
               onTap: () {
                 changePage(Promotion(), context);
               },
               child: Container(
-                child: Text("Promociones"),
+                child: Text("Promociones", textAlign: TextAlign.center, style: TextStyle(
+                    fontWeight: FontWeight.bold
+                ),),
               ),
             ),
           ),
           Card(
-            color: Colors.blue,
+            color: Colors.blue.shade200,
             child: GestureDetector(
               onTap: () {
                 changePage(Ranking(), context);
               },
               child: Container(
-                child: Text("Ranking"),
+                child: Text("Ranking", textAlign: TextAlign.center, style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
               ),
             ),
           ),
           Card(
-            color: Colors.blue,
+            color: Colors.blue.shade200,
             child: GestureDetector(
               onTap: () {
                 changePage(CommissionT(), context);
               },
               child: Container(
-                child: Text("Comisiones"),
+                child: Text("Comisiones", textAlign: TextAlign.center, style: TextStyle(
+                    fontWeight: FontWeight.bold
+                ),),
               ),
             ),
           ),
           Card(
-            color: Colors.blue,
+            color: Colors.blue.shade200,
             child: GestureDetector(
               onTap: () {
                 changePage(Adjustment(), context);
               },
               child: Container(
-                child: Text("Ajuste de Inventario"),
+                child: Text("Ajuste de Inventario", textAlign: TextAlign.center, style: TextStyle(
+                    fontWeight: FontWeight.bold
+                ),),
+                
               ),
             ),
           ),
           Card(
-            color: Colors.blue,
+            color: Colors.blue.shade200,
             child: GestureDetector(
               onTap: () {
                 changePage(Report(), context);
               },
               child: Container(
-                child: Text("Reportar"),
+                child: Text("Reportar", textAlign: TextAlign.center, style: TextStyle(
+                    fontWeight: FontWeight.bold
+                ),),
               ),
             ),
           ),

@@ -2,14 +2,70 @@ import 'package:eft_app_comercial/Widgets/Login/header.dart';
 import 'package:eft_app_comercial/Widgets/Login/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../Animation.dart';
+import '../../Classes/LoginResponse.dart';
+import '../../Libraries/sql.dart';
 import '../../Utils.dart';
+import '../home.dart';
 
-class Login extends StatelessWidget {
-  static int user=0;
-  static int station= 0;
-  static String name= "";
-  static String nameStation= "";
+class Login extends StatefulWidget {
+  _Login createState() => _Login();
+  static int user = 0;
+  static int station = 0;
+  static String name = "";
+  static String nameStation = "";
+}
+class _Login extends State<Login> {
 
+  final usuario = TextEditingController();
+  final password = TextEditingController();
+  late LoginResponse response;
+
+
+  late bool _isObscure;
+  late FocusNode myFocusNode;
+
+  @override
+  void dispose() {
+    usuario.dispose();
+    password.dispose();
+  }
+
+  @override
+  void initState() {
+    myFocusNode = FocusNode();
+    _isObscure = true;
+  }
+
+  void loginMethod() async {
+    onLoading(context);
+    response = await makeLogin(usuario.text, password.text);
+    if (response.code == 0) {
+      if (response.name.isNotEmpty) {
+        print(response.name);
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('user', usuario.text);
+        prefs.setString('password', password.text);
+        closeLoading(context);
+        Navigator.push(context,
+          MaterialPageRoute(builder: (context) =>
+              Home(user: int.parse(usuario.text.toString()),
+                  name: response.name,
+                  nameStation: response.namestation,
+                  station: response.station),),);
+      } else {
+        print("no jala");
+      }
+    }
+    else {
+      closeLoading(context);
+      displayMessage(context: context,
+          title: "Atención",
+          message: "Nombre de usuario y/o contraseña incorrecta");
+      print("Contraseña incorrecta");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +89,12 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 LayoutBuilder(
-                    builder: (context,constraints){
+                    builder: (context, constraints) {
                       return SingleChildScrollView(
                         child: ConstrainedBox(
-                          constraints: BoxConstraints(minWidth: constraints.maxWidth,minHeight: constraints.maxHeight),
+                          constraints: BoxConstraints(
+                              minWidth: constraints.maxWidth,
+                              minHeight: constraints.maxHeight),
                           child: IntrinsicHeight(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -44,20 +102,25 @@ class Login extends StatelessWidget {
                                 Container(
                                     child: Stack(
                                       alignment: Alignment.center,
-                                      clipBehavior:Clip.none,
+                                      clipBehavior: Clip.none,
                                       children: [
                                         Header(),
                                         Logo(),
                                       ],
                                     )
                                 ),
-                                SizedBox(height: getScreenHeight(context)*.2,),
+                                SizedBox(
+                                  height: getScreenHeight(context) * .2,),
                                 Text(
-                                  "Usuario",style: TextStyle(color: AppColors.PrettyBlue, fontSize: 18, fontFamily: 'MADE TOMMY'),
+                                  "Usuario", style: TextStyle(
+                                    color: AppColors.PrettyBlue,
+                                    fontSize: 18,
+                                    fontFamily: 'MADE TOMMY'),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   child: TextField(
+                                    controller: usuario,
                                     textAlign: TextAlign.start,
                                     decoration: InputDecoration(
                                       suffixIcon: const Icon(
@@ -80,12 +143,14 @@ class Login extends StatelessWidget {
                                   height: 25,
                                 ),
                                 Text(
-                                  "Contraseña",style: TextStyle(color: AppColors.PrettyBlue, fontSize: 18),
+                                  "Contraseña", style: TextStyle(
+                                    color: AppColors.PrettyBlue, fontSize: 18),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   child: TextField(
-
+                                    controller: password,
+                                    focusNode: myFocusNode,
                                     textAlign: TextAlign.start,
                                     decoration: InputDecoration(
                                         hintStyle: const TextStyle(
@@ -96,22 +161,29 @@ class Login extends StatelessWidget {
                                         filled: true,
                                         fillColor: Colors.white,
                                         border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(15),
+                                          borderRadius: BorderRadius.circular(
+                                              15),
                                         ),
                                         suffixIconColor:
-                                        true ? Colors.black : Colors.grey[600],
+                                        _isObscure ? Colors.black : Colors
+                                            .grey[600],
                                         suffixIcon: IconButton(
                                             onPressed: () {
+                                              setState(() {
+                                                _isObscure = !_isObscure;
+                                              });
                                             },
                                             icon: Icon(
-                                                true                                                    ? Icons.visibility
+                                                _isObscure
+                                                    ? Icons.visibility
                                                     : Icons.visibility_off,
-                                                color: true
+                                                color: _isObscure
                                                     ? Colors.blue
                                                     : Colors.grey[600]))),
                                   ),
                                 ),
-                                SizedBox(height: getScreenHeight(context)*.05,),
+                                SizedBox(
+                                  height: getScreenHeight(context) * .05,),
                                 Row(
                                   children: [
                                     const Spacer(),
@@ -125,7 +197,8 @@ class Login extends StatelessWidget {
                                     const SizedBox(width: 15,)
                                   ],
                                 ),
-                                SizedBox(height: getScreenHeight(context)*.05,),
+                                SizedBox(
+                                  height: getScreenHeight(context) * .05,),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 15),
                                   child: Container(
@@ -148,9 +221,10 @@ class Login extends StatelessWidget {
                                       style: ButtonStyle(
                                         shape: MaterialStateProperty.all(
                                             RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(50.0))),
+                                                borderRadius: BorderRadius
+                                                    .circular(50.0))),
                                       ),
-                                      onPressed: (){},
+                                      onPressed: loginMethod,
 
                                       child: const Text(
                                         "Iniciar sesion",
@@ -178,3 +252,5 @@ class Login extends StatelessWidget {
     );
   }
 }
+
+
