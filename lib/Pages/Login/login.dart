@@ -73,7 +73,8 @@ class _Login extends State<Login> {
         value: SystemUiOverlayStyle(
             statusBarColor: Color(0xFF0C14A4),
             statusBarIconBrightness: Brightness.light,
-            statusBarBrightness: Brightness.light),
+            statusBarBrightness: Brightness.light
+        ),
         child: WillPopScope(
           onWillPop: () async {
             return false;
@@ -136,36 +137,6 @@ class _Login extends State<Login> {
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                     ),
-                                    hintText: 'Contraseña',
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    suffixIconColor:
-                                        true ? Colors.black : Colors.grey[600],
-                                    suffixIcon: IconButton(
-                                        onPressed: () {},
-                                        icon: Icon(
-                                            true
-                                                ? Icons.visibility
-                                                : Icons.visibility_off,
-                                            color: true
-                                                ? Colors.blue
-                                                : Colors.grey[600]))),
-                              ),
-                            ),
-                            SizedBox(
-                              height: getScreenHeight(context) * .05,
-                            ),
-                            Row(
-                              children: [
-                                const Spacer(),
-                                GestureDetector(
-                                  onTap: null,
-                                  child: const Text(
-                                    '¿Olvido su contraseña?',
-                                    style: TextStyle(color: Colors.blue),
                                   ),
                                 ),
                                 const SizedBox(
@@ -269,60 +240,15 @@ class _Login extends State<Login> {
                                 const Spacer(flex: 5,),
                               ],
                             ),
-                            SizedBox(
-                              height: getScreenHeight(context) * .05,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 15),
-                              child: Container(
-                                height: 60,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    colors: <Color>[
-                                      Colors.blue,
-                                      Color.fromARGB(255, 137, 192, 237)
-                                    ],
-                                  ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(50),
-                                  ),
-                                ),
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(50.0))),
-                                  ),
-                                  onPressed: () {},
-                                  child: const Text(
-                                    "Iniciar sesion",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const Spacer(
-                              flex: 5,
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                }),
+                      );
+                    }
+                ),
               ],
             ),
           ),
-        ));
+        )
+    );
   }
 }
-
-
