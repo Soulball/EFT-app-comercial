@@ -20,7 +20,6 @@ class _LoginForm extends State<LoginForm> {
   final password = TextEditingController();
   late LoginResponse response;
 
-
   late bool _isObscure;
   late FocusNode myFocusNode;
 
@@ -32,8 +31,7 @@ class _LoginForm extends State<LoginForm> {
   }
 
   @override
-  void initState()
-  {
+  void initState() {
     myFocusNode = FocusNode();
     _isObscure = true;
   }
@@ -50,19 +48,25 @@ class _LoginForm extends State<LoginForm> {
         prefs.setString('user', user.text);
         prefs.setString('password', password.text);
         closeLoading(context);
-        Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Home(user: int.parse(user.text.toString()),
-              name: response.name,
-              nameStation: response.namestation,
-              station: response.station),),);
-
-      }else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Home(
+                user: int.parse(user.text.toString()),
+                name: response.name,
+                nameStation: response.namestation,
+                station: response.station),
+          ),
+        );
+      } else {
         print("no jala");
       }
-    }
-    else {
+    } else {
       closeLoading(context);
-      displayMessage(context: context, title: "Atención", message: "Nombre de usuario y/o contraseña incorrecta");
+      displayMessage(
+          context: context,
+          title: "Atención",
+          message: "Nombre de usuario y/o contraseña incorrecta");
       print("Contraseña incorrecta");
     }
   }
@@ -71,14 +75,16 @@ class _LoginForm extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      width: getScreenWith(context)*90,
-      height: getScreenHeight(context)*.90,
+      width: getScreenWith(context) * 90,
+      height: getScreenHeight(context) * .90,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Usuario",style: TextStyle(color: Colors.cyan, fontSize: 18,fontWeight: FontWeight.w600),
+            "Usuario",
+            style: TextStyle(
+                color: Colors.cyan, fontSize: 18, fontWeight: FontWeight.w600),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -101,7 +107,7 @@ class _LoginForm extends State<LoginForm> {
                   borderRadius: BorderRadius.circular(5),
                 ),
               ),
-              onSubmitted: (values){
+              onSubmitted: (values) {
                 myFocusNode.requestFocus();
               },
             ),
@@ -110,7 +116,9 @@ class _LoginForm extends State<LoginForm> {
             height: 25,
           ),
           Text(
-            "Contraseña",style: TextStyle(color: Colors.cyan, fontSize: 18, fontWeight: FontWeight.w600),
+            "Contraseña",
+            style: TextStyle(
+                color: Colors.cyan, fontSize: 18, fontWeight: FontWeight.w600),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
@@ -130,8 +138,7 @@ class _LoginForm extends State<LoginForm> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  suffixIconColor:
-                  _isObscure ? Colors.black : Colors.grey[600],
+                  suffixIconColor: _isObscure ? Colors.black : Colors.grey[600],
                   suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -139,12 +146,8 @@ class _LoginForm extends State<LoginForm> {
                         });
                       },
                       icon: Icon(
-                          _isObscure
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: _isObscure
-                              ? Colors.blue
-                              : Colors.grey[600]))),
+                          _isObscure ? Icons.visibility : Icons.visibility_off,
+                          color: _isObscure ? Colors.blue : Colors.grey[600]))),
             ),
           ),
           SizedBox(
@@ -152,7 +155,7 @@ class _LoginForm extends State<LoginForm> {
           ),
           Container(
             height: 60,
-            width: getScreenWith(context)*.70,
+            width: getScreenWith(context) * .70,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,

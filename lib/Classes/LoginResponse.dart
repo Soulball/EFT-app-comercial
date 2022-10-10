@@ -1,6 +1,4 @@
-import 'package:eft_app_comercial/Pages/Login/login.dart';
-
-class LoginResponse{
+class LoginResponse {
   String name, namestation, message;
   int station_id, station, code;
 
@@ -19,7 +17,6 @@ class LoginResponse{
         code: int.parse(json['code'].toString()),
         message: json['message'],
         name: json['name'],
-        namestation: json['namestation']
-    );
+        namestation: json['namestation']);
   }
 }
